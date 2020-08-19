@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">MatteSpill</string>
-    <string name="btnStart">Go to game screen</string>
+    <string name="btnStart">Play</string>
     <string name="btnCancel">Cancel</string>
+    <string name="txtHeader">Mattespill</string>
     <string name="txtGameScreen">Gamescreen</string>
+    <string name="txtQuestion">Her kommer et spørsmål</string>
+    <string name="hint">skriv ditt svar</string>
+    <string name="btnStats">Stats</string>
+    <string name="btnFive">5 Spørsmål</string>
+    <string name="btnFifteen">15 Spørsmål</string>
+    <string name="btnTwntyFive">25 Spørsmål</string>
 </resources>

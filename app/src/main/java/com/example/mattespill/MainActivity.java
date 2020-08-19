@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
         btnGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openGameScreen();
+                //openGameScreen();
+                showButtons();
             }
         });
     }
@@ -29,6 +30,18 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
         Log.i("knapp", "StartGame pressed");
+    }
+
+    public void showButtons(){
+        Button btnFive = findViewById(R.id.btn5Questions);
+        Button btnFithteen = findViewById(R.id.btn15Questions);
+        Button btnTventyFive = findViewById(R.id.btn25Questions);
+
+        // gjør knapper synlig
+        btnFive.setVisibility(View.VISIBLE);
+        btnFithteen.setVisibility(View.VISIBLE);
+        btnTventyFive.setVisibility(View.VISIBLE);
+
 
     }
 }
