@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--sporsmal array-->
+    <string-array name="sporsmal">
+        <item>1 + 2</item>
+        <item>2 + 2</item>
+        <item>3 + 2</item>
+        <item>4 + 2</item>
+        <item>5 + 2</item>
+        <item>6 + 2</item>
+        <item>7 + 2</item>
+        <item>8 + 2</item>
+        <item>9 + 2</item>
+        <item>10 + 2</item>
+        <item>11 + 2</item>
+        <item>12 + 2</item>
+        <item>13 + 2</item>
+        <item>14 + 2</item>
+        <item>15 + 2</item>
+        <item>16 + 2</item>
+        <item>17 + 2</item>
+        <item>18 + 2</item>
+        <item>20 + 2</item>
+        <item>21 + 2</item>
+        <item>22 + 2</item>
+        <item>23 + 2</item>
+        <item>24 + 2</item>
+        <item>25 + 2</item>
+        <item>26 + 2</item>
+    </string-array>
+
+    <!--svar-->
+    <string-array name="svar">
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+    </string-array>
+</resources>

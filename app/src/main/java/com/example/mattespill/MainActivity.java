@@ -20,8 +20,28 @@ public class MainActivity extends AppCompatActivity {
         btnGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //openGameScreen();
                 showButtons();
+            }
+        });
+        Button btnFive = findViewById(R.id.btn5Questions);
+        btnFive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGameScreen();
+            }
+        });
+        Button btnFifteen = findViewById(R.id.btn15Questions);
+        btnFifteen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGameScreen();
+            }
+        });
+        Button btnTwentyFive = findViewById(R.id.btn25Questions);
+        btnTwentyFive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGameScreen();
             }
         });
     }
