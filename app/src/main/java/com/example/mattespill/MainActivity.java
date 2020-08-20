@@ -20,9 +20,10 @@ public class MainActivity extends AppCompatActivity {
         btnGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showButtons();
+                openGameScreen();
             }
         });
+        /*
         Button btnFive = findViewById(R.id.btn5Questions);
         btnFive.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 openGameScreen();
             }
-        });
+        });*/
     }
 
     public void openGameScreen(){
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("knapp", "StartGame pressed");
     }
 
-    public void showButtons(){
+   /* public void showButtons(){
         Button btnFive = findViewById(R.id.btn5Questions);
         Button btnFithteen = findViewById(R.id.btn15Questions);
         Button btnTwentyFive = findViewById(R.id.btn25Questions);
@@ -63,5 +64,5 @@ public class MainActivity extends AppCompatActivity {
         btnTwentyFive.setVisibility(View.VISIBLE);
 
 
-    }
+    }*/
 }
