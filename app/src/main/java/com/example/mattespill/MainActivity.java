@@ -55,12 +55,12 @@ public class MainActivity extends AppCompatActivity {
     public void showButtons(){
         Button btnFive = findViewById(R.id.btn5Questions);
         Button btnFithteen = findViewById(R.id.btn15Questions);
-        Button btnTventyFive = findViewById(R.id.btn25Questions);
+        Button btnTwentyFive = findViewById(R.id.btn25Questions);
 
         // gjør knapper synlig
         btnFive.setVisibility(View.VISIBLE);
         btnFithteen.setVisibility(View.VISIBLE);
-        btnTventyFive.setVisibility(View.VISIBLE);
+        btnTwentyFive.setVisibility(View.VISIBLE);
 
 
     }

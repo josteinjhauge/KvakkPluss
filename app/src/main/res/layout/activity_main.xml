@@ -60,7 +60,7 @@
         android:layout_gravity="center"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="@string/btnTwntyFive"
+        android:text="@string/btnTwentyFive"
         android:background="@drawable/bgquestion"
         android:visibility="invisible"
         android:layout_marginBottom="5dp"/>
