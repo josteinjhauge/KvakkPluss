@@ -34,8 +34,20 @@
     <string name="dialog">Er du sikker?</string>
     <string name="positive">Ja</string>
     <string name="negative">Nei</string>
+    <string name="theme">Tema</string>
+    <string name="light">Dag</string>
+    <string name="dark">Natt</string>
 
     <!--Tekst Tysk-->
+
+    <!--Tekst lorem-->
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Interdum varius sit amet mattis vulputate enim.
+        Tincidunt praesent semper feugiat nibh sed pulvinar proin.
+        Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed.
+        Lacus viverra vitae congue eu. Molestie nunc non blandit massa enim nec dui nunc.</string>
+
 
 
 </resources>

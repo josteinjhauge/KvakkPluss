@@ -4,20 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bgapp">
+    android:background="?attr/bgColor">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="104dp"
         android:layout_gravity="center"
         android:layout_marginTop="0dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="?attr/bgColor">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="?attr/bgColor">
 
             <TextView
                 android:id="@+id/txtCorrect"
@@ -28,7 +30,7 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginBottom="2dp"
                 android:text="@string/txtGameScreen"
-                android:textColor="@color/white"
+                android:textColor="?attr/textColor"
                 android:textSize="22sp" />
 
             <TextView
@@ -39,7 +41,7 @@
 
                 android:layout_marginEnd="50dp"
                 android:text="@string/txtGameScreen"
-                android:textColor="@color/white"
+                android:textColor="?attr/textColor"
                 android:textSize="22sp" />
         </LinearLayout>
 
@@ -49,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="@string/txtQuestionNum"
-            android:textColor="@color/white"
+            android:textColor="?attr/textColor"
             android:textSize="22sp" />
     </LinearLayout>
     
@@ -59,36 +61,43 @@
         android:layout_width="290dp"
         android:layout_height="150dp"
         android:orientation="vertical"
-        android:background="@drawable/bgquestion">
+        android:background="?attr/bgQuestion">
 
         <TextView
             android:id="@+id/txtQuestion"
             android:textAlignment="center"
             android:layout_marginTop="40dp"
             android:layout_gravity="center"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="?attr/textColor"
             android:textSize="22sp"
             android:lineSpacingExtra="6dp"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:elevation="4dp"
             android:text="@string/txtQuestion" />
 
     </LinearLayout>
 
     <TextView
+        android:id="@+id/txtAnswer"
         android:layout_width="196dp"
         android:layout_height="36dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@drawable/bgquestion"
+        android:background="?attr/bgQuestion"
+        android:textColor="?attr/textColor"
         android:hint="@string/hint"
+        android:textColorHint="?attr/textColor"
+        android:elevation="1dp"
+        android:textSize="22sp"
         android:textAlignment="center" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:background="?attr/bgColor">
 
         <GridLayout
             android:layout_width="wrap_content"
@@ -96,6 +105,7 @@
             android:layout_gravity="center"
             android:columnCount="3"
             android:rowCount="4"
+            android:elevation="4dp"
             android:orientation="horizontal">
 
             <Button
@@ -103,7 +113,10 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textColor"
+                android:background="?attr/bgButton"
                 android:text="@string/btnOne"
+                android:elevation="2dp"
                 android:visibility="visible" />
 
             <Button
@@ -111,7 +124,10 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textColor"
+                android:background="?attr/bgButton"
                 android:text="@string/btnTwo"
+                android:elevation="2dp"
                 android:visibility="visible" />
 
             <Button
@@ -119,7 +135,10 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textColor"
+                android:background="?attr/bgButton"
                 android:text="@string/btnThree"
+                android:elevation="2dp"
                 android:visibility="visible" />
 
             <Button
@@ -127,7 +146,10 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textColor"
+                android:background="?attr/bgButton"
                 android:text="@string/btnFour"
+                android:elevation="2dp"
                 android:visibility="visible" />
 
             <Button
@@ -135,7 +157,10 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textColor"
+                android:background="?attr/bgButton"
                 android:text="@string/btnFive"
+                android:elevation="2dp"
                 android:visibility="visible" />
 
             <Button
@@ -143,7 +168,10 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textColor"
+                android:background="?attr/bgButton"
                 android:text="@string/btnSix"
+                android:elevation="2dp"
                 android:visibility="visible" />
 
             <Button
@@ -151,7 +179,10 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textColor"
+                android:background="?attr/bgButton"
                 android:text="@string/btnSeven"
+                android:elevation="2dp"
                 android:visibility="visible" />
 
             <Button
@@ -159,7 +190,10 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textColor"
+                android:background="?attr/bgButton"
                 android:text="@string/btnEight"
+                android:elevation="2dp"
                 android:visibility="visible" />
 
             <Button
@@ -167,7 +201,10 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textColor"
+                android:background="?attr/bgButton"
                 android:text="@string/btnNine"
+                android:elevation="2dp"
                 android:visibility="visible" />
 
             <Button
@@ -175,7 +212,11 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textColor"
+                android:background="?attr/bgButton"
                 android:text="@string/btnClear"
+                android:elevation="2dp"
+                android:onClick="Clear"
                 android:visibility="visible" />
 
             <Button
@@ -183,7 +224,10 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/textColor"
+                android:background="?attr/bgButton"
                 android:text="@string/btnZero"
+                android:elevation="2dp"
                 android:visibility="visible" />
 
             <Button
@@ -191,7 +235,10 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="?attr/btntxtColor"
+                android:background="?attr/bgConfirmButton"
                 android:text="@string/btnNext"
+                android:elevation="2dp"
                 android:visibility="visible" />
         </GridLayout>
 
@@ -202,7 +249,11 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="?attr/btntxtColor"
+        android:background="?attr/bgCancelButton"
         android:text="@string/btnCancel"
+        android:layout_marginTop="5dp"
+        android:elevation="2dp"
         android:visibility="visible" />
 
 </LinearLayout>
