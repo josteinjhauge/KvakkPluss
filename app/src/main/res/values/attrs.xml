@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="bgColor" format="color"/>
+    <attr name="textColor" format="color"/>
+    <attr name="textColorQuestions" format="color"/>
+    <attr name="metaTextColor" format="color"/>
+    <attr name="bgQuestion" format="reference"/>
+    <attr name="bgButton" format="reference"/>
+    <attr name="bgConfirmButton" format="reference"/>
+    <attr name="bgCancelButton" format="reference"/>
+    <attr name="btntxtColor" format="color"/>
+</resources>

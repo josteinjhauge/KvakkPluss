@@ -1,19 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:background="?attr/bgColor">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NU KJØR VI ELIN!"
+        android:textColor="?attr/textColor"
+        android:text="@string/txtHeader"
         android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="center"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:layout_marginTop="60dp">
+
+    <Button
+        android:id="@+id/btnStartGame"
+        android:elevation="4dp"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/textColorQuestions"
+        android:text="@string/btnStart"
+        android:background="?attr/bgQuestion"
+        android:layout_marginBottom="5dp"/>
+
+    <Button
+        android:id="@+id/btnStats"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/textColorQuestions"
+        android:text="@string/btnStats"
+        android:background="?attr/bgQuestion"
+        android:layout_marginBottom="5dp"/>
+
+    <Button
+        android:id="@+id/btnPrefrences"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/textColorQuestions"
+        android:text="@string/btnPreferanser"
+        android:background="?attr/bgQuestion"
+        android:layout_marginBottom="5dp"/>
+
+    <!--
+    <Button
+        android:id="@+id/btn5Questions"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btnFive"
+        android:background="@drawable/bg_question_light"
+        android:visibility="invisible"
+        android:layout_marginBottom="5dp"/>
+    <Button
+        android:id="@+id/btn15Questions"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btnFifteen"
+        android:background="@drawable/bg_question_light"
+        android:visibility="invisible"
+        android:layout_marginBottom="5dp"/>
+    <Button
+        android:id="@+id/btn25Questions"
+        android:layout_gravity="center"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/btnTwentyFive"
+        android:background="@drawable/bg_question_light"
+        android:visibility="invisible"
+        android:layout_marginBottom="5dp"/>
+        -->
+</LinearLayout>
+
+
+</LinearLayout>
