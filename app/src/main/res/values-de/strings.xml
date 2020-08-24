@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--Knapper Norsk-->
-    <string name="btnStart">Start Spill</string>
-    <string name="btnCancel">Avslutt</string>
-    <string name="txtHeader">Mattespill</string>
-    <string name="btnStats">Statistikk</string>
+    <!--Buttons-->
+    <string name="btnStart">Spiele starten</string>
+    <string name="btnCancel">Ausgang</string>
+    <string name="txtHeader">Mathe-Spiele</string>
+    <string name="btnStats">Statistiken</string>
     <string name="btnOne">1</string>
     <string name="btnTwo">2</string>
     <string name="btnThree">3</string>
@@ -17,23 +18,25 @@
     <string name="btnZero">0</string>
     <string name="btnNext">--></string>
 
-    <string name="btnFiveQ">5 Spørsmål</string>
-    <string name="btnTenQ">10 Spørsmål</string>
-    <string name="btnTwentyFiveQ">25 Spørsmål</string>
-    <string name="btnPrefrences">Preferanser</string>
+    <string name="btnFiveQ">5 Fragen</string>
+    <string name="btnTenQ">10 Fragen</string>
+    <string name="btnTwentyFiveQ">25 Fragen</string>
+    <string name="btnPrefrences">Einstellungen</string>
 
-    <!--Tekst Norsk-->
-    <string name="app_name">MatteSpill</string>
-    <string name="txtGameScreen">poengsum</string>
-    <string name="txtQuestion">Her kommer et spørsmål</string>
-    <string name="hint">skriv ditt svar</string>
-    <string name="txtQuestionNum">spørsmål nummer</string>
-    <string name="dialog">Er du sikker?</string>
+    <!--Text-->
+    <string name="app_name">Mathe-Spiele</string>
+    <string name="txtGameScreen">Ergebnis</string>
+    <string name="txtQuestion">kommt</string>
+    <string name="hint">Schreibe</string>
+    <string name="txtQuestionNum">Fragennummer</string>
+    <string name="dialog">bist du sicher?</string>
     <string name="positive">Ja</string>
-    <string name="negative">Nei</string>
-    <string name="theme">Tema</string>
-    <string name="light">Dag</string>
-    <string name="dark">Natt</string>
+    <string name="negative">Nein</string>
+    <string name="theme">Thema</string>
+    <string name="light">Tag</string>
+    <string name="dark">Nacht</string>
+    <string name="lang">Sprache</string>
+
 
     <!--Tekst lorem-->
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -43,6 +46,4 @@
         Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed.
         Lacus viverra vitae congue eu. Molestie nunc non blandit massa enim nec dui nunc.
     </string>
-    <string name="lang">Språk</string>
-
 </resources>

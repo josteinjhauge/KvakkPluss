@@ -19,4 +19,16 @@
         android:textOff="@string/light"
         android:textOn="@string/dark"
         android:textSize="22sp"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/langSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:textColor="?attr/textColor"
+        android:text="@string/lang"
+        android:textOff="@string/light"
+        android:textOn="@string/dark"
+        android:textSize="22sp"/>
 </LinearLayout>

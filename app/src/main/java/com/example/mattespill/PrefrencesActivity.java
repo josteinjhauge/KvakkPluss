@@ -5,8 +5,15 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.widget.CompoundButton;
+import android.widget.Toast;
+
+import java.util.Locale;
 
 
 public class PrefrencesActivity extends AppCompatActivity {
@@ -14,6 +21,7 @@ public class PrefrencesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
             setTheme(R.style.DarkTheme);
         }
@@ -22,6 +30,7 @@ public class PrefrencesActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_prefrences);
 
+        // changing theme
         SwitchCompat themeSwitch = findViewById(R.id.themeSwitch);
         if (AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
             themeSwitch.setChecked(true);
@@ -36,7 +45,42 @@ public class PrefrencesActivity extends AppCompatActivity {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 }
                 finish();
-                startActivity(new Intent(PrefrencesActivity.this, PrefrencesActivity.this.getClass()));
+                startActivity(new Intent(PrefrencesActivity.this,
+                        PrefrencesActivity.this.getClass()));
+            }
+        });
+
+        // TODO: make switch change language
+        SwitchCompat langSwitch = findViewById(R.id.langSwitch);
+        langSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    String languageToLoad  = "de";
+                    Locale locale = new Locale(languageToLoad);
+                    Locale.setDefault(locale);
+                    Configuration config = new Configuration();
+                    config.locale = locale;
+                    getBaseContext().getResources().updateConfiguration(config,
+                            getBaseContext().getResources().getDisplayMetrics());
+                    System.out.println("checked");
+                    Log.i("Switch", "onCheckedChanged: checked");
+                }
+                else{
+                    String languageToLoad  = "no";
+                    Locale locale = new Locale(languageToLoad);
+                    Locale.setDefault(locale);
+                    Configuration config = new Configuration();
+                    config.locale = locale;
+                    getBaseContext().getResources().updateConfiguration(config,
+                            getBaseContext().getResources().getDisplayMetrics());
+
+                    System.out.println("uncheck");
+                    Log.i("Switch", "onCheckedChanged: unChecked");
+                }
+                finish();
+                startActivity(new Intent(PrefrencesActivity.this,
+                        PrefrencesActivity.this.getClass()));
             }
         });
     }
