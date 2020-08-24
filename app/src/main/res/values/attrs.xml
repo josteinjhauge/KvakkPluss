@@ -7,6 +7,8 @@
     <attr name="bgQuestion" format="reference"/>
     <attr name="bgButton" format="reference"/>
     <attr name="bgBubbleBlue" format="reference"/>
+    <attr name="bgBubbleGreen" format="reference"/>
+    <attr name="bgBubbleRed" format="reference"/>
     <attr name="bgConfirmButton" format="reference"/>
     <attr name="bgCancelButton" format="reference"/>
     <attr name="btntxtColor" format="color"/>
