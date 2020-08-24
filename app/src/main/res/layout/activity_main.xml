@@ -29,7 +29,7 @@
         android:layout_height="120dp"
         android:textColor="?attr/textColorQuestions"
         android:text="@string/btnStart"
-        android:background="?attr/bgBubble"
+        android:background="?attr/bgBubbleBlue"
         android:alpha="0.5"/>
 
     <LinearLayout
@@ -47,7 +47,7 @@
             android:layout_marginLeft="20dp"
             android:textColor="?attr/textColorQuestions"
             android:drawableStart="@drawable/stats_icon"
-            android:background="?attr/bgBubble"
+            android:background="?attr/bgBubbleBlue"
             android:layout_marginBottom="5dp"
             android:alpha="0.5"/>
 
@@ -59,7 +59,7 @@
             android:layout_marginLeft="100dp"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
-            android:background="?attr/bgBubble"
+            android:background="?attr/bgBubbleBlue"
             android:drawableStart="@drawable/settings_icon"
             android:textColor="?attr/textColorQuestions"
             android:alpha="0.5"/>
