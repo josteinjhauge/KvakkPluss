@@ -13,6 +13,7 @@
         <!-- Customize your theme here. -->
         <item name="bgColor">@color/white</item>
         <item name="textColor">@color/black</item>
+        <item name="headerColor">@color/green</item>
         <item name="metaTextColor">@color/colorPrimaryDark</item>
         <item name="textColorQuestions">@color/black</item>
         <item name="bgQuestion">@drawable/bg_question_light</item>
@@ -29,6 +30,7 @@
         <!-- Customize your darktheme here. -->
         <item name="bgColor">@color/base</item>
         <item name="textColor">@color/white</item>
+        <item name="headerColor">@color/green</item>
         <item name="metaTextColor">@color/colorPrimaryDark</item>
         <item name="textColorQuestions">@color/white</item>
         <item name="bgQuestion">@drawable/bg_question_dark</item>
@@ -39,8 +41,6 @@
         <item name="bgBubbleBlue">@drawable/bubble_blue</item>
         <item name="bgBubbleGreen">@drawable/bubble_green</item>
         <item name="bgBubbleRed">@drawable/bubble_red</item>
-
-
     </style>
 
 </resources>
