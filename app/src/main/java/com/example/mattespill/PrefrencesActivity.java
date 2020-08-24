@@ -52,12 +52,15 @@ public class PrefrencesActivity extends AppCompatActivity {
 
         // TODO: make switch change language
         SwitchCompat langSwitch = findViewById(R.id.langSwitch);
+        final String norwegian = "no";
+        final String german = "de";
+
         langSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if (isChecked){
-                    String languageToLoad  = "de";
-                    Locale locale = new Locale(languageToLoad);
+                    Locale locale = new Locale(german);
                     Locale.setDefault(locale);
                     Configuration config = new Configuration();
                     config.locale = locale;
@@ -67,8 +70,7 @@ public class PrefrencesActivity extends AppCompatActivity {
                     Log.i("Switch", "onCheckedChanged: checked");
                 }
                 else{
-                    String languageToLoad  = "no";
-                    Locale locale = new Locale(languageToLoad);
+                    Locale locale = new Locale(norwegian);
                     Locale.setDefault(locale);
                     Configuration config = new Configuration();
                     config.locale = locale;

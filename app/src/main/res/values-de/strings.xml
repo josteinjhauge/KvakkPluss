@@ -3,7 +3,7 @@
     <!--Buttons-->
     <string name="btnStart">Spiele starten</string>
     <string name="btnCancel">Ausgang</string>
-    <string name="txtHeader">Mathe-Spiele</string>
+    <string name="txtHeader">FrogZone</string>
     <string name="btnStats">Statistiken</string>
     <string name="btnOne">1</string>
     <string name="btnTwo">2</string>

@@ -2,7 +2,7 @@
     <!--Knapper Norsk-->
     <string name="btnStart">Start Spill</string>
     <string name="btnCancel">Avslutt</string>
-    <string name="txtHeader">Mattespill</string>
+    <string name="txtHeader">FrogZone</string>
     <string name="btnStats">Statistikk</string>
     <string name="btnOne">1</string>
     <string name="btnTwo">2</string>
