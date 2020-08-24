@@ -54,12 +54,13 @@ public class PrefrencesActivity extends AppCompatActivity {
         SwitchCompat langSwitch = findViewById(R.id.langSwitch);
         final String norwegian = "no";
         final String german = "de";
+        // add if here
 
         langSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if (isChecked){
+                if (true){
                     Locale locale = new Locale(german);
                     Locale.setDefault(locale);
                     Configuration config = new Configuration();
