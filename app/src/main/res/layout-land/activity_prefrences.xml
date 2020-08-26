@@ -30,33 +30,38 @@
         android:background="?attr/bgButton"
         android:text="@string/lang"
         android:textSize="22sp"/>
-    <!--
-    <Button
-        android:id="@+id/btn5Questions"
-        android:layout_gravity="center"
-        android:layout_width="300dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btnFive"
-        android:background="@drawable/bg_question_light"
-        android:visibility="invisible"
-        android:layout_marginBottom="5dp"/>
-    <Button
-        android:id="@+id/btn15Questions"
-        android:layout_gravity="center"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="@string/btnFifteen"
-        android:background="@drawable/bg_question_light"
-        android:visibility="invisible"
-        android:layout_marginBottom="5dp"/>
-    <Button
-        android:id="@+id/btn25Questions"
-        android:layout_gravity="center"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="@string/btnTwentyFive"
-        android:background="@drawable/bg_question_light"
-        android:visibility="invisible"
-        android:layout_marginBottom="5dp"/>
-        -->
+        android:orientation="horizontal">
+
+   <Button
+       android:id="@+id/btn5Questions"
+       android:layout_gravity="center"
+       android:layout_width="300dp"
+       android:layout_height="wrap_content"
+       android:text="@string/btnFiveQ"
+       android:background="@drawable/bg_question_light"
+       android:visibility="invisible"
+       android:layout_marginBottom="5dp"/>
+   <Button
+       android:id="@+id/btn10Questions"
+       android:layout_gravity="center"
+       android:layout_width="300dp"
+       android:layout_height="wrap_content"
+       android:text="@string/btnTenQ"
+       android:background="@drawable/bg_question_light"
+       android:visibility="invisible"
+       android:layout_marginBottom="5dp"/>
+   <Button
+       android:id="@+id/btn25Questions"
+       android:layout_gravity="center"
+       android:layout_width="300dp"
+       android:layout_height="wrap_content"
+       android:text="@string/btnTwentyFiveQ"
+       android:background="@drawable/bg_question_light"
+       android:visibility="invisible"
+       android:layout_marginBottom="5dp"/>
+    </LinearLayout>
+
 </LinearLayout>

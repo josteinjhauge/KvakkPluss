@@ -34,6 +34,7 @@
     <string name="theme">Tema</string>
     <string name="light">Dag</string>
     <string name="dark">Natt</string>
+    <string name="lang">Tysk</string>
 
     <!--Tekst lorem-->
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -43,6 +44,6 @@
         Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed.
         Lacus viverra vitae congue eu. Molestie nunc non blandit massa enim nec dui nunc.
     </string>
-    <string name="lang">Språk</string>
+
 
 </resources>

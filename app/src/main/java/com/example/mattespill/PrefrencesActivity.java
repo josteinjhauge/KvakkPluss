@@ -10,6 +10,8 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
@@ -17,6 +19,8 @@ import java.util.Locale;
 
 
 public class PrefrencesActivity extends AppCompatActivity {
+    public Locale lang = Locale.getDefault();
+    public Locale newLang = Locale.forLanguageTag("");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,11 @@ public class PrefrencesActivity extends AppCompatActivity {
         else {
             setTheme(R.style.LightTheme);
         }
+
+        if (lang != Locale.forLanguageTag("nb")){
+            Locale.setDefault(Locale.forLanguageTag("de"));
+        }
+
         setContentView(R.layout.activity_prefrences);
 
         // changing theme
@@ -51,40 +60,50 @@ public class PrefrencesActivity extends AppCompatActivity {
         });
 
         // TODO: make switch change language
-        SwitchCompat langSwitch = findViewById(R.id.langSwitch);
-        final String norwegian = "no";
-        final String german = "de";
+        final Button btnLang = findViewById(R.id.btnLang);
         // add if here
 
-        langSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        btnLang.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (true){
-                    Locale locale = new Locale(german);
-                    Locale.setDefault(locale);
-                    Configuration config = new Configuration();
-                    config.locale = locale;
-                    getBaseContext().getResources().updateConfiguration(config,
-                            getBaseContext().getResources().getDisplayMetrics());
-                    System.out.println("checked");
-                    Log.i("Switch", "onCheckedChanged: checked");
+            public void onClick(View v) {
+                Locale currentLocale = getResources().getConfiguration().locale;
+                System.out.println("Her kommer standard språk: " + currentLocale);
+                if (lang.equals(Locale.forLanguageTag("nb"))){
+                    changeGerman();
+                } else{
+                    changeNorwegian();
                 }
-                else{
-                    Locale locale = new Locale(norwegian);
-                    Locale.setDefault(locale);
-                    Configuration config = new Configuration();
-                    config.locale = locale;
-                    getBaseContext().getResources().updateConfiguration(config,
-                            getBaseContext().getResources().getDisplayMetrics());
-
-                    System.out.println("uncheck");
-                    Log.i("Switch", "onCheckedChanged: unChecked");
-                }
-                finish();
-                startActivity(new Intent(PrefrencesActivity.this,
-                        PrefrencesActivity.this.getClass()));
             }
         });
+    }
+
+    public void changeGerman(){
+        Resources res = getResources();
+        // Change locale settings in the app.
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        conf.locale = new Locale("de");
+        ((Resources) res).updateConfiguration(conf, dm);
+        setContentView(R.layout.activity_main);
+        System.out.println("Her kommer språk: " + conf.locale);
+        newLang = Locale.forLanguageTag("de");
+        Locale.setDefault(newLang);
+        System.out.println("Ny default er: " + Locale.getDefault());
+        recreate();
+    }
+
+    public void changeNorwegian(){
+        Resources res = getResources();
+        // Change locale settings in the app.
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        conf.locale = new Locale("nb");
+        ((Resources) res).updateConfiguration(conf, dm);
+        setContentView(R.layout.activity_main);
+        System.out.println("Her kommer språk: " + conf.locale);
+        newLang = Locale.forLanguageTag("nb");
+        Locale.setDefault(newLang);
+        System.out.println("Ny default er: " + Locale.getDefault());
+        recreate();
     }
 }
