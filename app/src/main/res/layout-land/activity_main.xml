@@ -1,67 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="?attr/bgColor">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="?attr/headerColor"
         android:text="@string/txtHeader"
+        android:textColor="?attr/headerColor"
         android:textSize="50sp"
-        android:layout_gravity="center"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046" />
 
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="40dp">
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/bubble_blue"/>
-            </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <Button
-                    android:id="@+id/btnStartGame"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:alpha="0.5"
-                    android:background="?attr/bgBubbleBlue"
-                    android:elevation="4dp"
-                    android:text="@string/btnStart"
-                    android:textColor="?attr/textColorQuestions" />
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="153dp"
+        android:layout_marginBottom="153dp"
+        android:background="@drawable/bubble_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/frog" />
 
-                <Button
-                    android:id="@+id/btnStats"
-                    android:layout_gravity="center"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:textColor="?attr/textColorQuestions"
-                    android:drawableStart="@drawable/stats_icon"
-                    android:background="?attr/bgBubbleBlue"
-                    android:alpha="0.5"/>
+    <Button
+        android:id="@+id/btnPrefrences"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginBottom="24dp"
+        android:alpha="0.5"
+        android:background="?attr/bgBubbleBlue"
+        android:drawableStart="@drawable/settings_icon"
+        android:textColor="?attr/textColorQuestions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-                <Button
-                    android:id="@+id/btnPrefrences"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="?attr/bgBubbleBlue"
-                    android:drawableStart="@drawable/settings_icon"
-                    android:textColor="?attr/textColorQuestions"
-                    android:alpha="0.5"/>
-            </LinearLayout>
+    <Button
+        android:id="@+id/btnStartGame"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="4dp"
+        android:alpha="0.5"
+        android:background="?attr/bgBubbleBlue"
+        android:elevation="4dp"
+        android:text="@string/btnStart"
+        android:textColor="?attr/textColorQuestions"
+        app:layout_constraintBottom_toTopOf="@+id/btnPrefrences"
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
 
-        </GridLayout>
-</LinearLayout>
+    <Button
+        android:id="@+id/btnStats"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="88dp"
+        android:alpha="0.5"
+        android:background="?attr/bgBubbleBlue"
+        android:drawableStart="@drawable/stats_icon"
+        android:textColor="?attr/textColorQuestions"
+        app:layout_constraintBottom_toTopOf="@+id/btnStartGame"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.781" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="300dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,77 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="?attr/bgColor">
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="?attr/headerColor"
+        android:layout_marginBottom="20dp"
         android:text="@string/txtHeader"
+        android:textColor="?attr/headerColor"
         android:textSize="50sp"
-        android:layout_gravity="center"/>
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:background="@mipmap/ic_launcher"/>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:orientation="vertical"
-    android:layout_marginTop="100dp">
+        android:layout_marginTop="140dp"
+        android:background="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:contentDescription="@string/frog" />
 
     <Button
         android:id="@+id/btnStartGame"
-        android:elevation="4dp"
-        android:layout_gravity="center"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:textColor="?attr/textColorQuestions"
-        android:text="@string/btnStart"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="92dp"
+        android:alpha="0.5"
         android:background="?attr/bgBubbleBlue"
-        android:alpha="0.5"/>
+        android:elevation="4dp"
+        android:text="@string/btnStart"
+        android:textColor="?attr/textColorQuestions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnPrefrences"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        android:alpha="0.5"
+        android:background="?attr/bgBubbleBlue"
+        android:drawableStart="@drawable/settings_icon"
+        android:textColor="?attr/textColorQuestions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.318"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartGame"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnStats"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="36dp"
+        android:alpha="0.5"
+        android:background="?attr/bgBubbleBlue"
+        android:drawableStart="@drawable/stats_icon"
+        android:textColor="?attr/textColorQuestions"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.681"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartGame"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="100dp">
+        app:layout_constraintGuide_begin="320dp" />
 
-        <Button
-            android:id="@+id/btnStats"
-            android:layout_gravity="center"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="?attr/textColorQuestions"
-            android:drawableStart="@drawable/stats_icon"
-            android:background="?attr/bgBubbleBlue"
-            android:layout_marginBottom="5dp"
-            android:alpha="0.5"/>
-
-        <Button
-            android:id="@+id/btnPrefrences"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="100dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:background="?attr/bgBubbleBlue"
-            android:drawableStart="@drawable/settings_icon"
-            android:textColor="?attr/textColorQuestions"
-            android:alpha="0.5"/>
-
-    </LinearLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="180dp" />
 
 
     <!--
@@ -103,7 +124,6 @@
         android:visibility="invisible"
         android:layout_marginBottom="5dp"/>
         -->
-</LinearLayout>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
