@@ -1,67 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PrefrencesActivity"
     android:layout_gravity="center"
-    android:orientation="vertical"
-    android:background="?attr/bgColor">
+    android:background="?attr/bgColor"
+    tools:context=".PrefrencesActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="@string/btnPrefrences"
+        android:textColor="?attr/textColor"
+        android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/themeSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:textColor="?attr/textColor"
+        android:layout_width="170dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
         android:text="@string/theme"
+        android:textColor="?attr/textColor"
         android:textOff="@string/light"
         android:textOn="@string/dark"
-        android:textSize="22sp"/>
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@+id/guideline9"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/btnLang"
-        android:layout_width="wrap_content"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:textColor="?attr/textColor"
+        android:layout_marginTop="24dp"
         android:background="?attr/bgButton"
         android:text="@string/lang"
-        android:textSize="22sp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
+        android:textColor="?attr/textColor"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="@+id/themeSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/themeSwitch" />
+
+    <Button
+        android:id="@+id/btn5Questions"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:background="?attr/bgButton"
+        android:text="@string/btnFiveQ"
+        android:textColor="?attr/textColor"
+        android:textSize="22sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-   <Button
-       android:id="@+id/btn5Questions"
-       android:layout_gravity="center"
-       android:layout_width="300dp"
-       android:layout_height="wrap_content"
-       android:text="@string/btnFiveQ"
-       android:background="@drawable/bg_question_light"
-       android:visibility="invisible"
-       android:layout_marginBottom="5dp"/>
-   <Button
-       android:id="@+id/btn10Questions"
-       android:layout_gravity="center"
-       android:layout_width="300dp"
-       android:layout_height="wrap_content"
-       android:text="@string/btnTenQ"
-       android:background="@drawable/bg_question_light"
-       android:visibility="invisible"
-       android:layout_marginBottom="5dp"/>
-   <Button
-       android:id="@+id/btn25Questions"
-       android:layout_gravity="center"
-       android:layout_width="300dp"
-       android:layout_height="wrap_content"
-       android:text="@string/btnTwentyFiveQ"
-       android:background="@drawable/bg_question_light"
-       android:visibility="invisible"
-       android:layout_marginBottom="5dp"/>
-    </LinearLayout>
+    <Button
+        android:id="@+id/btn10Questions"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="24dp"
+        android:background="?attr/bgButton"
+        android:text="@string/btnTenQ"
+        android:textColor="?attr/textColor"
+        android:textSize="22sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/btn5Questions"
+        app:layout_constraintStart_toStartOf="@+id/btn5Questions"
+        app:layout_constraintTop_toBottomOf="@+id/btn5Questions" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btn25Questions"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="?attr/bgButton"
+        android:text="@string/btnTwentyFiveQ"
+        android:textColor="?attr/textColor"
+        android:textSize="22sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/btn10Questions"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn10Questions"
+        app:layout_constraintTop_toBottomOf="@+id/btn10Questions" />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:background="?attr/bgButton"
+        android:text="@string/btnBack"
+        android:textColor="?attr/textColor"
+        android:textSize="22sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/btnLang"
+        app:layout_constraintTop_toBottomOf="@+id/btnLang" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
