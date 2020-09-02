@@ -60,31 +60,21 @@ public class MainActivity extends AppCompatActivity {
     public void openGameScreen(){
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
+        finish();
         Log.i("knapp", "StartGame pressed"); // bort før levering
     }
 
     public void openStatsScreen(){
         Intent intent = new Intent(this, StatisticsActivity.class);
         startActivity(intent);
+        finish();
         Log.i("knapp", "Statistics pressed"); // bort før levering
     }
 
     public void openPrefrencesScreen(){
         Intent intent = new Intent(this, PrefrencesActivity.class);
         startActivity(intent);
+        finish();
         Log.i("knapp", "Prefrences pressed"); // bort før levering
     }
-
-   /* public void showButtons(){
-        Button btnFive = findViewById(R.id.btn5Questions);
-        Button btnFithteen = findViewById(R.id.btn15Questions);
-        Button btnTwentyFive = findViewById(R.id.btn25Questions);
-
-        // gjør knapper synlig
-        btnFive.setVisibility(View.VISIBLE);
-        btnFithteen.setVisibility(View.VISIBLE);
-        btnTwentyFive.setVisibility(View.VISIBLE);
-
-
-    }*/
 }

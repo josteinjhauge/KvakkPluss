@@ -1,9 +1,11 @@
 package com.example.mattespill;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -59,7 +61,7 @@ public class PrefrencesActivity extends AppCompatActivity {
             }
         });
 
-        // TODO: make switch change language
+        // TODO: make button/switch change language
         final Button btnLang = findViewById(R.id.btnLang);
         // add if here
 
@@ -73,6 +75,14 @@ public class PrefrencesActivity extends AppCompatActivity {
                 } else{
                     changeNorwegian();
                 }
+            }
+        });
+
+        Button btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                back();
             }
         });
     }
@@ -105,5 +115,12 @@ public class PrefrencesActivity extends AppCompatActivity {
         Locale.setDefault(newLang);
         System.out.println("Ny default er: " + Locale.getDefault());
         recreate();
+    }
+
+    public void back(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+        Log.i("knapp", "Back pressed"); // bort før levering
     }
 }

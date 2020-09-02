@@ -36,7 +36,7 @@
     <string name="light">Tag</string>
     <string name="dark">Nacht</string>
     <string name="lang">Norwegisch</string>
-
+    <string name="btnBack">Zurück</string>
 
     <!--Tekst lorem-->
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -46,4 +46,5 @@
         Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed.
         Lacus viverra vitae congue eu. Molestie nunc non blandit massa enim nec dui nunc.
     </string>
+
 </resources>
