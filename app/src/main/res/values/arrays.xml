@@ -2,7 +2,7 @@
 <resources>
 
     <!--sporsmal array-->
-    <string-array name="sporsmal">
+    <string-array name="questions">
         <item>1 + 2</item>
         <item>2 + 2</item>
         <item>3 + 2</item>
@@ -31,7 +31,7 @@
     </string-array>
 
     <!--svar-->
-    <string-array name="svar">
+    <string-array name="answers">
         <item>3</item>
         <item>4</item>
         <item>5</item>

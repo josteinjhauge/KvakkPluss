@@ -10,12 +10,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
     TextView input;
+    String[] questions;
+    String[] answers;
+    TextView txtQuestion;
+    TextView txtQuestionNum;
+    int number = 5;
+    int counter = 0;
 
     public void Clear(View v){
         input.setText("");
@@ -25,14 +35,8 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);*/
 
+        // Theme
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
             setTheme(R.style.DarkTheme);
         }
@@ -40,9 +44,22 @@ public class GameActivity extends AppCompatActivity {
             setTheme(R.style.LightTheme);
         }
 
+        // load arrays
+        questions = getResources().getStringArray(R.array.questions);
+        answers = getResources().getStringArray(R.array.answers);
+
+        // velge random spørsmål
+        int randomIndex = new Random().nextInt(number);
+        String randomTask = questions[randomIndex];
+
         setContentView(R.layout.activity_game);
 
-        input = (TextView) findViewById(R.id.txtAnswer);
+        // Views and onClick
+        input = findViewById(R.id.txtAnswer);
+        txtQuestionNum = findViewById(R.id.txtQuestionNum);
+        txtQuestionNum.setText(String.format("%d / %d", counter, number));
+        txtQuestion = findViewById(R.id.txtQuestion);
+        txtQuestion.setText(randomTask);
 
         Button btnExit = findViewById(R.id.btnCancel);
         btnExit.setOnClickListener(new View.OnClickListener() {
@@ -136,10 +153,17 @@ public class GameActivity extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                confirmClicked();
+                try {
+                    if (input.getText().toString().equals("")) {
+                        Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
+                    } else {
+                        confirmClicked();
+                    }
+                } catch (Exception e){
+                    Log.e("error", "Feil i btn confirm" + e);
+                }
             }
         });
-
     }
 
     public void oneClicked(){
@@ -272,8 +296,37 @@ public class GameActivity extends AppCompatActivity {
         Log.i("knapp", "0 trykket"); // bort før levering
     }
 
-    public void confirmClicked(){
-        // code here
+    public void confirmClicked() {
+        // TODO: make this work
+        // TODO: add method to check if answer is checked
+        // variabler
+        String inputVal = input.getText().toString();
+        System.out.println("Svaret som er skrevet er = " + inputVal);
+
+        int randomIndex = new Random().nextInt(number);
+        String randomTask = questions[randomIndex];
+        System.out.println("RandomInt = " + randomIndex);
+        int i;
+        int f;
+
+
+        System.out.println("her kommer lengden av arrayet: " + questions.length);
+        for (i = 0; i<number; i++) {
+            counter++;
+            System.out.println(counter);
+            String quest = questions[i];
+            txtQuestionNum.setText(counter + " / " + number);
+
+
+        }
+            if (counter >= number) {
+                txtQuestion.setText(randomTask);
+                input.setText("");
+                System.out.println("her kommer quest: " + i);
+            }
+            else{
+                txtQuestion.setText("Du er ferdig");
+            }
         Log.i("knapp", "Neste trykket"); // bort før levering
     }
 
