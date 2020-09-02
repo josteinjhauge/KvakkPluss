@@ -9,10 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +21,11 @@ public class GameActivity extends AppCompatActivity {
     String[] answers;
     TextView txtQuestion;
     TextView txtQuestionNum;
-    int number = 5;
-    int counter = 0;
+    int questionCountFive = 5;
+    int questionCountTen = 10;
+    int questionCountTwentyFive = 25;
+    int answerdCount = 1;
+
 
     public void Clear(View v){
         input.setText("");
@@ -48,18 +48,19 @@ public class GameActivity extends AppCompatActivity {
         questions = getResources().getStringArray(R.array.questions);
         answers = getResources().getStringArray(R.array.answers);
 
-        // velge random spørsmål
-        int randomIndex = new Random().nextInt(number);
-        String randomTask = questions[randomIndex];
-
         setContentView(R.layout.activity_game);
+
+        // velge random spørsmål
+        int randomIndex = (int) (Math.random()*4);
+        String randomTask = questions[randomIndex];
 
         // Views and onClick
         input = findViewById(R.id.txtAnswer);
         txtQuestionNum = findViewById(R.id.txtQuestionNum);
-        txtQuestionNum.setText(String.format("%d / %d", counter, number));
+        txtQuestionNum.setText(String.format("%d / %d", answerdCount, questionCountFive));
         txtQuestion = findViewById(R.id.txtQuestion);
         txtQuestion.setText(randomTask);
+
 
         Button btnExit = findViewById(R.id.btnCancel);
         btnExit.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +70,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        Button btnOne = findViewById(R.id.btnOne);
+        final Button btnOne = findViewById(R.id.btnOne);
         btnOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +78,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        Button btnTwo = findViewById(R.id.btnTwo);
+        final Button btnTwo = findViewById(R.id.btnTwo);
         btnTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +86,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        Button btnThree = findViewById(R.id.btnThree);
+        final Button btnThree = findViewById(R.id.btnThree);
         btnThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +94,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        Button btnFour = findViewById(R.id.btnFour);
+        final Button btnFour = findViewById(R.id.btnFour);
         btnFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +102,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        Button btnFive = findViewById(R.id.btnFive);
+        final Button btnFive = findViewById(R.id.btnFive);
         btnFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +110,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        Button btnSix = findViewById(R.id.btnSix);
+        final Button btnSix = findViewById(R.id.btnSix);
         btnSix.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +118,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        Button btnSeven = findViewById(R.id.btnSeven);
+        final Button btnSeven = findViewById(R.id.btnSeven);
         btnSeven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,7 +126,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        Button btnEight = findViewById(R.id.btnEight);
+        final Button btnEight = findViewById(R.id.btnEight);
         btnEight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,7 +134,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        Button btnNine = findViewById(R.id.btnNine);
+        final Button btnNine = findViewById(R.id.btnNine);
         btnNine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,7 +142,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        Button btnZero = findViewById(R.id.btnZero);
+        final Button btnZero = findViewById(R.id.btnZero);
         btnZero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -154,11 +155,25 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    if (input.getText().toString().equals("")) {
-                        Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
-                    } else {
+                    if (answerdCount < questionCountFive) {
                         confirmClicked();
                     }
+                    else{
+                        txtQuestion.setText(R.string.done);
+                        input.setText("");
+                        btnOne.setEnabled(false);
+                        btnTwo.setEnabled(false);
+                        btnThree.setEnabled(false);
+                        btnFour.setEnabled(false);
+                        btnFive.setEnabled(false);
+                        btnSix.setEnabled(false);
+                        btnSeven.setEnabled(false);
+                        btnEight.setEnabled(false);
+                        btnNine.setEnabled(false);
+                        btnZero.setEnabled(false);
+
+                    }
+
                 } catch (Exception e){
                     Log.e("error", "Feil i btn confirm" + e);
                 }
@@ -301,32 +316,24 @@ public class GameActivity extends AppCompatActivity {
         // TODO: add method to check if answer is checked
         // variabler
         String inputVal = input.getText().toString();
-        System.out.println("Svaret som er skrevet er = " + inputVal);
-
-        int randomIndex = new Random().nextInt(number);
+        int randomIndex = (int) (Math.random()*4);
         String randomTask = questions[randomIndex];
+
         System.out.println("RandomInt = " + randomIndex);
-        int i;
-        int f;
-
-
+        System.out.println("Svaret som er skrevet er = " + inputVal);
         System.out.println("her kommer lengden av arrayet: " + questions.length);
-        for (i = 0; i<number; i++) {
-            counter++;
-            System.out.println(counter);
-            String quest = questions[i];
-            txtQuestionNum.setText(counter + " / " + number);
 
-
+        // TODO: elin prøv å se på den for løkka her, generelt hele metoden
+        //  for å inkrementere oppgave nr
+        if (input.getText().toString().equals("")) {
+            Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
+        } else {
+            System.out.println("counter: " + questionCountFive);
+            answerdCount++;
+            txtQuestionNum.setText(answerdCount + " / " + questionCountFive);
+            txtQuestion.setText(randomTask);
+            input.setText("");
         }
-            if (counter >= number) {
-                txtQuestion.setText(randomTask);
-                input.setText("");
-                System.out.println("her kommer quest: " + i);
-            }
-            else{
-                txtQuestion.setText("Du er ferdig");
-            }
         Log.i("knapp", "Neste trykket"); // bort før levering
     }
 
