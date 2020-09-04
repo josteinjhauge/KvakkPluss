@@ -13,12 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 public class GameActivity extends AppCompatActivity {
     TextView input;
@@ -29,11 +24,12 @@ public class GameActivity extends AppCompatActivity {
     int questionCountFive = 5;
     int questionCountTen = 10;
     int questionCountTwentyFive = 25;
-    int answerdCount = 1;
-    int questionAmount = 0;
+    int questionCount = 1;
+    int answerdCount = 0;
+    int questionAmount = 5;
     ArrayList<Integer> fetchedQuestions = new ArrayList<>();
-    ArrayList<String> gameQuestions = new ArrayList<>();
-    ArrayList<QandA> qandAS = new ArrayList<>();
+    ArrayList<QandA> gameQuestions = new ArrayList<>();
+    ArrayList<QandA> allQuestions = new ArrayList<>();
 
 
     public void Clear(View v){
@@ -52,30 +48,16 @@ public class GameActivity extends AppCompatActivity {
         else {
             setTheme(R.style.LightTheme);
         }
-
-        // load arrays
-        questions = getResources().getStringArray(R.array.questions);
-        answers = getResources().getStringArray(R.array.answers);
-        for (int i = 0; i < questions.length; i++ ) {
-            QandA qanda = new QandA(questions[i], answers[i]);
-            qandAS.add(qanda);
-        }
-        for (QandA quandas : qandAS) {
-            System.out.println(quandas.question + " = " + quandas.answer);
-            System.out.println("--------------");
-        }
-
-
+        loadQandA();
         setContentView(R.layout.activity_game);
-
-        getQuestions(questionAmount);
+        getGameQuestions(questionAmount);
 
         // Views and onClick
         input = findViewById(R.id.txtAnswer);
         txtQuestionNum = findViewById(R.id.txtQuestionNum);
-        txtQuestionNum.setText(String.format("%d / %d", answerdCount, questionAmount));
+        txtQuestionNum.setText(String.format("%d / %d", questionCount, questionAmount));
         txtQuestion = findViewById(R.id.txtQuestion);
-        txtQuestion.setText(gameQuestions.get(0));
+        txtQuestion.setText(gameQuestions.get(0).getQuestion());
         System.out.println("Arraylist: " + gameQuestions);
 
 
@@ -172,10 +154,8 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    if (answerdCount < questionCountFive) {
-                        confirmClicked();
-                    }
-                    else{
+                    System.out.println(answerdCount + ".." + questionAmount);
+                    if (!(answerdCount < questionAmount)) {
                         txtQuestion.setText(R.string.done);
                         input.setText("");
                         btnOne.setEnabled(false);
@@ -188,6 +168,9 @@ public class GameActivity extends AppCompatActivity {
                         btnEight.setEnabled(false);
                         btnNine.setEnabled(false);
                         btnZero.setEnabled(false);
+                    }
+                    else{
+                        confirmClicked();
                     }
 
                 } catch (Exception e){
@@ -334,20 +317,17 @@ public class GameActivity extends AppCompatActivity {
         String inputVal = input.getText().toString();
 
         System.out.println("Svaret som er skrevet er = " + inputVal);
-        System.out.println("her kommer lengden av arrayet: " + questions.length);
 
         if (inputVal.equals("")) {
             Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
         } else {
-            while (answerdCount < gameQuestions.size()){
-                checkAnswer(inputVal);
-                txtQuestionNum.setText(String.format("%d / %d", answerdCount, questionAmount));
-                txtQuestion.setText(gameQuestions.get(answerdCount));
-                input.setText(""); // setter input til tomt
+                //checkAnswer(inputVal); // TODO: Lag metode som endrer scoren basert på feil eller riktig svart
+                txtQuestion.setText(gameQuestions.get(questionCount).getQuestion());
                 answerdCount++;
+                questionCount++;
+                txtQuestionNum.setText(String.format("%d / %d", questionCount, questionAmount));
+                input.setText(""); // setter input til tomt
             }
-
-        }
         Log.i("knapp", "Neste trykket"); // bort før levering
     }
 
@@ -382,7 +362,23 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    public void getQuestions(int questionAmount){
+    public void loadQandA () {
+        questions = getResources().getStringArray(R.array.questions);
+        answers = getResources().getStringArray(R.array.answers);
+
+        for (int i = 0; i < questions.length; i++ ) {
+            QandA qanda = new QandA(questions[i], answers[i]);
+            allQuestions.add(qanda);
+        }
+
+        for (QandA quandas : allQuestions) {
+            System.out.println(quandas.question + " = " + quandas.answer);
+            System.out.println("--------------");
+        }
+
+    }
+
+    public void getGameQuestions(int questionAmount){
         // velge random spørsmål
         int count = 0;
         boolean check;
@@ -391,13 +387,12 @@ public class GameActivity extends AppCompatActivity {
             int randomIndex = (int) (Math.random()*questionAmount); // sjekk om stemmer senere
             check = fetchedQuestions.contains(randomIndex);
             if (!check){
-                String randomTask = questions[randomIndex];
+                QandA randomTask = allQuestions.get(randomIndex);
                 fetchedQuestions.add(randomIndex);
                 gameQuestions.add(randomTask);
                 count++;
             }
         } while (count < questionAmount);
-
     }
 
 
