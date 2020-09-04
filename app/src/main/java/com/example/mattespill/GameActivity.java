@@ -25,7 +25,7 @@ public class GameActivity extends AppCompatActivity {
     int questionCountTen = 10;
     int questionCountTwentyFive = 25;
     int questionCount = 1;
-    int answerdCount = 0;
+    int answerdCount = 1;
     int questionAmount = 5;
     ArrayList<Integer> fetchedQuestions = new ArrayList<>();
     ArrayList<QandA> gameQuestions = new ArrayList<>();
