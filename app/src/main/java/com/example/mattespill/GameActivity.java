@@ -13,18 +13,25 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.stream.IntStream;
 
 public class GameActivity extends AppCompatActivity {
     TextView input;
     String[] questions;
-    String[] answers;
+    // String[] answers;
     TextView txtQuestion;
     TextView txtQuestionNum;
     int questionCountFive = 5;
     int questionCountTen = 10;
     int questionCountTwentyFive = 25;
     int answerdCount = 1;
+    int questionAmount = 0;
+    ArrayList<Integer> fetchedQuestions = new ArrayList<>();
+    ArrayList<String> gameQuestions = new ArrayList<>();
 
 
     public void Clear(View v){
@@ -46,20 +53,19 @@ public class GameActivity extends AppCompatActivity {
 
         // load arrays
         questions = getResources().getStringArray(R.array.questions);
-        answers = getResources().getStringArray(R.array.answers);
+        // answers = getResources().getStringArray(R.array.answers);
 
         setContentView(R.layout.activity_game);
 
-        // velge random spørsmål
-        int randomIndex = (int) (Math.random()*4);
-        String randomTask = questions[randomIndex];
+        getQuestions(questionAmount);
 
         // Views and onClick
         input = findViewById(R.id.txtAnswer);
         txtQuestionNum = findViewById(R.id.txtQuestionNum);
-        txtQuestionNum.setText(String.format("%d / %d", answerdCount, questionCountFive));
+        txtQuestionNum.setText(String.format("%d / %d", answerdCount, questionAmount));
         txtQuestion = findViewById(R.id.txtQuestion);
-        txtQuestion.setText(randomTask);
+        txtQuestion.setText(gameQuestions.get(0));
+        System.out.println("Arraylist: " + gameQuestions);
 
 
         Button btnExit = findViewById(R.id.btnCancel);
@@ -171,7 +177,6 @@ public class GameActivity extends AppCompatActivity {
                         btnEight.setEnabled(false);
                         btnNine.setEnabled(false);
                         btnZero.setEnabled(false);
-
                     }
 
                 } catch (Exception e){
@@ -316,23 +321,21 @@ public class GameActivity extends AppCompatActivity {
         // TODO: add method to check if answer is checked
         // variabler
         String inputVal = input.getText().toString();
-        int randomIndex = (int) (Math.random()*4);
-        String randomTask = questions[randomIndex];
 
-        System.out.println("RandomInt = " + randomIndex);
         System.out.println("Svaret som er skrevet er = " + inputVal);
         System.out.println("her kommer lengden av arrayet: " + questions.length);
 
-        // TODO: elin prøv å se på den for løkka her, generelt hele metoden
-        //  for å inkrementere oppgave nr
-        if (input.getText().toString().equals("")) {
+        if (inputVal.equals("")) {
             Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
         } else {
-            System.out.println("counter: " + questionCountFive);
-            answerdCount++;
-            txtQuestionNum.setText(answerdCount + " / " + questionCountFive);
-            txtQuestion.setText(randomTask);
-            input.setText("");
+            while (answerdCount < gameQuestions.size()){
+                checkAnswer(inputVal);
+                txtQuestionNum.setText(String.format("%d / %d", answerdCount, questionAmount));
+                txtQuestion.setText(gameQuestions.get(answerdCount));
+                input.setText(""); // setter input til tomt
+                answerdCount++;
+            }
+
         }
         Log.i("knapp", "Neste trykket"); // bort før levering
     }
@@ -365,6 +368,29 @@ public class GameActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(txtDialog).setPositiveButton(txtPositive, dialog)
                 .setNegativeButton(txtNegative,dialog).show();
+
+    }
+
+    public void getQuestions(int questionAmount){
+        // velge random spørsmål
+        int count = 0;
+        boolean check;
+        // TODO: sammenkjør arrays her
+        do {
+            int randomIndex = (int) (Math.random()*questionAmount); // sjekk om stemmer senere
+            check = fetchedQuestions.contains(randomIndex);
+            if (!check){
+                String randomTask = questions[randomIndex];
+                fetchedQuestions.add(randomIndex);
+                gameQuestions.add(randomTask);
+                count++;
+            }
+        } while (count < questionAmount);
+
+    }
+
+
+    public void checkAnswer(String inputVal){
 
     }
 }
