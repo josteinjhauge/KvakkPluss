@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ import java.util.stream.IntStream;
 public class GameActivity extends AppCompatActivity {
     TextView input;
     String[] questions;
-    // String[] answers;
+    String[] answers;
     TextView txtQuestion;
     TextView txtQuestionNum;
     int questionCountFive = 5;
@@ -32,6 +33,7 @@ public class GameActivity extends AppCompatActivity {
     int questionAmount = 0;
     ArrayList<Integer> fetchedQuestions = new ArrayList<>();
     ArrayList<String> gameQuestions = new ArrayList<>();
+    ArrayList<QandA> qandAS = new ArrayList<>();
 
 
     public void Clear(View v){
@@ -53,7 +55,16 @@ public class GameActivity extends AppCompatActivity {
 
         // load arrays
         questions = getResources().getStringArray(R.array.questions);
-        // answers = getResources().getStringArray(R.array.answers);
+        answers = getResources().getStringArray(R.array.answers);
+        for (int i = 0; i < questions.length; i++ ) {
+            QandA qanda = new QandA(questions[i], answers[i]);
+            qandAS.add(qanda);
+        }
+        for (QandA quandas : qandAS) {
+            System.out.println(quandas.question + " = " + quandas.answer);
+            System.out.println("--------------");
+        }
+
 
         setContentView(R.layout.activity_game);
 
