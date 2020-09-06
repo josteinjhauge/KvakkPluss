@@ -21,6 +21,8 @@ public class GameActivity extends AppCompatActivity {
     String[] answers;
     TextView txtQuestion;
     TextView txtQuestionNum;
+    TextView txtWrong;
+    TextView txtCorrect;
     int questionCountFive = 5;
     int questionCountTen = 10;
     int questionCountTwentyFive = 25;
@@ -156,6 +158,7 @@ public class GameActivity extends AppCompatActivity {
                 try {
                     System.out.println(answerdCount + ".." + questionAmount);
                     if (!(answerdCount < questionAmount)) {
+                        // getResult();
                         txtQuestion.setText(R.string.done);
                         input.setText("");
                         btnOne.setEnabled(false);
@@ -321,7 +324,7 @@ public class GameActivity extends AppCompatActivity {
         if (inputVal.equals("")) {
             Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
         } else {
-                //checkAnswer(inputVal); // TODO: Lag metode som endrer scoren basert på feil eller riktig svart
+                checkAnswer(inputVal); // TODO: Lag metode som endrer scoren basert på feil eller riktig svart
                 txtQuestion.setText(gameQuestions.get(questionCount).getQuestion());
                 answerdCount++;
                 questionCount++;
@@ -397,6 +400,40 @@ public class GameActivity extends AppCompatActivity {
 
 
     public void checkAnswer(String inputVal){
+        String input = inputVal;
+        String answer = gameQuestions.get(questionCount-1).getAnswer();
+        System.out.println(input + " skal være lik " + answer);
+        try {
+            if (input.equals(answer)){
+                updateCorrect();
+            } else{
+                updateWrong();
+            }
+        } catch (Exception e){
+            Log.d("catch checkAnswer", "checkAnswer: " + e);
+        }
+    }
+    
+    public void updateCorrect(){
+        int countCorrect = 0;
+        txtCorrect = findViewById(R.id.txtCorrect);
+        try {
+            countCorrect++;
+            txtCorrect.setText(String.valueOf(countCorrect));
+        } catch (Exception e){
+            Log.d("updateCorrect", "updateCorrect feilet " + e);
+        }
 
+    }
+
+    public void updateWrong(){
+        int countWrong = 0;
+        txtWrong = findViewById(R.id.txtWrong);
+        try {
+            countWrong++;
+            txtWrong.setText(String.valueOf(countWrong));
+        } catch (Exception e){
+            Log.d("updateCorrect", "updateCorrect feilet " + e);
+        }
     }
 }
