@@ -13,4 +13,6 @@
     <attr name="bgConfirmButton" format="reference"/>
     <attr name="bgCancelButton" format="reference"/>
     <attr name="btntxtColor" format="color"/>
+    <attr name="bgCorrect" format="reference"/>
+    <attr name="bgWrong" format="reference"/>
 </resources>

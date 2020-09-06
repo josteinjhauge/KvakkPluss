@@ -24,6 +24,8 @@
         <item name="bgBubbleBlue">@drawable/bubble_blue</item>
         <item name="bgBubbleGreen">@drawable/bubble_green</item>
         <item name="bgBubbleRed">@drawable/bubble_red</item>
+        <item name="bgCorrect">@drawable/bg_correct_light</item>
+        <item name="bgWrong">@drawable/bg_wrong_light</item>
     </style>
 
     <style name="DarkTheme" parent="AppTheme">
@@ -41,6 +43,8 @@
         <item name="bgBubbleBlue">@drawable/bubble_blue</item>
         <item name="bgBubbleGreen">@drawable/bubble_green</item>
         <item name="bgBubbleRed">@drawable/bubble_red</item>
+        <item name="bgCorrect">@drawable/bg_correct_dark</item>
+        <item name="bgWrong">@drawable/bg_wrong_dark</item>
     </style>
 
 </resources>

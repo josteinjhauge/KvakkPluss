@@ -25,7 +25,7 @@
 
     <!--Text-->
     <string name="app_name">Mathe-Spiele</string>
-    <string name="txtGameScreen">Ergebnis</string>
+    <string name="txtGameScreen">0</string>
     <string name="txtQuestion">kommt</string>
     <string name="hint">Schreibe</string>
     <string name="txtQuestionNum">Fragennummer</string>
@@ -38,6 +38,7 @@
     <string name="lang">Norwegisch</string>
     <string name="btnBack">Zurück</string>
     <string name="done">Du bist fetig</string>
+    <string name="frog">Frog mascot</string>
 
     <!--Tekst lorem-->
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit,

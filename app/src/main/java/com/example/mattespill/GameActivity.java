@@ -413,7 +413,7 @@ public class GameActivity extends AppCompatActivity {
             Log.d("catch checkAnswer", "checkAnswer: " + e);
         }
     }
-    
+
     public void updateCorrect(){
         int countCorrect = 0;
         txtCorrect = findViewById(R.id.txtCorrect);
