@@ -23,11 +23,9 @@ public class GameActivity extends AppCompatActivity {
     TextView txtQuestionNum;
     TextView txtWrong;
     TextView txtCorrect;
-    int questionCountFive = 5;
-    int questionCountTen = 10;
-    int questionCountTwentyFive = 25;
     int questionCount = 1;
     int answerdCount = 1;
+    // TODO: oppdater questionamount med det man får fra shared prefrences
     int questionAmount = 5;
     int countCorrect = 0;
     int countWrong = 0;
@@ -35,11 +33,6 @@ public class GameActivity extends AppCompatActivity {
     ArrayList<QandA> gameQuestions = new ArrayList<>();
     ArrayList<QandA> allQuestions = new ArrayList<>();
 
-
-    public void Clear(View v){
-        input.setText("");
-        Log.d("Clear", "Clear button clicked");
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -439,5 +432,44 @@ public class GameActivity extends AppCompatActivity {
         } catch (Exception e){
             Log.d("updateCorrect", "updateCorrect feilet " + e);
         }
+    }
+
+    public void Clear(View v){
+        input.setText("");
+        Log.d("Clear", "Clear button clicked");
+    }
+
+    // TODO: mulig mer må saves til instance, men ikke funnet helt ut av det enda
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        txtQuestion = findViewById(R.id.txtQuestion);
+        txtQuestionNum = findViewById(R.id.txtQuestionNum);
+        txtCorrect = findViewById(R.id.txtCorrect);
+        txtWrong = findViewById(R.id.txtWrong);
+
+        String question = txtQuestion.getText().toString();
+        String questionNum = txtQuestionNum.getText().toString();
+        String correct = txtCorrect.getText().toString();
+        String wrong = txtWrong.getText().toString();
+
+        outState.putString("Question", question);
+        outState.putString("QuestionNum", questionNum);
+        outState.putString("Correct", correct);
+        outState.putString("Wrong", wrong);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+        txtQuestion = findViewById(R.id.txtQuestion);
+        txtQuestionNum = findViewById(R.id.txtQuestionNum);
+        txtCorrect = findViewById(R.id.txtCorrect);
+        txtWrong = findViewById(R.id.txtWrong);
+
+        txtQuestion.setText(savedInstanceState.getString("Question"));
+        txtQuestionNum.setText(savedInstanceState.getString("QuestionNum"));
+        txtCorrect.setText(savedInstanceState.getString("Correct"));
+        txtWrong.setText(savedInstanceState.getString("Wrong"));
     }
 }
