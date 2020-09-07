@@ -102,33 +102,52 @@ public class PrefrencesActivity extends AppCompatActivity {
                 back();
             }
         });
+
+        rdo5Q = findViewById(R.id.btn5Questions);
+        rdo5Q.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onRadioBtnClicked();
+            }
+        });
+
+        rdo10Q = findViewById(R.id.btn10Questions);
+        rdo10Q.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onRadioBtnClicked();
+            }
+        });
+
+        rdo25Q = findViewById(R.id.btn25Questions);
+        rdo25Q.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onRadioBtnClicked();
+            }
+        });
+
+        onRadioBtnClicked();
     }
 
-    public void onRadioBtnClicked(View view){
-        boolean checked = ((RadioButton) view).isChecked();
+    public void onRadioBtnClicked(){
 
-        switch (view.getId()){
-            case R.id.btn5Questions:
-                if (checked){
-                    Game = 5;
-                    System.out.println("btn5 clicked, result is: " + Game);
-                }
-                break;
-            case R.id.btn10Questions:
-                if (checked){
-                    Game = 10;
-                    System.out.println("btn10 clicked, result is: " + Game);
-                }
-                break;
-            case R.id.btn25Questions:
-                if (checked){
-                    Game = 25;
-                    System.out.println("btn25 clicked, result is: " + Game);
-                }
-                break;
-            default:
-                Game = 5;
+        Log.d("TAG", "onRadioBtnClicked: ");
+        Game = 5;
+
+        if (rdo5Q.isChecked()){
+            Game = 5;
+            System.out.println("btn5 clicked, result is: " + Game);
         }
+        if ( rdo10Q.isChecked()){
+            Game = 10;
+            System.out.println("btn10 clicked, result is: " + Game);
+        }
+        if (rdo25Q.isChecked()){
+            Game = 25;
+            System.out.println("btn25 clicked, result is: " + Game);
+        }
+        System.out.println("-------" + Game + "-------");
     }
 
     public void changeGerman(){
@@ -184,7 +203,7 @@ public class PrefrencesActivity extends AppCompatActivity {
     // Load data from shared prefrences
     public void loadData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        int game = sharedPreferences.getInt(GAME_MODE, 5);
+        Game = sharedPreferences.getInt(GAME_MODE, 5);
         // last også lagret språk her
     }
 
@@ -197,15 +216,26 @@ public class PrefrencesActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(GAME_MODE, Game);
+        outState.putInt("gameMode", Game);
     }
 
     // TODO: denne må fikses så instance av radioknapper kan hentes
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
-        rdoGroup = findViewById(R.id.radio_group);
-        rdoGroup.setId(savedInstanceState.getInt(GAME_MODE));
+        savedInstanceState.getInt("gameMode");
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        saveData();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        loadData();
     }
 
 }
