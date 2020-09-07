@@ -1,5 +1,5 @@
 package com.example.mattespill;
-
+// TODO: gå over alle strenger
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -29,6 +29,8 @@ public class GameActivity extends AppCompatActivity {
     int questionCount = 1;
     int answerdCount = 1;
     int questionAmount = 5;
+    int countCorrect = 0;
+    int countWrong = 0;
     ArrayList<Integer> fetchedQuestions = new ArrayList<>();
     ArrayList<QandA> gameQuestions = new ArrayList<>();
     ArrayList<QandA> allQuestions = new ArrayList<>();
@@ -159,8 +161,7 @@ public class GameActivity extends AppCompatActivity {
                     System.out.println(answerdCount + ".." + questionAmount);
                     if (!(answerdCount < questionAmount)) {
                         // getResult();
-                        txtQuestion.setText(R.string.done);
-                        input.setText("");
+                        confirmClicked(0);
                         btnOne.setEnabled(false);
                         btnTwo.setEnabled(false);
                         btnThree.setEnabled(false);
@@ -173,7 +174,7 @@ public class GameActivity extends AppCompatActivity {
                         btnZero.setEnabled(false);
                     }
                     else{
-                        confirmClicked();
+                        confirmClicked(1);
                     }
 
                 } catch (Exception e){
@@ -313,7 +314,7 @@ public class GameActivity extends AppCompatActivity {
         Log.i("knapp", "0 trykket"); // bort før levering
     }
 
-    public void confirmClicked() {
+    public void confirmClicked(int status) {
         // TODO: make this work
         // TODO: add method to check if answer is checked
         // variabler
@@ -323,14 +324,19 @@ public class GameActivity extends AppCompatActivity {
 
         if (inputVal.equals("")) {
             Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
+        }
+        if (status == 0) {
+            checkAnswer(inputVal);
+            txtQuestion.setText(R.string.done);
+            input.setText("");
         } else {
-                checkAnswer(inputVal); // TODO: Lag metode som endrer scoren basert på feil eller riktig svart
-                txtQuestion.setText(gameQuestions.get(questionCount).getQuestion());
-                answerdCount++;
-                questionCount++;
-                txtQuestionNum.setText(String.format("%d / %d", questionCount, questionAmount));
-                input.setText(""); // setter input til tomt
-            }
+            checkAnswer(inputVal);
+            txtQuestion.setText(gameQuestions.get(questionCount).getQuestion());
+            answerdCount++;
+            questionCount++;
+            txtQuestionNum.setText(String.format("%d / %d", questionCount, questionAmount));
+            input.setText(""); // setter input til tomt
+        }
         Log.i("knapp", "Neste trykket"); // bort før levering
     }
 
@@ -400,11 +406,11 @@ public class GameActivity extends AppCompatActivity {
 
 
     public void checkAnswer(String inputVal){
-        String input = inputVal;
         String answer = gameQuestions.get(questionCount-1).getAnswer();
-        System.out.println(input + " skal være lik " + answer);
+        System.out.println(inputVal + " skal være lik " + answer);
+        System.out.println("questioncount er: " + questionCount);
         try {
-            if (input.equals(answer)){
+            if (inputVal.equals(answer)){
                 updateCorrect();
             } else{
                 updateWrong();
@@ -415,7 +421,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void updateCorrect(){
-        int countCorrect = 0;
         txtCorrect = findViewById(R.id.txtCorrect);
         try {
             countCorrect++;
@@ -427,7 +432,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void updateWrong(){
-        int countWrong = 0;
         txtWrong = findViewById(R.id.txtWrong);
         try {
             countWrong++;
