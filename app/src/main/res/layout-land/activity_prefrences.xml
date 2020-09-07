@@ -48,51 +48,52 @@
         app:layout_constraintStart_toStartOf="@+id/themeSwitch"
         app:layout_constraintTop_toBottomOf="@+id/themeSwitch" />
 
-    <Button
-        android:id="@+id/btn5Questions"
-        android:layout_width="170dp"
+    <RadioGroup
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="88dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        android:background="?attr/bgButton"
-        android:text="@string/btnFiveQ"
-        android:textColor="?attr/textColor"
-        android:textSize="22sp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toStartOf="@+id/guideline9"
+        android:onClick="onRadioBtnClicked"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
 
-    <Button
-        android:id="@+id/btn10Questions"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="24dp"
-        android:background="?attr/bgButton"
-        android:text="@string/btnTenQ"
-        android:textColor="?attr/textColor"
-        android:textSize="22sp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/btn5Questions"
-        app:layout_constraintStart_toStartOf="@+id/btn5Questions"
-        app:layout_constraintTop_toBottomOf="@+id/btn5Questions" />
+        <RadioButton
+            android:id="@+id/btn5Questions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="56dp"
+            android:text="@string/btnFiveQ"
+            android:textColor="?attr/textColor"
+            android:textSize="22sp"
+            android:visibility="visible" />
 
-    <Button
-        android:id="@+id/btn25Questions"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="?attr/bgButton"
-        android:text="@string/btnTwentyFiveQ"
-        android:textColor="?attr/textColor"
-        android:textSize="22sp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/btn10Questions"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/btn10Questions"
-        app:layout_constraintTop_toBottomOf="@+id/btn10Questions" />
+        <RadioButton
+            android:id="@+id/btn10Questions"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="@string/btnTenQ"
+            android:textColor="?attr/textColor"
+            android:textSize="22sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/btn5Questions"
+            app:layout_constraintTop_toBottomOf="@+id/btn5Questions" />
+
+        <RadioButton
+            android:id="@+id/btn25Questions"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="@string/btnTwentyFiveQ"
+            android:textColor="?attr/textColor"
+            android:textSize="22sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/btn10Questions"
+            app:layout_constraintTop_toBottomOf="@+id/btn10Questions" />
+    </RadioGroup>
 
     <Button
         android:id="@+id/btnBack"

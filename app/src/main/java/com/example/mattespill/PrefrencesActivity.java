@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.util.Locale;
@@ -23,11 +25,23 @@ import java.util.Locale;
 public class PrefrencesActivity extends AppCompatActivity {
     public Locale lang = Locale.getDefault();
     public Locale newLang = Locale.forLanguageTag("");
+    public int Game = 0;
+
+    private RadioButton rdo5Q;
+    private RadioButton rdo10Q;
+    private RadioButton rdo25Q;
+
+
+    // shared preferences
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String LANG = "lang";
+    public static final String GAME_MODE = "gameMode";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // tema sjekk
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
             setTheme(R.style.DarkTheme);
         }
@@ -35,6 +49,7 @@ public class PrefrencesActivity extends AppCompatActivity {
             setTheme(R.style.LightTheme);
         }
 
+        // språk sjekk
         if (lang != Locale.forLanguageTag("nb")){
             Locale.setDefault(Locale.forLanguageTag("de"));
         }
@@ -87,6 +102,33 @@ public class PrefrencesActivity extends AppCompatActivity {
         });
     }
 
+    public void onRadioBtnClicked(View view){
+        boolean checked = ((RadioButton) view).isChecked();
+
+        switch (view.getId()){
+            case R.id.btn5Questions:
+                if (checked){
+                    Game = 5;
+                    System.out.println("btn5 clicked, result is: " + Game);
+                }
+                break;
+            case R.id.btn10Questions:
+                if (checked){
+                    Game = 10;
+                    System.out.println("btn10 clicked, result is: " + Game);
+                }
+                break;
+            case R.id.btn25Questions:
+                if (checked){
+                    Game = 25;
+                    System.out.println("btn25 clicked, result is: " + Game);
+                }
+                break;
+            default:
+                Game = 5;
+        }
+    }
+
     public void changeGerman(){
         Resources res = getResources();
         // Change locale settings in the app.
@@ -118,9 +160,35 @@ public class PrefrencesActivity extends AppCompatActivity {
     }
 
     public void back(){
+        // TODO: enten legge inn egen lagre knapp, eller bare gjøre det her
+        // saveData();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
         Log.i("knapp", "Back pressed"); // bort før levering
     }
+
+    // save data to Sharedprefrences
+    public void saveData(){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(LANG, String.valueOf(lang));
+        editor.putInt(GAME_MODE, Game);
+        editor.apply();;
+        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+    }
+
+    // Load data from shared prefrences
+    public void loadData(){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        int game = sharedPreferences.getInt(GAME_MODE, 5);
+        // last også lagret språk her
+    }
+
+    // metode for å oppdatere views
+    public void updateViews(){
+        // TODO: legg inn passende kode her
+    }
+
 }
