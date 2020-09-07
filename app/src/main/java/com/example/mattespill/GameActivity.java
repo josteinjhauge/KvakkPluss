@@ -153,7 +153,7 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
-        Button btnConfirm = findViewById(R.id.btnNext);
+        final Button btnConfirm = findViewById(R.id.btnNext);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,8 +172,9 @@ public class GameActivity extends AppCompatActivity {
                         btnEight.setEnabled(false);
                         btnNine.setEnabled(false);
                         btnZero.setEnabled(false);
+                        btnConfirm.setEnabled(false);
                     }
-                    else{
+                    else {
                         confirmClicked(1);
                     }
 
@@ -354,6 +355,7 @@ public class GameActivity extends AppCompatActivity {
                     case DialogInterface.BUTTON_POSITIVE:
                         // yes trykket
                         startActivity(intent);
+                        finish();
                         Log.i("knapp", "ja trykket"); // bort før levering
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
@@ -404,7 +406,6 @@ public class GameActivity extends AppCompatActivity {
         } while (count < questionAmount);
     }
 
-
     public void checkAnswer(String inputVal){
         String answer = gameQuestions.get(questionCount-1).getAnswer();
         System.out.println(inputVal + " skal være lik " + answer);
@@ -412,7 +413,7 @@ public class GameActivity extends AppCompatActivity {
         try {
             if (inputVal.equals(answer)){
                 updateCorrect();
-            } else{
+            } else {
                 updateWrong();
             }
         } catch (Exception e){
@@ -428,7 +429,6 @@ public class GameActivity extends AppCompatActivity {
         } catch (Exception e){
             Log.d("updateCorrect", "updateCorrect feilet " + e);
         }
-
     }
 
     public void updateWrong(){
