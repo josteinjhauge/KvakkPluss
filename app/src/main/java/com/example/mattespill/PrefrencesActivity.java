@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.util.Locale;
@@ -26,6 +27,7 @@ public class PrefrencesActivity extends AppCompatActivity {
     public Locale lang = Locale.getDefault();
     public Locale newLang = Locale.forLanguageTag("");
     public int Game = 0;
+    RadioGroup rdoGroup;
 
     private RadioButton rdo5Q;
     private RadioButton rdo10Q;
@@ -189,6 +191,21 @@ public class PrefrencesActivity extends AppCompatActivity {
     // metode for å oppdatere views
     public void updateViews(){
         // TODO: legg inn passende kode her
+    }
+
+    // TODO: denne må fikses så instance av radioknapper kan lagres
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(GAME_MODE, Game);
+    }
+
+    // TODO: denne må fikses så instance av radioknapper kan hentes
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+        rdoGroup = findViewById(R.id.radio_group);
+        rdoGroup.setId(savedInstanceState.getInt(GAME_MODE));
     }
 
 }
