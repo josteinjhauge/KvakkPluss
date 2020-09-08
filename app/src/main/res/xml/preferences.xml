@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PreferanseActivity">
+    <CheckBoxPreference
+        android:id="@+id/Game5"
+        android:title="@string/btnFiveQ"
+        android:defaultValue="true"
+        android:key="game5" />
+    <CheckBoxPreference
+        android:id="@+id/Game10"
+        android:title="@string/btnTenQ"
+        android:defaultValue="false"
+        android:key="game10" />
+    <CheckBoxPreference
+        android:id="@+id/Game25"
+        android:title="btnTwentyFiveQ"
+        android:defaultValue="false"
+        android:key="game25" />
+    <SwitchPreference
+        android:id="@+id/themeSwitch"
+        android:title="@string/theme"
+        android:defaultValue="false"
+        android:summary="@string/theme"
+        android:key="switch" />
+</PreferenceScreen>

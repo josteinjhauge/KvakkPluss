@@ -11,6 +11,8 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -27,12 +29,10 @@ public class PrefrencesActivity extends AppCompatActivity {
     public Locale lang = Locale.getDefault();
     public Locale newLang = Locale.forLanguageTag("");
     public int Game = 0;
-    RadioGroup rdoGroup;
 
     private RadioButton rdo5Q;
     private RadioButton rdo10Q;
     private RadioButton rdo25Q;
-
 
     // shared preferences
     public static final String SHARED_PREFS = "sharedPrefs";
@@ -42,7 +42,6 @@ public class PrefrencesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // tema sjekk
         if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
             setTheme(R.style.DarkTheme);
@@ -182,6 +181,7 @@ public class PrefrencesActivity extends AppCompatActivity {
 
     public void back(){
         // TODO: enten legge inn egen lagre knapp, eller bare gjøre det her
+        sendVar();
         // saveData();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -189,18 +189,26 @@ public class PrefrencesActivity extends AppCompatActivity {
         Log.i("knapp", "Back pressed"); // bort før levering
     }
 
+    public void sendVar(){
+        Intent i = new Intent(this, GameActivity.class);
+        // sends var Game
+        i.putExtra("GameMode", Game);
+        System.out.println("--" + Game + "--");
+    }
+
     // save data to Sharedprefrences
     public void saveData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-
         editor.putString(LANG, String.valueOf(lang));
         editor.putInt(GAME_MODE, Game);
-        editor.apply();;
+        editor.apply();
+        System.out.println("Her kommer gamemode som er lagret: " + GAME_MODE);
         Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
     }
 
     // Load data from shared prefrences
+    // TODO: flytt denne til gameActivity også
     public void loadData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         Game = sharedPreferences.getInt(GAME_MODE, 5);

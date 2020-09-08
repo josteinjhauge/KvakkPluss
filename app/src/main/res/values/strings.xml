@@ -48,6 +48,7 @@
     <string name="btnBack">Tilbake</string>
     <string name="done">Du er ferdig</string>
     <string name="stats">Stats</string>
+    <string name="selectGame">Velg Spørsmål</string>
 
 
 </resources>

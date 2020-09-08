@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import static com.example.mattespill.PrefrencesActivity.GAME_MODE;
+import static com.example.mattespill.PrefrencesActivity.SHARED_PREFS;
 
 public class GameActivity extends AppCompatActivity {
     TextView input;
@@ -26,13 +30,13 @@ public class GameActivity extends AppCompatActivity {
     int questionCount = 1;
     int answerdCount = 1;
     // TODO: oppdater questionamount med det man får fra shared prefrences
-    int questionAmount = 5;
+    // gjort om til game, som kommer fra preferanser skjerm
+    int game = 5; // fra prefrences, men her satt til default hvis spiller ikke er i preferences først
     int countCorrect = 0;
     int countWrong = 0;
     ArrayList<Integer> fetchedQuestions = new ArrayList<>();
     ArrayList<QandA> gameQuestions = new ArrayList<>();
     ArrayList<QandA> allQuestions = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +49,18 @@ public class GameActivity extends AppCompatActivity {
         else {
             setTheme(R.style.LightTheme);
         }
+        // Load data from shared prefrences
+        // TODO: flytt denne til gameActivity også
+        loadData();
         loadQandA();
+        // getGameMode();
         setContentView(R.layout.activity_game);
-        getGameQuestions(questionAmount);
+        getGameQuestions(game);
 
         // Views and onClick
         input = findViewById(R.id.txtAnswer);
         txtQuestionNum = findViewById(R.id.txtQuestionNum);
-        txtQuestionNum.setText(String.format("%d / %d", questionCount, questionAmount));
+        txtQuestionNum.setText(String.format("%d / %d", questionCount, game));
         txtQuestion = findViewById(R.id.txtQuestion);
         txtQuestion.setText(gameQuestions.get(0).getQuestion());
         System.out.println("Arraylist: " + gameQuestions);
@@ -151,8 +159,8 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    System.out.println(answerdCount + ".." + questionAmount);
-                    if (!(answerdCount < questionAmount)) {
+                    System.out.println(answerdCount + ".." + game);
+                    if (!(answerdCount < game)) {
                         // getResult();
                         confirmClicked(0);
                         btnOne.setEnabled(false);
@@ -328,7 +336,7 @@ public class GameActivity extends AppCompatActivity {
             txtQuestion.setText(gameQuestions.get(questionCount).getQuestion());
             answerdCount++;
             questionCount++;
-            txtQuestionNum.setText(String.format("%d / %d", questionCount, questionAmount));
+            txtQuestionNum.setText(String.format("%d / %d", questionCount, game));
             input.setText(""); // setter input til tomt
         }
         Log.i("knapp", "Neste trykket"); // bort før levering
@@ -382,13 +390,26 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    public void getGameQuestions(int questionAmount){
+   /* public int getGameMode(){
+        // TODO: get variable
+        Intent intent = getIntent();
+        game = intent.getIntExtra("GameMode", 5);
+        /*Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            game = extras.getInt("GameMode");
+            System.out.println("Recived var = " + game);
+            //The key argument here must match that used in the other activity
+        }
+        return game;
+    }*/
+
+    public void getGameQuestions(int game){
         // velge random spørsmål
         int count = 0;
         boolean check;
         // TODO: sammenkjør arrays her
         do {
-            int randomIndex = (int) (Math.random()*questionAmount); // sjekk om stemmer senere
+            int randomIndex = (int) (Math.random()*game); // sjekk om stemmer senere
             check = fetchedQuestions.contains(randomIndex);
             if (!check){
                 QandA randomTask = allQuestions.get(randomIndex);
@@ -396,7 +417,7 @@ public class GameActivity extends AppCompatActivity {
                 gameQuestions.add(randomTask);
                 count++;
             }
-        } while (count < questionAmount);
+        } while (count < game);
     }
 
     public void checkAnswer(String inputVal){
@@ -437,6 +458,13 @@ public class GameActivity extends AppCompatActivity {
     public void Clear(View v){
         input.setText("");
         Log.d("Clear", "Clear button clicked");
+    }
+
+    public void loadData(){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        game = sharedPreferences.getInt(GAME_MODE, 5);
+        System.out.println("----:" + game + ":----");
+        // last også lagret språk her
     }
 
     // TODO: mulig mer må saves til instance, men ikke funnet helt ut av det enda
