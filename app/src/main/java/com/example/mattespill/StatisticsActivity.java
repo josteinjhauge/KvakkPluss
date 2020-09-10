@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 import static com.example.mattespill.GameActivity.RESULT;
@@ -25,7 +26,7 @@ public class StatisticsActivity extends AppCompatActivity {
     String [] results = new String[] {
             "1/5", "5/5", "9/10"
     };
-    
+
     ArrayList<String> resultsList = new ArrayList<>();
 
     // shared preferences
@@ -73,6 +74,8 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     public void makeList(){
+        // mangler å putte resultat fra game inn i array
+        // TODO: bør også gjøres om til arraylist av objekt
         Collections.addAll(resultsList, results);
     }
 
