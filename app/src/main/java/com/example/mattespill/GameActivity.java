@@ -34,9 +34,14 @@ public class GameActivity extends AppCompatActivity {
     int game = 5; // fra prefrences, men her satt til default hvis spiller ikke er i preferences først
     int countCorrect = 0;
     int countWrong = 0;
+    String result = "";
     ArrayList<Integer> fetchedQuestions = new ArrayList<>();
     ArrayList<QandA> gameQuestions = new ArrayList<>();
     ArrayList<QandA> allQuestions = new ArrayList<>();
+
+    // shared preferences
+    public static final String SHARED_GAME_PREFS = "sharedGamePrefs";
+    public static final String RESULT = "result";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,7 +166,6 @@ public class GameActivity extends AppCompatActivity {
                 try {
                     System.out.println(answerdCount + ".." + game);
                     if (!(answerdCount < game)) {
-                        // getResult();
                         confirmClicked(0);
                         btnOne.setEnabled(false);
                         btnTwo.setEnabled(false);
@@ -174,6 +178,8 @@ public class GameActivity extends AppCompatActivity {
                         btnNine.setEnabled(false);
                         btnZero.setEnabled(false);
                         btnConfirm.setEnabled(false);
+                        getResult();
+                        saveResult();
                     }
                     else {
                         confirmClicked(1);
@@ -460,6 +466,13 @@ public class GameActivity extends AppCompatActivity {
         Log.d("Clear", "Clear button clicked");
     }
 
+    public void getResult(){
+        result = String.valueOf(questionCount - countWrong);
+        result = String.format("%d / %d",(questionCount - countWrong), game);
+        System.out.println("game: " + game + " correct: " + countCorrect +
+                "\nresult: " + result);
+    }
+
     public void loadData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         game = sharedPreferences.getInt(GAME_MODE, 5);
@@ -467,7 +480,17 @@ public class GameActivity extends AppCompatActivity {
         // last også lagret språk her
     }
 
+    public void saveResult(){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(RESULT, result);
+        editor.apply();
+        System.out.println("Her kommer gamemode som er lagret: " + GAME_MODE);
+        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+    }
+
     // TODO: mulig mer må saves til instance, men ikke funnet helt ut av det enda
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -481,6 +504,7 @@ public class GameActivity extends AppCompatActivity {
         String correct = txtCorrect.getText().toString();
         String wrong = txtWrong.getText().toString();
 
+        // TODO: husk å lagre questioncount!!!
         outState.putString("Question", question);
         outState.putString("QuestionNum", questionNum);
         outState.putString("Correct", correct);

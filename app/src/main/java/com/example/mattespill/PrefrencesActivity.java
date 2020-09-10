@@ -53,6 +53,7 @@ public class PrefrencesActivity extends AppCompatActivity {
         // språk sjekk
         if (lang != Locale.forLanguageTag("nb")){
             Locale.setDefault(Locale.forLanguageTag("de"));
+            System.out.println();
         }
 
         setContentView(R.layout.activity_prefrences);
@@ -225,6 +226,7 @@ public class PrefrencesActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt("gameMode", Game);
+        outState.putString(LANG, String.valueOf(lang));
     }
 
     // TODO: denne må fikses så instance av radioknapper kan hentes
@@ -232,6 +234,7 @@ public class PrefrencesActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
         savedInstanceState.getInt("gameMode");
+        savedInstanceState.get(LANG);
     }
 
     @Override

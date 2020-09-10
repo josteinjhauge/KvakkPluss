@@ -4,12 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import static com.example.mattespill.GameActivity.RESULT;
+import static com.example.mattespill.GameActivity.SHARED_GAME_PREFS;
+import static com.example.mattespill.PrefrencesActivity.GAME_MODE;
+import static com.example.mattespill.PrefrencesActivity.SHARED_PREFS;
+
 public class StatisticsActivity extends AppCompatActivity {
+    String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +28,9 @@ public class StatisticsActivity extends AppCompatActivity {
         else {
             setTheme(R.style.LightTheme);
         }
+
+        loadData();
+        makeList();
         setContentView(R.layout.activity_statistics);
 
         Button btnBack = findViewById(R.id.btnBackStats);
@@ -38,5 +48,14 @@ public class StatisticsActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
         Log.i("knapp", "Back pressed"); // bort før levering
+    }
+
+    public void makeList(){
+
+    }
+    public void loadData(){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
+        result = sharedPreferences.getString(RESULT,"resultat");
+        System.out.println("----:" + result + ":----");
     }
 }
