@@ -74,9 +74,9 @@ public class MainActivity extends AppCompatActivity {
     public void openPrefrencesScreen(){
         // TODO: endre Intent linje for å bytte mellom de to løsningene
         // Ny løsning med bruk av fragment
-        // Intent intent = new Intent(this, PreferanseActivity.class);
+        Intent intent = new Intent(this, PreferanseActivity.class);
         // gammel løsning
-        Intent intent = new Intent(this, PrefrencesActivity.class);
+        // Intent intent = new Intent(this, PrefrencesActivity.class);
         startActivity(intent);
         Log.i("knapp", "Prefrences pressed"); // bort før levering
     }

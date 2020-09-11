@@ -57,4 +57,18 @@
         <item>27</item>
         <item>28</item>
     </string-array>
+
+    <!--Til preferences label må matche values-->
+    <array name="pref_game_option_labels">
+        <item>@string/btnFiveQ</item>
+        <item>@string/btnTenQ</item>
+        <item>@string/btnTwentyFiveQ</item>
+    </array>
+
+    <array name="pref_game_option_values">
+        <item>@string/Five</item>
+        <item>@string/ten</item>
+        <item>@string/twentyFive</item>
+    </array>
+
 </resources>

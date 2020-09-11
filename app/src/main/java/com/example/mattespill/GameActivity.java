@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -56,7 +57,7 @@ public class GameActivity extends AppCompatActivity {
         }
         // Load data from shared prefrences
         // TODO: flytt denne til gameActivity også
-        loadData();
+        nyLoadData();
         loadQandA();
         // getGameMode();
         setContentView(R.layout.activity_game);
@@ -473,12 +474,21 @@ public class GameActivity extends AppCompatActivity {
                 "\nresult: " + result);
     }
 
-    public void loadData(){
+    public void nyLoadData(){
+        Log.d("TAG", "nyLoadData: ");
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        game = Integer.parseInt(sharedPreferences.getString("gameMode", "5"));
+
+        System.out.println("----:" + game + ":----");
+    }
+
+   /* public void loadData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         game = sharedPreferences.getInt(GAME_MODE, 5);
         System.out.println("----:" + game + ":----");
         // last også lagret språk her
-    }
+    }*/
 
     public void saveResult(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);

@@ -23,6 +23,10 @@
     <string name="btnTwentyFiveQ">25 Fragen</string>
     <string name="btnPrefrences">Einstellungen</string>
 
+    <string name="Five">5</string>
+    <string name="ten">10</string>
+    <string name="twentyFive">25</string>
+
     <!--Text-->
     <string name="app_name">Mathe-Spiele</string>
     <string name="txtGameScreen">0</string>
@@ -50,6 +54,11 @@
     </string>
     <string name="stats">Stats</string>
     <string name="selectGame">Velg Spørsmål</string>
+    <string name="sporsmal">Velg antall Oppgaver</string>
+    <string name="langTitle">Språk</string>
+    <string name="listPref">Velg oppgaver her</string>
+    <string name="tysk">Tysk</string>
+    <string name="norsk">Norsk</string>
 
 
 </resources>

@@ -50,6 +50,7 @@ public class PrefrencesActivity extends AppCompatActivity {
             setTheme(R.style.LightTheme);
         }
 
+        loadData();
         // språk sjekk
         if (lang != Locale.forLanguageTag("nb")){
             Locale.setDefault(Locale.forLanguageTag("de"));
