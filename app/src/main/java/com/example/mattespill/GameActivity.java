@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static com.example.mattespill.PrefrencesActivity.GAME_MODE;
 import static com.example.mattespill.PrefrencesActivity.SHARED_PREFS;
@@ -30,15 +34,18 @@ public class GameActivity extends AppCompatActivity {
     TextView txtCorrect;
     int questionCount = 1;
     int answerdCount = 1;
-    // TODO: oppdater questionamount med det man får fra shared prefrences
-    // gjort om til game, som kommer fra preferanser skjerm
-    int game = 5; // fra prefrences, men her satt til default hvis spiller ikke er i preferences først
     int countCorrect = 0;
     int countWrong = 0;
     String result = "";
     ArrayList<Integer> fetchedQuestions = new ArrayList<>();
     ArrayList<QandA> gameQuestions = new ArrayList<>();
     ArrayList<QandA> allQuestions = new ArrayList<>();
+    public Locale newLang;
+
+    // Fra shared prefs
+    int game = 5; // fra prefrences, men her satt til default hvis spiller ikke er i preferences først
+    boolean lang;
+
 
     // shared preferences
     public static final String SHARED_GAME_PREFS = "sharedGamePrefs";
@@ -55,9 +62,17 @@ public class GameActivity extends AppCompatActivity {
         else {
             setTheme(R.style.LightTheme);
         }
+
         // Load data from shared prefrences
-        // TODO: flytt denne til gameActivity også
-        nyLoadData();
+        loadData();
+
+        // sjekke språk mot det som kommer fra sharedprefs
+        if (lang){
+            tysk();
+        } else {
+            norsk();
+        }
+
         loadQandA();
         // getGameMode();
         setContentView(R.layout.activity_game);
@@ -397,19 +412,6 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-   /* public int getGameMode(){
-        // TODO: get variable
-        Intent intent = getIntent();
-        game = intent.getIntExtra("GameMode", 5);
-        /*Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            game = extras.getInt("GameMode");
-            System.out.println("Recived var = " + game);
-            //The key argument here must match that used in the other activity
-        }
-        return game;
-    }*/
-
     public void getGameQuestions(int game){
         // velge random spørsmål
         int count = 0;
@@ -474,15 +476,18 @@ public class GameActivity extends AppCompatActivity {
                 "\nresult: " + result);
     }
 
-    public void nyLoadData(){
-        Log.d("TAG", "nyLoadData: ");
+    public void loadData(){
+        Log.d("TAG", "loadData: ");
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
         game = Integer.parseInt(sharedPreferences.getString("gameMode", "5"));
-
+        lang = sharedPreferences.getBoolean("langSwitch", false);
         System.out.println("----:" + game + ":----");
+        System.out.println("----:" + lang + ":----");
+
     }
 
+    // Gammel løsning
    /* public void loadData(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         game = sharedPreferences.getInt(GAME_MODE, 5);
@@ -497,6 +502,27 @@ public class GameActivity extends AppCompatActivity {
         editor.apply();
         System.out.println("Her kommer gamemode som er lagret: " + GAME_MODE);
         Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+    }
+
+    public void tysk(){
+        setLang("de");
+    }
+
+    public void norsk(){
+        setLang("nb");
+    }
+
+    public void setLang(String landskode){
+        Log.d("TAG","settland med landskode: " + landskode + " kjører nå");
+
+        newLang = Locale.forLanguageTag(landskode);
+        Log.d("TAG", "newLang er satt til: " + newLang);
+
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration cf = res.getConfiguration();
+        cf.setLocale(newLang);
+        res.updateConfiguration(cf,dm);
     }
 
     // TODO: mulig mer må saves til instance, men ikke funnet helt ut av det enda

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 
@@ -69,11 +71,29 @@ public class PreferanseActivity extends PreferenceActivity {
                 } else {
                     summaryValue2 = langSwitch.getSwitchTextOff().toString();
                     norsk();
+                    restartActivity();
                 }
                 Toast.makeText(getContext(), "Språk " + summaryValue2,
                         Toast.LENGTH_SHORT).show();
                 return true;
             });
+
+            // TODO: denne funker ikke
+            /*Preference gamePref = findPreference("gameMode");
+            final ListPreference listPref = (ListPreference) gamePref;
+            gamePref.setOnPreferenceChangeListener((preference, p) -> {
+                boolean state = Boolean.valueOf(p.toString());
+                String summary = ""; // denne er den som vi ønsker å sette
+                if (state){
+                    summary = ((ListPreference) gamePref).getEntry().toString();
+                    gamePref.setSummary(summary);
+                    restartActivity();
+                }
+                Toast.makeText(getContext(), "GameMode " + summary,
+                        Toast.LENGTH_SHORT).show();
+
+                return true;
+            });*/
         }
         // TODO: saveInstanceState ta fra preferences
 

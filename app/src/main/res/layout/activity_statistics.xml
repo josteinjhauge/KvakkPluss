@@ -22,7 +22,9 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="316dp" />
+        android:layout_height="match_parent"
+        android:divider="@color/colorAccent"
+        android:dividerHeight="0.5dp" />
 
     <Button
         android:id="@+id/btnBackStats"
@@ -30,6 +32,15 @@
         android:layout_height="wrap_content"
         android:background="?attr/bgButton"
         android:text="@string/btnBack"
+        android:textColor="?attr/textColor"
+        android:textSize="22sp"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/delete_icon"
         android:textColor="?attr/textColor"
         android:textSize="22sp"
         android:visibility="visible" />
