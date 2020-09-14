@@ -30,10 +30,10 @@
     <!--Text-->
     <string name="app_name">Mathe-Spiele</string>
     <string name="txtGameScreen">0</string>
-    <string name="txtQuestion">kommt</string>
+    <string name="txtQuestion">Kommt</string>
     <string name="hint">Schreibe</string>
     <string name="txtQuestionNum">Fragennummer</string>
-    <string name="dialog">bist du sicher?</string>
+    <string name="dialog">Bist du sicher?</string>
     <string name="positive">Ja</string>
     <string name="negative">Nein</string>
     <string name="theme">Thema</string>
@@ -41,8 +41,15 @@
     <string name="dark">Nacht</string>
     <string name="lang">Norwegisch</string>
     <string name="btnBack">Zurück</string>
-    <string name="done">Du bist fetig</string>
-    <string name="frog">Frog mascot</string>
+    <string name="done">Du bist fertig</string>
+    <string name="frog">Frosch Maskottchen</string>
+    <string name="stats">Statistiken</string>
+    <string name="selectGame">Fragen auswählen</string>
+    <string name="sporsmal">Wählen Sie die Anzahl der Aufgaben</string>
+    <string name="langTitle">Sprache</string>
+    <string name="listPref">Wählen Sie hier Aufgaben aus</string>
+    <string name="tysk">Deutsche</string>
+    <string name="norsk">Norwegisch</string>
 
     <!--Tekst lorem-->
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -52,13 +59,8 @@
         Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed.
         Lacus viverra vitae congue eu. Molestie nunc non blandit massa enim nec dui nunc.
     </string>
-    <string name="stats">Stats</string>
-    <string name="selectGame">Velg Spørsmål</string>
-    <string name="sporsmal">Velg antall Oppgaver</string>
-    <string name="langTitle">Språk</string>
-    <string name="listPref">Velg oppgaver her</string>
-    <string name="tysk">Tysk</string>
-    <string name="norsk">Norsk</string>
+
+
 
 
 </resources>

@@ -39,6 +39,16 @@
     <string name="light">Dag</string>
     <string name="dark">Natt</string>
     <string name="lang">Språk</string>
+    <string name="btnBack">Tilbake</string>
+    <string name="done">Du er ferdig</string>
+    <string name="frog">Frog mascot</string>
+    <string name="stats">Stats</string>
+    <string name="selectGame">Velg Spørsmål</string>
+    <string name="sporsmal">Oppgaver</string>
+    <string name="langTitle">Språk</string>
+    <string name="listPref">Velg antall oppgaver</string>
+    <string name="tysk">Tysk</string>
+    <string name="norsk">Norsk</string>
 
     <!--Tekst lorem-->
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -48,16 +58,10 @@
         Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed.
         Lacus viverra vitae congue eu. Molestie nunc non blandit massa enim nec dui nunc.
     </string>
-    <string name="frog">Frog mascot</string>
-    <string name="btnBack">Tilbake</string>
-    <string name="done">Du er ferdig</string>
-    <string name="stats">Stats</string>
-    <string name="selectGame">Velg Spørsmål</string>
-    <string name="sporsmal">Oppgaver</string>
-    <string name="langTitle">Språk</string>
-    <string name="listPref">Velg antall oppgaver</string>
-    <string name="tysk">Tysk</string>
-    <string name="norsk">Norsk</string>
+
+
+
+
 
 
 </resources>
