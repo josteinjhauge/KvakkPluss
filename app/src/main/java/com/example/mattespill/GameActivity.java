@@ -259,32 +259,33 @@ public class GameActivity extends AppCompatActivity {
                 if (inputVal.equals("")) {
                     // TODO: En bedre måte å gi tilbakemelding her eller??
                     Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
-                }
-                if (answerdCount < game) {
-                    checkAnswer(inputVal);
-                    txtQuestion.setText(gameQuestions.get(questionCount).getQuestion());
-                    answerdCount++;
-                    questionCount++;
-                    txtQuestionNum.setText(String.format("%d / %d", questionCount, game));
-                    input.setText("");
                 } else {
-                    btnOne.setEnabled(false);
-                    btnTwo.setEnabled(false);
-                    btnThree.setEnabled(false);
-                    btnFour.setEnabled(false);
-                    btnFive.setEnabled(false);
-                    btnSix.setEnabled(false);
-                    btnSeven.setEnabled(false);
-                    btnEight.setEnabled(false);
-                    btnNine.setEnabled(false);
-                    btnZero.setEnabled(false);
-                    btnConfirm.setEnabled(false);
-                    input.setText("");
-                    txtQuestion.setText(R.string.done); // TODO: Lage dialogboks istede
+                    if (answerdCount < game) {
+                        checkAnswer(inputVal);
+                        txtQuestion.setText(gameQuestions.get(questionCount).getQuestion());
+                        answerdCount++;
+                        questionCount++;
+                        txtQuestionNum.setText(String.format("%d / %d", questionCount, game));
+                        input.setText("");
+                    } else {
+                        btnOne.setEnabled(false);
+                        btnTwo.setEnabled(false);
+                        btnThree.setEnabled(false);
+                        btnFour.setEnabled(false);
+                        btnFive.setEnabled(false);
+                        btnSix.setEnabled(false);
+                        btnSeven.setEnabled(false);
+                        btnEight.setEnabled(false);
+                        btnNine.setEnabled(false);
+                        btnZero.setEnabled(false);
+                        btnConfirm.setEnabled(false);
+                        input.setText("");
+                        txtQuestion.setText(R.string.done); // TODO: Lage dialogboks istede
 
-                    checkAnswer(inputVal);
-                    getResult();
-                    saveResult();
+                        checkAnswer(inputVal);
+                        getResult();
+                        saveResult();
+                    }
                 }
             }
         });
