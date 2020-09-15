@@ -22,11 +22,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="298dp"
         android:divider="@color/colorAccent"
-        android:padding="4dp"
         android:dividerHeight="0.5dp"
-        android:scrollbars="vertical"/>
+        android:padding="4dp"
+        android:scrollbars="vertical" />
 
     <LinearLayout
         android:layout_width="match_parent"

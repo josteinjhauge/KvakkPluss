@@ -38,12 +38,10 @@ import static com.example.mattespill.GameActivity.RESULT;
 import static com.example.mattespill.GameActivity.SHARED_GAME_PREFS;
 
 public class StatisticsActivity extends AppCompatActivity {
-    String result;
-    int count;
+
     ListView listView;
     ArrayList<Results> resultList = new ArrayList<>();
-    ArrayList<String> names= new ArrayList<>();
-    ArrayList<String> resultArray = new ArrayList<>();
+
     public Locale newLang;
 
     // shared preferences
@@ -73,9 +71,6 @@ public class StatisticsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_statistics);
 
-        // TODO: fylle arraylist av object med resultat fra sharedPrefs = result
-
-        makeList();
         // listView = findViewById(R.id.listView);
 
         /* denne må bruke arraylist av object samme inne i klassen bytte ut begge arrayer med arraylist av object
@@ -95,65 +90,22 @@ public class StatisticsActivity extends AppCompatActivity {
                 back();
             }
         });
+
+        Button btnDelete = findViewById(R.id.btnDelete);
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteResults();
+            }
+        });
     }
 
-    public void makeList(){
-        if (count > 0){
-            for (int i = 0; i < count; i++){
-                names.add("Spill " + count);
-                resultArray.add(result);
-                Results results = new Results(names.get(i), resultArray.get(i));
-                System.out.println(results);
-                resultList.add(results);
-            }
-        } if (count == 0){
-            Results dummy = new Results("DummyGame", "Dummyscore");
-            resultList.add(dummy);
-            System.out.println(resultList);
-        }
-        count++;
+    private void deleteResults() {
+        // TODO: FIX DENNE
+        resultList.clear();
+        saveData();
+        recreate();
     }
-    /*public void makeList() {
-        try {
-            Log.d("TAG", "makeList start: ");
-            // Create and populate a List of planet names.
-            System.out.println("her kommer resultatet fra Gson: " + resultArray);
-           /* resultArray.add(result);
-            if (!(resultArray.size() == 0)) {
-                for (int i = 0; i < resultArray.size(); i++) {
-                    names.add("Spill " + (names.size() + i));
-                    Results results = new Results(names.get(i), resultArray.get(i));
-                    System.out.println(results);
-                    resultList.add(results);
-                }
-                for (Results results : resultList) {
-                    System.out.println(results.name + " \n " + results.score);
-                    System.out.println("--------------");
-                }
-            } else {
-                // set dummy
-                Results dummy = new Results("DummyGame", "Dummyscore");
-                resultList.add(dummy);
-                System.out.println(resultList);
-            }
-
-            /*for (int i = 0; i < gameName.length; i++){
-                String nameGame = "Spill " + (gameName.length + i);
-                i++;
-                gameName[i];
-            }
-            
-            Results resultat1 = new Results("spill1", "1/5");
-            resultList.add(1, resultat1);
-            resultList.remove(resultat1);
-            String name = "Spill " + (resultList.size() + 1);
-            resultList.add(new Results(name, result));
-        } catch (Exception e){
-            Log.d("TAG", "makeList: " + e);
-            System.out.println("makeList: " + e);
-        }
-    }*/
-
 
     public void back(){
         // TODO: enten legge inn egen lagre knapp, eller bare gjøre det her
@@ -167,24 +119,17 @@ public class StatisticsActivity extends AppCompatActivity {
 
     public void loadData(){
         // fra gameAct
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
-        result = sharedPreferences.getString(RESULT,"resultat");
-        count = sharedPreferences.getInt(COUNTER, 0);
-        // TODO: prøve å fikse denne, tror grunnen er at den ikke lagrer hva som er i arraylist
-        // result = sharedPreferences.getString(RESULTS,"");
-        System.out.println("her kommer resultat:" + result + ":---- \n" + " counter = " + count);
+        SharedPreferences gameprefs = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
         Gson gson = new Gson();
-        String response = sharedPreferences.getString(RESULT, null);
+        String response = gameprefs.getString(RESULT, null);
+        System.out.println("response: " + response);
         Type type = new TypeToken<ArrayList<Results>>() {}.getType();
-        // resultList = gson.fromJson(response,new TypeToken<List<Results>>(){}.getType());
         resultList = gson.fromJson(response, type);
-        System.out.println("resultlist består av: " + resultList);
 
-        if (resultList == null){
-            Log.d("TAG", "loadData: returned null");
-            Results dummy = new Results("DummyGame", "Dummyscore");
-            resultList.add(dummy);
-            System.out.println(resultList);
+        System.out.println("resultlist består av: ");
+        for (Results result : resultList) {
+            System.out.println(result.getName() + " sin score: " + result.getScore());
+            System.out.println("---------------");
         }
 
         // fra preferences
@@ -192,8 +137,6 @@ public class StatisticsActivity extends AppCompatActivity {
                 .getDefaultSharedPreferences(this);
         lang = sharedprefs.getBoolean("langSwitch", false);
         System.out.println("----:" + lang + ":----");
-        // TODO: tror ikke gson formatet funker
-
     }
 
     public void saveData(){
