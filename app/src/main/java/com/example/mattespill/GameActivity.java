@@ -254,61 +254,40 @@ public class GameActivity extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    System.out.println(answerdCount + ".." + game);
-                    if (!(answerdCount < game)) {
-                        btnOne.setEnabled(false);
-                        btnTwo.setEnabled(false);
-                        btnThree.setEnabled(false);
-                        btnFour.setEnabled(false);
-                        btnFive.setEnabled(false);
-                        btnSix.setEnabled(false);
-                        btnSeven.setEnabled(false);
-                        btnEight.setEnabled(false);
-                        btnNine.setEnabled(false);
-                        btnZero.setEnabled(false);
-                        btnConfirm.setEnabled(false);
+                String inputVal = input.getText().toString();
 
-                        confirmClicked(0);
-                        getResult();
-                        saveResult();
-                        // TODO: Kalle på dialogFragment
-                    }
-                    else {
-                        confirmClicked(1);
-                    }
+                if (inputVal.equals("")) {
+                    // TODO: En bedre måte å gi tilbakemelding her eller??
+                    Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
+                }
+                if (answerdCount < game) {
+                    checkAnswer(inputVal);
+                    txtQuestion.setText(gameQuestions.get(questionCount).getQuestion());
+                    answerdCount++;
+                    questionCount++;
+                    txtQuestionNum.setText(String.format("%d / %d", questionCount, game));
+                    input.setText("");
+                } else {
+                    btnOne.setEnabled(false);
+                    btnTwo.setEnabled(false);
+                    btnThree.setEnabled(false);
+                    btnFour.setEnabled(false);
+                    btnFive.setEnabled(false);
+                    btnSix.setEnabled(false);
+                    btnSeven.setEnabled(false);
+                    btnEight.setEnabled(false);
+                    btnNine.setEnabled(false);
+                    btnZero.setEnabled(false);
+                    btnConfirm.setEnabled(false);
+                    input.setText("");
+                    txtQuestion.setText(R.string.done); // TODO: Lage dialogboks istede
 
-                } catch (Exception e){
-                    Log.e("error", "Feil i btn confirm" + e);
+                    checkAnswer(inputVal);
+                    getResult();
+                    saveResult();
                 }
             }
         });
-    }
-
-    public void confirmClicked(int status) {
-        // TODO: make this work
-        // TODO: add method to check if answer is checked
-        // variabler
-        String inputVal = input.getText().toString();
-
-        System.out.println("Svaret som er skrevet er = " + inputVal);
-
-        if (inputVal.equals("")) {
-            Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
-        }
-        if (status == 0) {
-            checkAnswer(inputVal);
-            txtQuestion.setText(R.string.done);
-            input.setText("");
-        } else {
-            checkAnswer(inputVal);
-            txtQuestion.setText(gameQuestions.get(questionCount).getQuestion());
-            answerdCount++;
-            questionCount++;
-            txtQuestionNum.setText(String.format("%d / %d", questionCount, game));
-            input.setText(""); // setter input til tomt
-        }
-        Log.i("knapp", "Neste trykket"); // bort før levering
     }
 
     public void getResult(){
