@@ -104,7 +104,14 @@ public class GameActivity extends AppCompatActivity {
         btnOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                oneClicked();
+                String prevText = input.getText().toString();
+                String one = "1";
+                if (!prevText.equals("")){
+                    String newText = prevText + one;
+                    input.setText(newText);
+                } else {
+                    input.setText(one);
+                }
             }
         });
 
@@ -112,7 +119,14 @@ public class GameActivity extends AppCompatActivity {
         btnTwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                twoClicked();
+                String prevText = input.getText().toString();
+                String two = "2";
+                if (!prevText.equals("")){
+                    String newText = prevText + two;
+                    input.setText(newText);
+                } else{
+                    input.setText(two);
+                }
             }
         });
 
@@ -120,7 +134,14 @@ public class GameActivity extends AppCompatActivity {
         btnThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                threeClicked();
+                String prevText = input.getText().toString();
+                String three = "3";
+                if (!prevText.equals("")){
+                    String newText = prevText + three;
+                    input.setText(newText);
+                } else{
+                    input.setText(three);
+                }
             }
         });
 
@@ -128,7 +149,14 @@ public class GameActivity extends AppCompatActivity {
         btnFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fourClicked();
+                String prevText = input.getText().toString();
+                String four = "4";
+                if (!prevText.equals("")){
+                    String newText = prevText + four;
+                    input.setText(newText);
+                } else{
+                    input.setText(four);
+                }
             }
         });
 
@@ -136,7 +164,14 @@ public class GameActivity extends AppCompatActivity {
         btnFive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fiveClicked();
+                String prevText = input.getText().toString();
+                String five = "5";
+                if (!prevText.equals("")){
+                    String newText = prevText + five;
+                    input.setText(newText);
+                } else{
+                    input.setText(five);
+                }
             }
         });
 
@@ -144,7 +179,14 @@ public class GameActivity extends AppCompatActivity {
         btnSix.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sixClicked();
+                String prevText = input.getText().toString();
+                String six = "6";
+                if (!prevText.equals("")){
+                    String newText = prevText + six;
+                    input.setText(newText);
+                } else{
+                    input.setText(six);
+                }
             }
         });
 
@@ -152,7 +194,14 @@ public class GameActivity extends AppCompatActivity {
         btnSeven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sevenClicked();
+                String prevText = input.getText().toString();
+                String seven = "7";
+                if (!prevText.equals("")){
+                    String newText = prevText + seven;
+                    input.setText(newText);
+                } else{
+                    input.setText(seven);
+                }
             }
         });
 
@@ -160,7 +209,14 @@ public class GameActivity extends AppCompatActivity {
         btnEight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                eightClicked();
+                String prevText = input.getText().toString();
+                String eight = "8";
+                if (!prevText.equals("")){
+                    String newText = prevText + eight;
+                    input.setText(newText);
+                } else{
+                    input.setText(eight);
+                }
             }
         });
 
@@ -168,7 +224,14 @@ public class GameActivity extends AppCompatActivity {
         btnNine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nineClicked();
+                String prevText = input.getText().toString();
+                String nine = "9";
+                if (!prevText.equals("")){
+                    String newText = prevText + nine;
+                    input.setText(newText);
+                } else{
+                    input.setText(nine);
+                }
             }
         });
 
@@ -176,7 +239,14 @@ public class GameActivity extends AppCompatActivity {
         btnZero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                zeroClicked();
+                String prevText = input.getText().toString();
+                String zero = "0";
+                if (!prevText.equals("")){
+                    String newText = prevText + zero;
+                    input.setText(newText);
+                } else{
+                    input.setText(zero);
+                }
             }
         });
 
@@ -213,136 +283,6 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    public void oneClicked(){
-        // code here
-        String prevText = input.getText().toString();
-        String one = "1";
-        if (!prevText.equals("")){
-            String newText = prevText + one;
-            input.setText(newText);
-        } else{
-            input.setText(one);
-        }
-        Log.i("knapp", "1 trykket"); // bort før levering
-    }
-
-    public void twoClicked(){
-        // code here
-        String prevText = input.getText().toString();
-        String two = "2";
-        if (!prevText.equals("")){
-            String newText = prevText + two;
-            input.setText(newText);
-        } else{
-            input.setText(two);
-        }
-        Log.i("knapp", "2 trykket"); // bort før levering
-    }
-
-    public void threeClicked(){
-        // code here
-        String prevText = input.getText().toString();
-        String three = "3";
-        if (!prevText.equals("")){
-            String newText = prevText + three;
-            input.setText(newText);
-        } else{
-            input.setText(three);
-        }
-        Log.i("knapp", "3 trykket"); // bort før levering
-    }
-
-    public void fourClicked(){
-        // code here
-        String prevText = input.getText().toString();
-        String four = "4";
-        if (!prevText.equals("")){
-            String newText = prevText + four;
-            input.setText(newText);
-        } else{
-            input.setText(four);
-        }
-        Log.i("knapp", "4 trykket"); // bort før levering
-    }
-
-    public void fiveClicked(){
-        // code here
-        String prevText = input.getText().toString();
-        String five = "5";
-        if (!prevText.equals("")){
-            String newText = prevText + five;
-            input.setText(newText);
-        } else{
-            input.setText(five);
-        }
-        Log.i("knapp", "5 trykket"); // bort før levering
-    }
-
-    public void sixClicked(){
-        // code here
-        String prevText = input.getText().toString();
-        String six = "6";
-        if (!prevText.equals("")){
-            String newText = prevText + six;
-            input.setText(newText);
-        } else{
-            input.setText(six);
-        }
-        Log.i("knapp", "6 trykket"); // bort før levering
-    }
-
-    public void sevenClicked(){
-        // code here
-        String prevText = input.getText().toString();
-        String seven = "7";
-        if (!prevText.equals("")){
-            String newText = prevText + seven;
-            input.setText(newText);
-        } else{
-            input.setText(seven);
-        }
-        Log.i("knapp", "7 trykket"); // bort før levering
-    }
-
-    public void eightClicked(){
-        // code here
-        String prevText = input.getText().toString();
-        String eight = "8";
-        if (!prevText.equals("")){
-            String newText = prevText + eight;
-            input.setText(newText);
-        } else{
-            input.setText(eight);
-        }
-        Log.i("knapp", "8 trykket"); // bort før levering
-    }
-
-    public void nineClicked(){
-        // code here
-        String prevText = input.getText().toString();
-        String nine = "9";
-        if (!prevText.equals("")){
-            String newText = prevText + nine;
-            input.setText(newText);
-        } else{
-            input.setText(nine);
-        }
-        Log.i("knapp", "9 trykket"); // bort før levering
-    }
-
-    public void zeroClicked() {
-        // code here
-        String prevText = input.getText().toString();
-        String zero = "0";
-        if (!prevText.equals("")){
-            String newText = prevText + zero;
-            input.setText(newText);
-        } else{
-            input.setText(zero);
-        }
-        Log.i("knapp", "0 trykket"); // bort før levering
     }
 
     public void confirmClicked(int status) {
