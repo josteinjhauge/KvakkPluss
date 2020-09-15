@@ -18,6 +18,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -40,7 +44,11 @@ public class GameActivity extends AppCompatActivity {
     ArrayList<Integer> fetchedQuestions = new ArrayList<>();
     ArrayList<QandA> gameQuestions = new ArrayList<>();
     ArrayList<QandA> allQuestions = new ArrayList<>();
+    ArrayList<Results> results = new ArrayList<>();
+    ArrayList<String> names= new ArrayList<>();
+    ArrayList<String> resultArray = new ArrayList<>();
     public Locale newLang;
+    int counter = 0;
 
     // Fra shared prefs
     int game = 5; // fra prefrences, men her satt til default hvis spiller ikke er i preferences først
@@ -50,6 +58,8 @@ public class GameActivity extends AppCompatActivity {
     // shared preferences
     public static final String SHARED_GAME_PREFS = "sharedGamePrefs";
     public static final String RESULT = "result";
+    public static  final String COUNTER = "counter";
+    private Object resultList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -194,6 +204,7 @@ public class GameActivity extends AppCompatActivity {
                         btnNine.setEnabled(false);
                         btnZero.setEnabled(false);
                         btnConfirm.setEnabled(false);
+                        counter ++;
                         getResult();
                         saveResult();
                     }
@@ -472,6 +483,14 @@ public class GameActivity extends AppCompatActivity {
     public void getResult(){
         result = String.valueOf(questionCount - countWrong);
         result = String.format("%d / %d",(questionCount - countWrong), game);
+        resultArray.add(result);
+        for (int i = 0; i < resultArray.size(); i++) {
+            names.add("Spill " + (names.size() + i));
+            Results resObj = new Results(names.get(i), resultArray.get(i));
+            System.out.println(resObj);
+            results.add(resObj);
+        }
+        System.out.println("Arraylist results: " + results);
         System.out.println("game: " + game + " correct: " + countCorrect +
                 "\nresult: " + result);
     }
@@ -484,6 +503,18 @@ public class GameActivity extends AppCompatActivity {
         lang = sharedPreferences.getBoolean("langSwitch", false);
         System.out.println("----:" + game + ":----");
         System.out.println("----:" + lang + ":----");
+
+        SharedPreferences gameprefs = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String response = gameprefs.getString(RESULT, null);
+        System.out.println("response: " + response);
+        Type type = new TypeToken<ArrayList<Results>>() {}.getType();
+        // resultList = gson.fromJson(response,new TypeToken<List<Results>>(){}.getType());
+        results = gson.fromJson(response, type);
+        if (result == null){
+            results = new ArrayList<>();
+        }
+        System.out.println("resultlist består av: " + resultList);
 
     }
 
@@ -498,9 +529,14 @@ public class GameActivity extends AppCompatActivity {
     public void saveResult(){
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(RESULT, result);
+        Gson gson = new Gson();
+        String json = gson.toJson(results);
+        editor.putString(RESULT, json);
+        // editor.putString(RESULT, result);
+        editor.putInt(COUNTER, counter);
         editor.apply();
         System.out.println("Her kommer gamemode som er lagret: " + GAME_MODE);
+        System.out.println("resultat: " + result + " counter: " + counter);
         Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
     }
 

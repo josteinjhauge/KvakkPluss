@@ -2,6 +2,9 @@ package com.example.mattespill;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +15,7 @@ import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListView;
@@ -21,6 +25,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,13 +33,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import static com.example.mattespill.GameActivity.COUNTER;
 import static com.example.mattespill.GameActivity.RESULT;
 import static com.example.mattespill.GameActivity.SHARED_GAME_PREFS;
 
 public class StatisticsActivity extends AppCompatActivity {
     String result;
+    int count;
     ListView listView;
     ArrayList<Results> resultList = new ArrayList<>();
+    ArrayList<String> names= new ArrayList<>();
+    ArrayList<String> resultArray = new ArrayList<>();
     public Locale newLang;
 
     // shared preferences
@@ -67,12 +76,17 @@ public class StatisticsActivity extends AppCompatActivity {
         // TODO: fylle arraylist av object med resultat fra sharedPrefs = result
 
         makeList();
+        // listView = findViewById(R.id.listView);
 
-        listView = findViewById(R.id.listView);
-
-        // denne må bruke arraylist av object samme inne i klassen bytte ut begge arrayer med arraylist av object
+        /* denne må bruke arraylist av object samme inne i klassen bytte ut begge arrayer med arraylist av object
         CustomListAdapter adapter = new CustomListAdapter(this, resultList);
         listView.setAdapter(adapter);
+        */
+        RecyclerView resView = (RecyclerView) findViewById(R.id.listView);
+        resView.setLayoutManager(new LinearLayoutManager(this));
+        ResultsAdapter resAdapter = new ResultsAdapter(this.getLayoutInflater(), resultList);
+        resView.setAdapter(resAdapter);
+
 
         Button btnBack = findViewById(R.id.btnBackStats);
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -83,8 +97,52 @@ public class StatisticsActivity extends AppCompatActivity {
         });
     }
 
-    public void makeList() {
+    public void makeList(){
+        if (count > 0){
+            for (int i = 0; i < count; i++){
+                names.add("Spill " + count);
+                resultArray.add(result);
+                Results results = new Results(names.get(i), resultArray.get(i));
+                System.out.println(results);
+                resultList.add(results);
+            }
+        } if (count == 0){
+            Results dummy = new Results("DummyGame", "Dummyscore");
+            resultList.add(dummy);
+            System.out.println(resultList);
+        }
+        count++;
+    }
+    /*public void makeList() {
         try {
+            Log.d("TAG", "makeList start: ");
+            // Create and populate a List of planet names.
+            System.out.println("her kommer resultatet fra Gson: " + resultArray);
+           /* resultArray.add(result);
+            if (!(resultArray.size() == 0)) {
+                for (int i = 0; i < resultArray.size(); i++) {
+                    names.add("Spill " + (names.size() + i));
+                    Results results = new Results(names.get(i), resultArray.get(i));
+                    System.out.println(results);
+                    resultList.add(results);
+                }
+                for (Results results : resultList) {
+                    System.out.println(results.name + " \n " + results.score);
+                    System.out.println("--------------");
+                }
+            } else {
+                // set dummy
+                Results dummy = new Results("DummyGame", "Dummyscore");
+                resultList.add(dummy);
+                System.out.println(resultList);
+            }
+
+            /*for (int i = 0; i < gameName.length; i++){
+                String nameGame = "Spill " + (gameName.length + i);
+                i++;
+                gameName[i];
+            }
+            
             Results resultat1 = new Results("spill1", "1/5");
             resultList.add(1, resultat1);
             resultList.remove(resultat1);
@@ -94,7 +152,7 @@ public class StatisticsActivity extends AppCompatActivity {
             Log.d("TAG", "makeList: " + e);
             System.out.println("makeList: " + e);
         }
-    }
+    }*/
 
 
     public void back(){
@@ -111,19 +169,31 @@ public class StatisticsActivity extends AppCompatActivity {
         // fra gameAct
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
         result = sharedPreferences.getString(RESULT,"resultat");
+        count = sharedPreferences.getInt(COUNTER, 0);
         // TODO: prøve å fikse denne, tror grunnen er at den ikke lagrer hva som er i arraylist
-        // results = sharedPreferences.getString(RESULTS,);
-        System.out.println("----:" + result + ":----");
+        // result = sharedPreferences.getString(RESULTS,"");
+        System.out.println("her kommer resultat:" + result + ":---- \n" + " counter = " + count);
+        Gson gson = new Gson();
+        String response = sharedPreferences.getString(RESULT, null);
+        Type type = new TypeToken<ArrayList<Results>>() {}.getType();
+        // resultList = gson.fromJson(response,new TypeToken<List<Results>>(){}.getType());
+        resultList = gson.fromJson(response, type);
+        System.out.println("resultlist består av: " + resultList);
+
+        if (resultList == null){
+            Log.d("TAG", "loadData: returned null");
+            Results dummy = new Results("DummyGame", "Dummyscore");
+            resultList.add(dummy);
+            System.out.println(resultList);
+        }
 
         // fra preferences
         SharedPreferences sharedprefs = PreferenceManager
                 .getDefaultSharedPreferences(this);
         lang = sharedprefs.getBoolean("langSwitch", false);
         System.out.println("----:" + lang + ":----");
-        Gson gson = new Gson();
-        String response = sharedprefs.getString(RESULTS, "");
-        resultList = gson.fromJson(response,
-                new TypeToken<List<Results>>(){}.getType());
+        // TODO: tror ikke gson formatet funker
+
     }
 
     public void saveData(){
@@ -132,8 +202,8 @@ public class StatisticsActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(resultList);
-        editor.remove(RESULTS).apply();
-        editor.putString(RESULTS, json);
+        editor.remove(RESULT).apply();
+        editor.putString(RESULT, json);
         editor.apply();
         Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
     }
