@@ -25,9 +25,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import static com.example.mattespill.PrefrencesActivity.GAME_MODE;
-import static com.example.mattespill.PrefrencesActivity.SHARED_PREFS;
-
 public class GameActivity extends AppCompatActivity {
     TextView input;
     String[] questions;
@@ -36,30 +33,28 @@ public class GameActivity extends AppCompatActivity {
     TextView txtQuestionNum;
     TextView txtWrong;
     TextView txtCorrect;
+
     int questionCount = 1;
     int answerdCount = 1;
     int countCorrect = 0;
     int countWrong = 0;
-    String result = "";
+
     ArrayList<Integer> fetchedQuestions = new ArrayList<>();
     ArrayList<QandA> gameQuestions = new ArrayList<>();
     ArrayList<QandA> allQuestions = new ArrayList<>();
-    ArrayList<Results> results = new ArrayList<>();
-    ArrayList<String> names= new ArrayList<>();
-    ArrayList<String> resultArray = new ArrayList<>();
+    ArrayList<Results> resultList = new ArrayList<>();
+
     public Locale newLang;
-    int counter = 0;
-
-    // Fra shared prefs
-    int game = 5; // fra prefrences, men her satt til default hvis spiller ikke er i preferences først
-    boolean lang;
-
+    public Results result;
 
     // shared preferences
     public static final String SHARED_GAME_PREFS = "sharedGamePrefs";
     public static final String RESULT = "result";
     public static  final String COUNTER = "counter";
-    private Object resultList;
+
+    // Fra shared prefs
+    int game = 5; // fra preferences, men her satt til default hvis spiller ikke er i preferences først
+    boolean lang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -192,7 +187,6 @@ public class GameActivity extends AppCompatActivity {
                 try {
                     System.out.println(answerdCount + ".." + game);
                     if (!(answerdCount < game)) {
-                        confirmClicked(0);
                         btnOne.setEnabled(false);
                         btnTwo.setEnabled(false);
                         btnThree.setEnabled(false);
@@ -204,9 +198,11 @@ public class GameActivity extends AppCompatActivity {
                         btnNine.setEnabled(false);
                         btnZero.setEnabled(false);
                         btnConfirm.setEnabled(false);
-                        counter ++;
+
+                        confirmClicked(0);
                         getResult();
                         saveResult();
+                        // TODO: Kalle på dialogFragment
                     }
                     else {
                         confirmClicked(1);
@@ -375,6 +371,28 @@ public class GameActivity extends AppCompatActivity {
         Log.i("knapp", "Neste trykket"); // bort før levering
     }
 
+    public void getResult(){
+        String score = String.format("%d / %d", (questionCount - countWrong), game);
+        String name = "Spill " + (resultList.size()+1);
+        result = new Results(name, score);
+        resultList.add(result);
+
+        System.out.println("game: " + game + " correct: " + countCorrect +
+                "\nresult: " + result.getScore() + " name: " + result.getName());
+    }
+
+    public void saveResult(){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(resultList);
+        editor.putString(RESULT, json);
+        editor.apply();
+
+        System.out.println("resultat: " + result);
+        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
+    }
+
     public void cancelGame(){
         String txtDialog = getResources().getString(R.string.dialog);
         String txtPositive = getResources().getString(R.string.positive);
@@ -404,7 +422,6 @@ public class GameActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(txtDialog).setPositiveButton(txtPositive, dialog)
                 .setNegativeButton(txtNegative,dialog).show();
-
     }
 
     public void loadQandA () {
@@ -480,66 +497,6 @@ public class GameActivity extends AppCompatActivity {
         Log.d("Clear", "Clear button clicked");
     }
 
-    public void getResult(){
-        result = String.valueOf(questionCount - countWrong);
-        result = String.format("%d / %d",(questionCount - countWrong), game);
-        resultArray.add(result);
-        for (int i = 0; i < resultArray.size(); i++) {
-            names.add("Spill " + (names.size() + i));
-            Results resObj = new Results(names.get(i), resultArray.get(i));
-            System.out.println(resObj);
-            results.add(resObj);
-        }
-        System.out.println("Arraylist results: " + results);
-        System.out.println("game: " + game + " correct: " + countCorrect +
-                "\nresult: " + result);
-    }
-
-    public void loadData(){
-        Log.d("TAG", "loadData: ");
-        SharedPreferences sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        game = Integer.parseInt(sharedPreferences.getString("gameMode", "5"));
-        lang = sharedPreferences.getBoolean("langSwitch", false);
-        System.out.println("----:" + game + ":----");
-        System.out.println("----:" + lang + ":----");
-
-        SharedPreferences gameprefs = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String response = gameprefs.getString(RESULT, null);
-        System.out.println("response: " + response);
-        Type type = new TypeToken<ArrayList<Results>>() {}.getType();
-        // resultList = gson.fromJson(response,new TypeToken<List<Results>>(){}.getType());
-        results = gson.fromJson(response, type);
-        if (result == null){
-            results = new ArrayList<>();
-        }
-        System.out.println("resultlist består av: " + resultList);
-
-    }
-
-    // Gammel løsning
-   /* public void loadData(){
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        game = sharedPreferences.getInt(GAME_MODE, 5);
-        System.out.println("----:" + game + ":----");
-        // last også lagret språk her
-    }*/
-
-    public void saveResult(){
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(results);
-        editor.putString(RESULT, json);
-        // editor.putString(RESULT, result);
-        editor.putInt(COUNTER, counter);
-        editor.apply();
-        System.out.println("Her kommer gamemode som er lagret: " + GAME_MODE);
-        System.out.println("resultat: " + result + " counter: " + counter);
-        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
-    }
-
     public void tysk(){
         setLang("de");
     }
@@ -559,6 +516,30 @@ public class GameActivity extends AppCompatActivity {
         Configuration cf = res.getConfiguration();
         cf.setLocale(newLang);
         res.updateConfiguration(cf,dm);
+    }
+
+    public void loadData(){
+        Log.d("TAG", "loadData: ");
+        SharedPreferences sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        game = Integer.parseInt(sharedPreferences.getString("gameMode", "5"));
+        lang = sharedPreferences.getBoolean("langSwitch", false);
+        System.out.println("----:" + game + ":----");
+        System.out.println("----:" + lang + ":----");
+
+        SharedPreferences gameprefs = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
+        Gson gson = new Gson();
+        String response = gameprefs.getString(RESULT, null);
+        System.out.println("response: " + response);
+        Type type = new TypeToken<ArrayList<Results>>() {}.getType();
+        resultList = gson.fromJson(response, type);
+
+        System.out.println("resultlist består av: ");
+        for (Results result : resultList) {
+            System.out.println(result.getName() + " sin score: " + result.getScore());
+            System.out.println("---------------");
+        }
+
     }
 
     // TODO: mulig mer må saves til instance, men ikke funnet helt ut av det enda
