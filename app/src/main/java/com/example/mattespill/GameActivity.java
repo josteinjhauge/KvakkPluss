@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -51,7 +52,6 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
     // shared preferences
     public static final String SHARED_GAME_PREFS = "sharedGamePrefs";
     public static final String RESULT = "result";
-    public static  final String COUNTER = "counter";
 
     // Fra shared prefs
     int game = 5; // fra preferences, men her satt til default hvis spiller ikke er i preferences først
@@ -367,9 +367,8 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
         // velge random spørsmål
         int count = 0;
         boolean check;
-        // TODO: sammenkjør arrays her
         do {
-            int randomIndex = (int) (Math.random()*game); // sjekk om stemmer senere
+            int randomIndex = (int) (Math.random()*25); // sjekk om stemmer senere
             check = fetchedQuestions.contains(randomIndex);
             if (!check){
                 QandA randomTask = allQuestions.get(randomIndex);
@@ -424,6 +423,7 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
         DialogFragment dialog = new MyDialog();
         dialog.show(getSupportFragmentManager(), "Avslutt");
     }
+
     @Override
     public void onStatsClick() {
         Intent i = new Intent(this, StatisticsActivity.class);
@@ -435,7 +435,6 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
     public void onAvbrytClick() {
         return;
     }
-
 
     public void tysk(){
         setLang("de");
@@ -510,11 +509,18 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
         String correct = txtCorrect.getText().toString();
         String wrong = txtWrong.getText().toString();
 
+
         // TODO: husk å lagre questioncount!!!
         outState.putString("Question", question);
         outState.putString("QuestionNum", questionNum);
         outState.putString("Correct", correct);
         outState.putString("Wrong", wrong);
+        outState.putInt("QuestionCount", questionCount);
+        outState.putInt("AnswerdCount", answerdCount);
+        outState.putInt("CountCorrect", countCorrect);
+        outState.putInt("CountWrong", countWrong);
+        outState.putParcelableArrayList("GameQuestions", gameQuestions);
+
     }
 
     @Override
@@ -529,5 +535,10 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
         txtQuestionNum.setText(savedInstanceState.getString("QuestionNum"));
         txtCorrect.setText(savedInstanceState.getString("Correct"));
         txtWrong.setText(savedInstanceState.getString("Wrong"));
+        questionCount = savedInstanceState.getInt("QuestionCount");
+        answerdCount = savedInstanceState.getInt("AnsweredCount");
+        countCorrect = savedInstanceState.getInt("CountCorrect");
+        countWrong = savedInstanceState.getInt("CountWrong");
+        gameQuestions = savedInstanceState.getParcelableArrayList("GameQuestions");
     }
 }
