@@ -3,7 +3,6 @@ package com.example.mattespill;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -15,10 +14,8 @@ import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -27,18 +24,13 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
-import static com.example.mattespill.GameActivity.COUNTER;
 import static com.example.mattespill.GameActivity.RESULT;
 import static com.example.mattespill.GameActivity.SHARED_GAME_PREFS;
 
 public class StatisticsActivity extends AppCompatActivity {
-
+    private ResultsAdapter resAdapter;
     ListView listView;
     ArrayList<Results> resultList = new ArrayList<>();
 
@@ -71,18 +63,38 @@ public class StatisticsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_statistics);
 
+        buildRecyclerView();
+        setButtons();
         // listView = findViewById(R.id.listView);
+    }
 
-        /* denne må bruke arraylist av object samme inne i klassen bytte ut begge arrayer med arraylist av object
+    public void buildRecyclerView(){
+        /* TODO: denne under bør funke hvis vi må bruke listView
+        ikke fjern CustomListAdpter
+         */
+/*
+        // denne må bruke arraylist av object samme inne i klassen bytte ut begge arrayer med arraylist av object
         CustomListAdapter adapter = new CustomListAdapter(this, resultList);
         listView.setAdapter(adapter);
-        */
-        RecyclerView resView = (RecyclerView) findViewById(R.id.listView);
+*/
+        /*RecyclerView resView = (RecyclerView) findViewById(R.id.listView);
         resView.setLayoutManager(new LinearLayoutManager(this));
         ResultsAdapter resAdapter = new ResultsAdapter(this.getLayoutInflater(), resultList);
+        resView.setAdapter(resAdapter);*/
+        RecyclerView resView = (RecyclerView) findViewById(R.id.listView);
+        resView.setLayoutManager(new LinearLayoutManager(this));
+        resAdapter = new ResultsAdapter(this.getLayoutInflater(), resultList);
         resView.setAdapter(resAdapter);
 
+        resAdapter.setOnItemClickListener(new ResultsAdapter.OnItemClickListener() {
+            @Override
+            public void onDeleteClick(int position) {
+                deleteResults(position);
+            }
+        });
+    }
 
+    public void setButtons(){
         Button btnBack = findViewById(R.id.btnBackStats);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,20 +103,26 @@ public class StatisticsActivity extends AppCompatActivity {
             }
         });
 
-        Button btnDelete = findViewById(R.id.btnDelete);
+        ImageView btnDelete = findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteResults();
+                resultList.clear();
+                System.out.println("Resultview etter clear() " + resultList);
+                buildRecyclerView();
             }
         });
     }
 
-    private void deleteResults() {
+    public void deleteResults(int position) {
         // TODO: FIX DENNE
-        resultList.clear();
-        saveData();
-        recreate();
+        resultList.remove(position);
+        resAdapter.notifyItemRemoved(position);
+        for (Results result : resultList) {
+            System.out.println(result.getName() + " sin score: " + result.getScore());
+            System.out.println("---------------");
+        }
+        System.out.println(resultList.size());
     }
 
     public void back(){
@@ -119,12 +137,22 @@ public class StatisticsActivity extends AppCompatActivity {
 
     public void loadData(){
         // fra gameAct
-        SharedPreferences gameprefs = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String response = gameprefs.getString(RESULT, null);
-        System.out.println("response: " + response);
-        Type type = new TypeToken<ArrayList<Results>>() {}.getType();
-        resultList = gson.fromJson(response, type);
+        try {
+            SharedPreferences gameprefs = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
+            Gson gson = new Gson();
+            String response = gameprefs.getString(RESULT, null);
+            System.out.println("response: " + response);
+            Type type = new TypeToken<ArrayList<Results>>() {}.getType();
+            resultList = gson.fromJson(response, type);
+            System.out.println("ResultList: " + resultList + " Response: " + response + "\n"
+                    + "Type: " + type);
+            if (resultList == null){
+                resultList = new ArrayList<>();
+            }
+        } catch (Exception e) {
+            Log.d("ERROR", "loadArrayList: " + e);
+            resultList = new ArrayList<>();
+        }
 
         System.out.println("resultlist består av: ");
         for (Results result : resultList) {
@@ -140,14 +168,14 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     public void saveData(){
-        SharedPreferences sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(resultList);
-        editor.remove(RESULT).apply();
         editor.putString(RESULT, json);
         editor.apply();
+
+        System.out.println("resultat: " + resultList);
         Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
     }
 

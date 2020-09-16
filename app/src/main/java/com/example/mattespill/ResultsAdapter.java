@@ -3,55 +3,73 @@ package com.example.mattespill;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.text.BreakIterator;
 import java.util.ArrayList;
-import java.util.List;
 
-public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.ResultsViewHolder> {
-    private LayoutInflater inflater;
-    private List<Results> resultList;
+public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.TestViewHolder> {
+    private ArrayList<Results> mResultList;
+    private OnItemClickListener mListener;
 
-    public ResultsAdapter(LayoutInflater inflater, List<Results> resultList) {
-        this.inflater = inflater;
-        this.resultList = resultList;
+    public interface OnItemClickListener {
+        // void onItemClick(int position);
+        void onDeleteClick(int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+    public static class TestViewHolder extends RecyclerView.ViewHolder {
+        public TextView headerTextView;
+        public TextView infoTextView;
+        public ImageView mDeleteImage;
+        public TestViewHolder(View itemView, final OnItemClickListener listener) {
+            super(itemView);
+            headerTextView = itemView.findViewById(R.id.header);
+            infoTextView = itemView.findViewById(R.id.info);
+            mDeleteImage = itemView.findViewById(R.id.delete);
+
+            /*itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(position);
+                    }
+                }
+            });*/
+
+            mDeleteImage.setOnClickListener(v -> {
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onDeleteClick(position);
+                    }
+                }
+            });
+        }
+    }
+    public ResultsAdapter(LayoutInflater layoutInflater, ArrayList<Results> resultsArrayList) {
+        mResultList = resultsArrayList;
+    }
+    @Override
+    public TestViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.list_activity, parent, false);
+        TestViewHolder evh = new TestViewHolder(v, mListener);
+        return evh;
     }
 
     @Override
-    public ResultsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View listItem = inflater.inflate(R.layout.list_activity, parent, false);
-        ResultsViewHolder resultsViewHolder = new ResultsViewHolder(listItem);
-        resultsViewHolder.view = listItem;
-        resultsViewHolder.header = (TextView) listItem.findViewById(R.id.header);
-        resultsViewHolder.info = (TextView) listItem.findViewById(R.id.info);
+    public void onBindViewHolder(TestViewHolder holder, int position) {
+        Results currentItem = mResultList.get(position);
 
-        return resultsViewHolder;
+        holder.headerTextView.setText(currentItem.getName());
+        holder.infoTextView.setText(currentItem.getScore());
     }
-
-    @Override
-    public void onBindViewHolder(ResultsViewHolder holder, int position) {
-        Results result = resultList.get(position);
-        holder.header.setText(result.getName());
-        holder.info.setText(result.getScore());
-        holder.position = position;
-    }
-
     @Override
     public int getItemCount() {
-        return resultList.size();
-    }
-
-    public static class ResultsViewHolder extends RecyclerView.ViewHolder {
-        View view;
-        TextView header, info;
-        int position;
-
-        public ResultsViewHolder(View itemView) {
-            super(itemView);
-            this.view = itemView;
-        }
+        return mResultList.size();
     }
 }

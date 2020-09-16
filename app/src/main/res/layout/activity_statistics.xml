@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayout5"
@@ -10,48 +10,73 @@
     tools:context=".StatisticsActivity">
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginStart="148dp"
         android:layout_marginTop="40dp"
         android:text="@string/stats"
         android:textColor="?attr/textColor"
-        android:textSize="26sp" />
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="298dp"
-        android:divider="@color/colorAccent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:dividerHeight="0.5dp"
         android:padding="4dp"
-        android:scrollbars="vertical" />
+        android:paddingBottom="100dp"
+        android:scrollbars="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBackStats" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnBackStats"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/btnBackStats"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/bgButton"
-            android:text="@string/btnBack"
-            android:textColor="?attr/textColor"
-            android:textSize="22sp"
-            android:visibility="visible" />
-
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/delete_icon"
-            android:textColor="?attr/textColor"
-            android:textSize="22sp"
-            android:visibility="visible" />
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="36dp"
+        android:background="?attr/bgButton"
+        android:text="@string/btnBack"
+        android:textColor="?attr/textColor"
+        android:textSize="22sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stats" />
 
 
+    <ImageView
+        android:id="@+id/btnDelete"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="36dp"
+        android:contentDescription="@string/delete"
+        android:src="@drawable/delete_icon"
+        app:layout_constraintStart_toEndOf="@+id/btnBackStats"
+        app:layout_constraintTop_toBottomOf="@+id/stats"
+        app:tint="@color/red" />
 
-</LinearLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="512dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

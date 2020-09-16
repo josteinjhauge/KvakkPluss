@@ -3,6 +3,7 @@ package com.example.mattespill;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.DialogFragment;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,7 +26,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements MyDialog.DialogClickListener {
     TextView input;
     String[] questions;
     String[] answers;
@@ -79,7 +80,6 @@ public class GameActivity extends AppCompatActivity {
         }
 
         loadQandA();
-        // getGameMode();
         setContentView(R.layout.activity_game);
         getGameQuestions(game);
 
@@ -91,7 +91,10 @@ public class GameActivity extends AppCompatActivity {
         txtQuestion.setText(gameQuestions.get(0).getQuestion());
         System.out.println("Arraylist: " + gameQuestions);
 
+        setButtons();
+    }
 
+    public void setButtons(){
         Button btnExit = findViewById(R.id.btnCancel);
         btnExit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -285,6 +288,7 @@ public class GameActivity extends AppCompatActivity {
                         checkAnswer(inputVal);
                         getResult();
                         saveResult();
+                        doneDialog();
                     }
                 }
             }
@@ -328,12 +332,11 @@ public class GameActivity extends AppCompatActivity {
                         // yes trykket
                         startActivity(intent);
                         finish();
-                        Log.i("knapp", "ja trykket"); // bort før levering
+                        Log.i("knapp", "ja trykket"); // TODO: bort før levering
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
                         // no trykket
-                        Log.i("knapp", "nei trykket"); // bort før levering
-
+                        Log.i("knapp", "nei trykket"); // TODO: bort før levering
                         break;
                 }
             }
@@ -417,6 +420,23 @@ public class GameActivity extends AppCompatActivity {
         Log.d("Clear", "Clear button clicked");
     }
 
+    public void doneDialog(){
+        DialogFragment dialog = new MyDialog();
+        dialog.show(getSupportFragmentManager(), "Avslutt");
+    }
+    @Override
+    public void onStatsClick() {
+        Intent i = new Intent(this, StatisticsActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+    @Override
+    public void onAvbrytClick() {
+        return;
+    }
+
+
     public void tysk(){
         setLang("de");
     }
@@ -447,19 +467,32 @@ public class GameActivity extends AppCompatActivity {
         System.out.println("----:" + game + ":----");
         System.out.println("----:" + lang + ":----");
 
-        SharedPreferences gameprefs = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
-        Gson gson = new Gson();
-        String response = gameprefs.getString(RESULT, null);
-        System.out.println("response: " + response);
-        Type type = new TypeToken<ArrayList<Results>>() {}.getType();
-        resultList = gson.fromJson(response, type);
+        loadArrayList();
+    }
+
+    public void loadArrayList(){
+        try {
+            SharedPreferences gameprefs = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
+            Gson gson = new Gson();
+            String response = gameprefs.getString(RESULT, null);
+            System.out.println("response: " + response);
+            Type type = new TypeToken<ArrayList<Results>>() {}.getType();
+            resultList = gson.fromJson(response, type);
+            System.out.println("ResultList: " + resultList + " Response: " + response + "\n"
+                    + "Type: " + type);
+            if (resultList == null){
+                resultList = new ArrayList<>();
+            }
+        } catch (Exception e) {
+            Log.d("CATCH", "loadArrayList: " + e);
+            resultList = new ArrayList<>();
+        }
 
         System.out.println("resultlist består av: ");
         for (Results result : resultList) {
             System.out.println(result.getName() + " sin score: " + result.getScore());
             System.out.println("---------------");
         }
-
     }
 
     // TODO: mulig mer må saves til instance, men ikke funnet helt ut av det enda

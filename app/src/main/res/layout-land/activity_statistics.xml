@@ -1,31 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StatisticsActivity"
-    android:background="?attr/bgColor">
+    android:background="?attr/bgColor"
+    android:orientation="vertical"
+    tools:context=".StatisticsActivity">
 
-    <androidx.cardview.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+    <TextView
+        android:id="@+id/stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        card_view:cardCornerRadius="4dp"
-        android:background="?attr/bgColor">
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/stats"
+        android:textColor="?attr/textColor"
+        android:textSize="26sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/txtCard"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="?attr/textColor"
-            android:background="?attr/bgQuestion"
-            android:text="@string/lorem"
-            android:textAlignment="center"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listView"
+        android:layout_width="349dp"
+        android:layout_height="244dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:dividerHeight="0.5dp"
+        android:padding="4dp"
+        android:paddingBottom="100dp"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stats" />
 
-    </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/btnBackStats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="96dp"
+        android:background="?attr/bgButton"
+        android:text="@string/btnBack"
+        android:textColor="?attr/textColor"
+        android:textSize="22sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/listView"
+        app:layout_constraintTop_toBottomOf="@+id/stats" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="512dp" />
 
-</LinearLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,11 @@ public class Results {
         this.score = score;
     }
 
+    // denne er bare for å teste
+    public void changeTest(String text){
+        name = text;
+    }
+
     public String getName() {
         return name;
     }
