@@ -199,4 +199,21 @@ public class StatisticsActivity extends AppCompatActivity {
         cf.setLocale(newLang);
         res.updateConfiguration(cf,dm);
     }
+
+
+    // TODO: instance funker ikke enda
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelableArrayList("ResultList", resultList);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+
+        resultList = savedInstanceState.getParcelableArrayList("ResultList");
+    }
 }
