@@ -56,8 +56,9 @@
         Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed.
         Lacus viverra vitae congue eu. Molestie nunc non blandit massa enim nec dui nunc.
     </string>
-    <string name="delete">Delete</string>
+    <string name="delete">Löschen</string>
     <string name="dummy">dummy</string>
+    <string name="results">Ergebnisse</string>
 
 
 </resources>

@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class GameActivity extends AppCompatActivity implements MyDialog.DialogClickListener {
+public class GameActivity extends AppCompatActivity {
     TextView input;
     String[] questions;
     String[] answers;
@@ -44,6 +45,10 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
     ArrayList<Integer> fetchedQuestions = new ArrayList<>();
     ArrayList<QandA> gameQuestions = new ArrayList<>();
     ArrayList<QandA> allQuestions = new ArrayList<>();
+
+    // til dialogboks
+    ArrayList<QandA> failedQuestions = new ArrayList<>();
+
     ArrayList<Results> resultList = new ArrayList<>();
 
     public Locale newLang;
@@ -60,7 +65,6 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Load data from shared prefrences
         loadData();
 
@@ -379,6 +383,7 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
             if (inputVal.equals(answer)){
                 updateCorrect();
             } else {
+                // TODO: lage arraylist her av gamequestions.get(questioncount-1)
                 updateWrong();
             }
         } catch (Exception e){
@@ -412,22 +417,50 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
     }
 
     public void doneDialog(){
-        DialogFragment dialog = new MyDialog();
+        final Intent main = new Intent(this, MainActivity.class);
+        final Intent stats = new Intent(this, StatisticsActivity.class);
+        String txtPositive = getResources().getString(R.string.btnCancel);
+        String txtNegative = getResources().getString(R.string.stats);
+        String txtTitle = getResources().getString(R.string.results);
+
+        ArrayAdapter<QandA> dataAdapter = new ArrayAdapter<>(this, R.layout.results_dialog, gameQuestions);
+
+        DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        // yes trykket
+                        startActivity(main);
+                        finish();
+                        Log.i("knapp", "ja trykket"); // TODO: bort før levering
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        // no trykket
+                        startActivity(stats);
+                        finish();
+                        Log.i("knapp", "nei trykket"); // TODO: bort før levering
+                        break;
+                }
+            }
+        };
+
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        String ut = "";
+        for (int i = 0; i< gameQuestions.size(); i++){
+            ut += gameQuestions.get(i).question + " = " + gameQuestions.get(i).answer + "\n";
+        }
+        builder.setMessage(ut);
+        builder.setPositiveButton(txtPositive, dialog)
+                .setNegativeButton(txtNegative,dialog);
+        builder.setTitle(txtTitle);
+        builder.show();
+       /* DialogFragment dialog = new MyDialog();
         dialog.show(getSupportFragmentManager(), "Avslutt");
        /*DialogFragment dialog = new Dialog();
        dialog.show(getSupportFragmentManager(),"Done");*/
-    }
-
-    @Override
-    public void onStatsClick() {
-        Intent i = new Intent(this, StatisticsActivity.class);
-        startActivity(i);
-        finish();
-    }
-
-    @Override
-    public void onAvbrytClick() {
-        return;
     }
 
     public void tysk(){
