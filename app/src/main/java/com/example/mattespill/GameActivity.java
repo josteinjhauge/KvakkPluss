@@ -422,6 +422,8 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
     public void doneDialog(){
         DialogFragment dialog = new MyDialog();
         dialog.show(getSupportFragmentManager(), "Avslutt");
+       /*DialogFragment dialog = new Dialog();
+       dialog.show(getSupportFragmentManager(),"Done");*/
     }
 
     @Override

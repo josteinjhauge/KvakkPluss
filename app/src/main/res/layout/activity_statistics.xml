@@ -5,51 +5,52 @@
     android:id="@+id/linearLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/bgColor"
+    android:background="@drawable/jungelbackgroud_main"
     android:orientation="vertical"
     tools:context=".StatisticsActivity">
+
 
     <TextView
         android:id="@+id/stats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="148dp"
         android:layout_marginTop="40dp"
         android:text="@string/stats"
         android:textColor="?attr/textColor"
         android:textSize="26sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:dividerHeight="0.5dp"
-        android:padding="4dp"
         android:paddingBottom="100dp"
         android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnBackStats" />
+        app:layout_constraintTop_toBottomOf="@+id/stats"
+        app:layout_constraintVertical_bias="0.83" />
 
     <Button
         android:id="@+id/btnBackStats"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginStart="136dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="32dp"
         android:background="?attr/bgButton"
         android:text="@string/btnBack"
         android:textColor="?attr/textColor"
         android:textSize="22sp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stats" />
-
+        app:layout_constraintTop_toTopOf="@+id/guideline12" />
 
     <ImageView
         android:id="@+id/btnDelete"
@@ -57,12 +58,15 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="52dp"
+        android:background="?attr/bgButton"
         android:contentDescription="@string/delete"
         android:src="@drawable/delete_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBackStats"
         app:layout_constraintStart_toEndOf="@+id/btnBackStats"
-        app:layout_constraintTop_toBottomOf="@+id/stats"
+        app:layout_constraintTop_toTopOf="@+id/guideline12"
+        app:layout_constraintVertical_bias="1.0"
         app:tint="@color/red" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -77,6 +81,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="512dp" />
+        app:layout_constraintGuide_percent="0.78" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

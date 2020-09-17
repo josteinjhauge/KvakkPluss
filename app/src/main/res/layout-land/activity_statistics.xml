@@ -25,7 +25,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView"
         android:layout_width="349dp"
-        android:layout_height="244dp"
+        android:layout_height="300dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:dividerHeight="0.5dp"
@@ -42,8 +42,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="120dp"
         android:background="?attr/bgButton"
         android:text="@string/btnBack"
         android:textColor="?attr/textColor"
@@ -52,12 +52,26 @@
         app:layout_constraintStart_toEndOf="@+id/listView"
         app:layout_constraintTop_toBottomOf="@+id/stats" />
 
+    <ImageView
+        android:id="@+id/btnDelete"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="120dp"
+        android:contentDescription="@string/delete"
+        android:src="@drawable/delete_icon"
+        app:layout_constraintStart_toEndOf="@+id/btnBackStats"
+        app:layout_constraintTop_toBottomOf="@+id/stats"
+        app:tint="@color/red" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.500684" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline12"

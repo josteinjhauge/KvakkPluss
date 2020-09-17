@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,6 +33,7 @@ import static com.example.mattespill.GameActivity.SHARED_GAME_PREFS;
 
 public class StatisticsActivity extends AppCompatActivity {
     private ResultsAdapter resAdapter;
+    private RecyclerView resView;
     ListView listView;
     ArrayList<Results> resultList = new ArrayList<>();
 
@@ -39,6 +42,8 @@ public class StatisticsActivity extends AppCompatActivity {
     // shared preferences
     public static final String SHARED_STATS_PREFS = "sharedStatsPrefs";
     public static final String RESULTS = "results";
+    public static final String LIST_STATE = "list_state";
+    public static final String KEY_RECYCLER_STATE = "recycler_state";
     boolean lang;
 
     @Override
@@ -62,7 +67,6 @@ public class StatisticsActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_statistics);
-
         buildRecyclerView();
         setButtons();
         // listView = findViewById(R.id.listView);
@@ -86,12 +90,6 @@ public class StatisticsActivity extends AppCompatActivity {
         resAdapter = new ResultsAdapter(this.getLayoutInflater(), resultList);
         resView.setAdapter(resAdapter);
 
-        resAdapter.setOnItemClickListener(new ResultsAdapter.OnItemClickListener() {
-            @Override
-            public void onDeleteClick(int position) {
-                deleteResults(position);
-            }
-        });
     }
 
     public void setButtons(){
@@ -114,6 +112,7 @@ public class StatisticsActivity extends AppCompatActivity {
         });
     }
 
+    // TODO: fjerne denne
     public void deleteResults(int position) {
         // TODO: FIX DENNE
         resultList.remove(position);
@@ -201,19 +200,29 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
 
-    // TODO: instance funker ikke enda
+  /*  // TODO: instance funker ikke enda
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
-        outState.putParcelableArrayList("ResultList", resultList);
-
+        outState.putParcelableArrayList(LIST_STATE, resultList);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState){
         super.onRestoreInstanceState(savedInstanceState);
+        ArrayList<Results> stateList = savedInstanceState.getParcelableArrayList(LIST_STATE);
+        resultList = stateList;
+    }
+*/
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveData();
+    }
 
-        resultList = savedInstanceState.getParcelableArrayList("ResultList");
+    @Override
+    protected void onResume(){
+        super.onResume();
+        loadData();
     }
 }

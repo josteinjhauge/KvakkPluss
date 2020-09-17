@@ -11,7 +11,7 @@
         android:configChanges="locale"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".StatisticsActivity"/>
+        <activity android:name=".StatisticsActivity" />
         <activity android:name=".PrefrencesActivity" android:parentActivityName=".MainActivity"/>
         <activity android:name=".GameActivity"/>
         <activity android:name=".PreferanseActivity" android:parentActivityName=".MainActivity"/>
