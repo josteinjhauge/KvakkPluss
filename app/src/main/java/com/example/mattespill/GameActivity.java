@@ -38,7 +38,6 @@ public class GameActivity extends AppCompatActivity {
     TextView txtCorrect;
 
     int questionCount = 1;
-    int answerdCount = 1;
     int countCorrect = 0;
     int countWrong = 0;
 
@@ -46,7 +45,7 @@ public class GameActivity extends AppCompatActivity {
     ArrayList<QandA> gameQuestions = new ArrayList<>();
     ArrayList<QandA> allQuestions = new ArrayList<>();
 
-    // til dialogboks
+    //TODO: til dialogboks hvis vi bare skal skrive ut de feile oppgavene
     ArrayList<QandA> failedQuestions = new ArrayList<>();
 
     ArrayList<Results> resultList = new ArrayList<>();
@@ -259,10 +258,9 @@ public class GameActivity extends AppCompatActivity {
                     // TODO: En bedre måte å gi tilbakemelding her eller??
                     Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (answerdCount < game) {
+                    if (questionCount < game) {
                         checkAnswer(inputVal);
                         txtQuestion.setText(gameQuestions.get(questionCount).getQuestion());
-                        answerdCount++;
                         questionCount++;
                         txtQuestionNum.setText(String.format("%d / %d", questionCount, game));
                         input.setText("");
@@ -445,8 +443,6 @@ public class GameActivity extends AppCompatActivity {
             }
         };
 
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         String ut = "";
         for (int i = 0; i< gameQuestions.size(); i++){
@@ -457,10 +453,6 @@ public class GameActivity extends AppCompatActivity {
                 .setNegativeButton(txtNegative,dialog);
         builder.setTitle(txtTitle);
         builder.show();
-       /* DialogFragment dialog = new MyDialog();
-        dialog.show(getSupportFragmentManager(), "Avslutt");
-       /*DialogFragment dialog = new Dialog();
-       dialog.show(getSupportFragmentManager(),"Done");*/
     }
 
     public void tysk(){
@@ -530,11 +522,13 @@ public class GameActivity extends AppCompatActivity {
         txtQuestionNum = findViewById(R.id.txtQuestionNum);
         txtCorrect = findViewById(R.id.txtCorrect);
         txtWrong = findViewById(R.id.txtWrong);
+        input = findViewById(R.id.txtAnswer);
 
         String question = txtQuestion.getText().toString();
         String questionNum = txtQuestionNum.getText().toString();
         String correct = txtCorrect.getText().toString();
         String wrong = txtWrong.getText().toString();
+        String answer = input.getText().toString();
 
 
         // TODO: husk å lagre questioncount!!!
@@ -542,8 +536,8 @@ public class GameActivity extends AppCompatActivity {
         outState.putString("QuestionNum", questionNum);
         outState.putString("Correct", correct);
         outState.putString("Wrong", wrong);
+        outState.putString("Answer", answer);
         outState.putInt("QuestionCount", questionCount);
-        outState.putInt("AnswerdCount", answerdCount);
         outState.putInt("CountCorrect", countCorrect);
         outState.putInt("CountWrong", countWrong);
         outState.putParcelableArrayList("GameQuestions", gameQuestions);
@@ -557,13 +551,14 @@ public class GameActivity extends AppCompatActivity {
         txtQuestionNum = findViewById(R.id.txtQuestionNum);
         txtCorrect = findViewById(R.id.txtCorrect);
         txtWrong = findViewById(R.id.txtWrong);
+        input = findViewById(R.id.txtAnswer);
 
         txtQuestion.setText(savedInstanceState.getString("Question"));
         txtQuestionNum.setText(savedInstanceState.getString("QuestionNum"));
         txtCorrect.setText(savedInstanceState.getString("Correct"));
         txtWrong.setText(savedInstanceState.getString("Wrong"));
+        input.setText(savedInstanceState.getString("Answer"));
         questionCount = savedInstanceState.getInt("QuestionCount");
-        answerdCount = savedInstanceState.getInt("AnsweredCount");
         countCorrect = savedInstanceState.getInt("CountCorrect");
         countWrong = savedInstanceState.getInt("CountWrong");
         gameQuestions = savedInstanceState.getParcelableArrayList("GameQuestions");
