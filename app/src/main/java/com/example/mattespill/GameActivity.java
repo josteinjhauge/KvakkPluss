@@ -61,14 +61,6 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Theme
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            setTheme(R.style.DarkTheme);
-        }
-        else {
-            setTheme(R.style.LightTheme);
-        }
-
         // Load data from shared prefrences
         loadData();
 
