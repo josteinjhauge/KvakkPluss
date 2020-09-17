@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.DialogFragment;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -421,8 +422,6 @@ public class GameActivity extends AppCompatActivity {
         String txtNegative = getResources().getString(R.string.stats);
         String txtTitle = getResources().getString(R.string.results);
 
-        ArrayAdapter<QandA> dataAdapter = new ArrayAdapter<>(this, R.layout.results_dialog, gameQuestions);
-
         DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -562,5 +561,14 @@ public class GameActivity extends AppCompatActivity {
         countCorrect = savedInstanceState.getInt("CountCorrect");
         countWrong = savedInstanceState.getInt("CountWrong");
         gameQuestions = savedInstanceState.getParcelableArrayList("GameQuestions");
+    }
+
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        if (questionCount == game){
+            doneDialog();
+        }
     }
 }
