@@ -1,7 +1,6 @@
 package com.example.mattespill;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,7 +11,6 @@ import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 
 import java.util.Locale;
@@ -28,13 +26,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            setTheme(R.style.DarkTheme);
-        }
-        else {
-            setTheme(R.style.LightTheme);
-        }
 
         loadData();
 
@@ -96,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     public void openPrefrencesScreen(){
         // TODO: endre Intent linje for å bytte mellom de to løsningene
         // Ny løsning med bruk av fragment
-        Intent intent = new Intent(this, PreferanseActivity.class);
+        Intent intent = new Intent(this, PreferencesActivity.class);
         // gammel løsning
         // Intent intent = new Intent(this, PrefrencesActivity.class);
         startActivity(intent);

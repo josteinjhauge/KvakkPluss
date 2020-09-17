@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PreferanseActivity">
+    tools:context=".PreferencesActivity">
 
     <PreferenceCategory
         android:title="@string/sporsmal">
@@ -14,19 +14,6 @@
             android:title="@string/listPref"
             android:summary=""
             android:icon="@drawable/ic_list" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        android:title="@string/theme">
-        <SwitchPreference
-            android:id="@+id/themeSwitch"
-            android:title="@string/theme"
-            android:defaultValue="false"
-            android:summaryOff="@string/light"
-            android:summaryOn="@string/dark"
-            android:summary="@string/theme"
-            android:key="themeSwitch"
-            android:icon="@drawable/ic_theme"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/langTitle">
