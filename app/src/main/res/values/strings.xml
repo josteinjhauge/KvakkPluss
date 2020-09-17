@@ -35,9 +35,6 @@
     <string name="dialog">Er du sikker?</string>
     <string name="positive">Ja</string>
     <string name="negative">Nei</string>
-    <string name="theme">Tema</string>
-    <string name="light">Dag</string>
-    <string name="dark">Natt</string>
     <string name="lang">Språk</string>
     <string name="btnBack">Tilbake</string>
     <string name="done">Du er ferdig</string>

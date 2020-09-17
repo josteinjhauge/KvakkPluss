@@ -6,13 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="textColor">@color/black</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
-    </style>
 
-    <style name="LightTheme" parent="AppTheme">
-        <!-- Customize your theme here. -->
         <item name="bgColor">@color/white</item>
         <item name="textColor">@color/black</item>
         <item name="headerColor">@color/green</item>
@@ -30,23 +26,5 @@
         <item name="bgWrong">@drawable/bg_wrong_light</item>
     </style>
 
-    <style name="DarkTheme" parent="AppTheme">
-        <!-- Customize your darktheme here. -->
-        <item name="bgColor">@color/base</item>
-        <item name="textColor">@color/white</item>
-        <item name="headerColor">@color/green</item>
-        <item name="metaTextColor">@color/colorPrimaryDark</item>
-        <item name="textColorQuestions">@color/white</item>
-        <item name="bgQuestion">@drawable/bg_question_dark</item>
-        <item name="bgButton">@drawable/bg_button_dark</item>
-        <item name="bgConfirmButton">@drawable/bg_button_confirm_dark</item>
-        <item name="bgCancelButton">@drawable/bg_cancel_button_dark</item>
-        <item name="btntxtColor">@color/black</item>
-        <item name="bgBubbleBlue">@drawable/bubble_blue</item>
-        <item name="bgBubbleGreen">@drawable/bubble_green</item>
-        <item name="bgBubbleRed">@drawable/bubble_red</item>
-        <item name="bgCorrect">@drawable/bg_correct_dark</item>
-        <item name="bgWrong">@drawable/bg_wrong_dark</item>
-    </style>
 
 </resources>

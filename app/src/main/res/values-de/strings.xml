@@ -36,9 +36,6 @@
     <string name="dialog">Bist du sicher?</string>
     <string name="positive">Ja</string>
     <string name="negative">Nein</string>
-    <string name="theme">Thema</string>
-    <string name="light">Tag</string>
-    <string name="dark">Nacht</string>
     <string name="lang">Sprache</string>
     <string name="btnBack">Zurück</string>
     <string name="done">Du bist fertig</string>
