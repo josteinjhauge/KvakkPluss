@@ -43,6 +43,7 @@ public class GameActivity extends AppCompatActivity {
     int questionCount = 1;
     int countCorrect = 0;
     int countWrong = 0;
+    boolean gameOver = false;
 
     ArrayList<Integer> fetchedQuestions = new ArrayList<>();
     ArrayList<QandA> gameQuestions = new ArrayList<>();
@@ -306,6 +307,7 @@ public class GameActivity extends AppCompatActivity {
                         getResult();
                         saveResult();
                         doneDialog();
+                        gameOver = true;
                     }
                 }
             }
@@ -553,6 +555,7 @@ public class GameActivity extends AppCompatActivity {
         outState.putInt("CountCorrect", countCorrect);
         outState.putInt("CountWrong", countWrong);
         outState.putParcelableArrayList("GameQuestions", gameQuestions);
+        outState.putBoolean("GameOver", gameOver);
 
     }
 
@@ -574,12 +577,13 @@ public class GameActivity extends AppCompatActivity {
         countCorrect = savedInstanceState.getInt("CountCorrect");
         countWrong = savedInstanceState.getInt("CountWrong");
         gameQuestions = savedInstanceState.getParcelableArrayList("GameQuestions");
+        gameOver = savedInstanceState.getBoolean("GameOver");
     }
 
     @Override
     protected void onResume(){
         super.onResume();
-        if (questionCount == game){
+        if (gameOver){
             doneDialog();
         }
     }
