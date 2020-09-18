@@ -31,8 +31,6 @@
     <string name="positive">Ja</string>
     <string name="negative">Nei</string>
     <string name="lang">Språk</string>
-
-    <!--TODO: se på denne elin-->
     <string name="done">FERDIG</string>
     <string name="stats">Statistikk</string>
     <string name="selectGame">Velg Spørsmål</string>

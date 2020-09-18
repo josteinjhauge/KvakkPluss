@@ -32,8 +32,7 @@
     <string name="positive">Ja</string>
     <string name="negative">Nein</string>
     <string name="lang">Sprache</string>
-    <!-- TODO: se på denne elin -->
-    <string name="done">Fertig</string>
+    <string name="done">FERTIG</string>
     <string name="stats">Statistiken</string>
     <string name="selectGame">Fragen auswählen</string>
     <string name="questions">Wählen Sie die Anzahl der Aufgaben</string>
