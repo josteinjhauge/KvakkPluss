@@ -12,7 +12,6 @@ import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.Locale;
 

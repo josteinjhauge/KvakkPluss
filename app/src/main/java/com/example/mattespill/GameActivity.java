@@ -330,9 +330,6 @@ public class GameActivity extends AppCompatActivity {
         String json = gson.toJson(resultList);
         editor.putString(RESULT, json);
         editor.apply();
-
-        System.out.println("resultat: " + result);
-        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
     }
 
     public void cancelGame(){

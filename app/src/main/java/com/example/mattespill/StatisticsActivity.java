@@ -21,7 +21,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -187,9 +186,6 @@ public class StatisticsActivity extends AppCompatActivity {
         String json = gson.toJson(resultList);
         editor.putString(RESULT, json);
         editor.apply();
-
-        System.out.println("resultat: " + resultList);
-        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
     }
 
     public void setLang(String landskode){
