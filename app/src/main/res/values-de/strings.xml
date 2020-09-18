@@ -12,7 +12,6 @@
     <string name="btnSeven">7</string>
     <string name="btnEight">8</string>
     <string name="btnNine">9</string>
-    <string name="btnClear">C</string>
     <string name="btnZero">0</string>
 
     <string name="btnFiveQ">5 Fragen</string>
@@ -34,7 +33,7 @@
     <string name="negative">Nein</string>
     <string name="lang">Sprache</string>
     <!-- TODO: se på denne elin -->
-    <string name="done">Du bist fertig</string>
+    <string name="done">Fertig</string>
     <string name="stats">Statistiken</string>
     <string name="selectGame">Fragen auswählen</string>
     <string name="questions">Wählen Sie die Anzahl der Aufgaben</string>
