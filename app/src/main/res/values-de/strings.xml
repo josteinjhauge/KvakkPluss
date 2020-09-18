@@ -47,6 +47,8 @@
     <string name="listPref">Wählen Sie hier Aufgaben aus</string>
     <string name="tysk">Deutsche</string>
     <string name="norsk">Norwegisch</string>
+    <string name="germanCode">de</string>
+    <string name="norwegianCode">nb</string>
 
     <!--Tekst lorem-->
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit,

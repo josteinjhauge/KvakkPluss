@@ -29,6 +29,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+
 public class GameActivity extends AppCompatActivity {
     TextView input;
     String[] questions;
@@ -60,7 +62,8 @@ public class GameActivity extends AppCompatActivity {
 
     // Fra shared prefs
     int game = 5; // fra preferences, men her satt til default hvis spiller ikke er i preferences først
-    boolean lang;
+    String lang;
+    String actland;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +72,30 @@ public class GameActivity extends AppCompatActivity {
         loadData();
 
         // sjekke språk mot det som kommer fra sharedprefs
-        if (lang){
-            tysk();
-        } else {
-            norsk();
+        try {
+            setLang(lang);
+        } catch (Exception e){
+            System.out.println(e);
         }
+        actland = lang;
+        SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener =
+                new SharedPreferences.OnSharedPreferenceChangeListener() {
+                    @Override
+                    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                        try {
+                            if (key.equals("lang_pref"))
+                            {
+                                setLang(lang);
+                                getFragmentManager().beginTransaction().replace(android.R.id.content,
+                                        new PreferencesActivity.PrefsFragment()).commit();
+                            }
+                        } catch (Exception e){
+                            System.out.println("Feilmelding kommer her " + e);
+                        }
+                    }
+                };
+        SharedPreferences sharedPreferences = getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener);
 
         loadQandA();
         setContentView(R.layout.activity_game);
@@ -454,14 +476,6 @@ public class GameActivity extends AppCompatActivity {
         builder.show();
     }
 
-    public void tysk(){
-        setLang("de");
-    }
-
-    public void norsk(){
-        setLang("nb");
-    }
-
     public void setLang(String landskode){
         Log.d("TAG","settland med landskode: " + landskode + " kjører nå");
 
@@ -471,7 +485,8 @@ public class GameActivity extends AppCompatActivity {
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration cf = res.getConfiguration();
-        cf.setLocale(newLang);
+        Locale locale = new Locale(landskode);
+        cf.locale = locale;
         res.updateConfiguration(cf,dm);
     }
 
@@ -480,7 +495,7 @@ public class GameActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
         game = Integer.parseInt(sharedPreferences.getString("gameMode", "5"));
-        lang = sharedPreferences.getBoolean("langSwitch", false);
+        lang = sharedPreferences.getString("lang_pref", "no");
         System.out.println("----:" + game + ":----");
         System.out.println("----:" + lang + ":----");
 
@@ -562,7 +577,6 @@ public class GameActivity extends AppCompatActivity {
         countWrong = savedInstanceState.getInt("CountWrong");
         gameQuestions = savedInstanceState.getParcelableArrayList("GameQuestions");
     }
-
 
     @Override
     protected void onResume(){

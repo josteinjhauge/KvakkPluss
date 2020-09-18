@@ -30,6 +30,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static com.example.mattespill.GameActivity.RESULT;
 import static com.example.mattespill.GameActivity.SHARED_GAME_PREFS;
 
@@ -46,7 +47,9 @@ public class StatisticsActivity extends AppCompatActivity {
     public static final String RESULTS = "results";
     public static final String LIST_STATE = "list_state";
     public static final String KEY_RECYCLER_STATE = "recycler_state";
-    boolean lang;
+
+    String actland;
+    String lang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +58,26 @@ public class StatisticsActivity extends AppCompatActivity {
         loadData();
 
         // sjekke språk mot det som kommer fra sharedprefs
-        if (lang){
-            tysk();
-        } else {
-            norsk();
-        }
+        setLang(lang);
+        actland = lang;
+        SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener =
+                new SharedPreferences.OnSharedPreferenceChangeListener() {
+                    @Override
+                    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                        try {
+                            if (key.equals("lang_pref"))
+                            {
+                                setLang(lang);
+                                getFragmentManager().beginTransaction().replace(android.R.id.content,
+                                        new PreferencesActivity.PrefsFragment()).commit();
+                            }
+                        } catch (Exception e){
+                            System.out.println("Feilmelding kommer her " + e);
+                        }
+                    }
+                };
+        SharedPreferences sharedPreferences = getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener);
 
         setContentView(R.layout.activity_statistics);
         buildRecyclerView();
@@ -159,7 +177,7 @@ public class StatisticsActivity extends AppCompatActivity {
         // fra preferences
         SharedPreferences sharedprefs = PreferenceManager
                 .getDefaultSharedPreferences(this);
-        lang = sharedprefs.getBoolean("langSwitch", false);
+        lang = sharedprefs.getString("lang_pref", "no");
         System.out.println("----:" + lang + ":----");
     }
 
@@ -175,14 +193,6 @@ public class StatisticsActivity extends AppCompatActivity {
         Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
     }
 
-    public void tysk(){
-        setLang("de");
-    }
-
-    public void norsk(){
-        setLang("nb");
-    }
-
     public void setLang(String landskode){
         Log.d("TAG","settland med landskode: " + landskode + " kjører nå");
 
@@ -192,7 +202,8 @@ public class StatisticsActivity extends AppCompatActivity {
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration cf = res.getConfiguration();
-        cf.setLocale(newLang);
+        Locale locale = new Locale(landskode);
+        cf.locale = locale;
         res.updateConfiguration(cf,dm);
     }
 

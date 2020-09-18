@@ -16,15 +16,14 @@
             android:icon="@drawable/ic_list" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/langTitle">
-        <SwitchPreference
-            android:id="@+id/langSwitch"
+    <PreferenceCategory
+        android:title="@string/lang">
+        <ListPreference
+            android:key="lang_pref"
+            android:entries="@array/pref_lang_labels"
+            android:entryValues="@array/pref_lang_values"
             android:title="@string/lang"
-            android:defaultValue="false"
-            android:summary="@string/lang"
-            android:summaryOn="@string/tysk"
-            android:summaryOff="@string/norsk"
-            android:key="langSwitch"
+            android:summary="%s"
             android:icon="@drawable/ic_language" />
     </PreferenceCategory>
 </PreferenceScreen>
