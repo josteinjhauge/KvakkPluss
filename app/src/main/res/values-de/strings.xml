@@ -3,8 +3,6 @@
     <!--Buttons-->
     <string name="btnStart">Spiele starten</string>
     <string name="btnCancel">Ausgang</string>
-    <string name="txtHeader">FrogZone</string>
-    <string name="btnStats">Statistiken</string>
     <string name="btnOne">1</string>
     <string name="btnTwo">2</string>
     <string name="btnThree">3</string>
@@ -16,7 +14,6 @@
     <string name="btnNine">9</string>
     <string name="btnClear">C</string>
     <string name="btnZero">0</string>
-    <string name="btnNext">--></string>
 
     <string name="btnFiveQ">5 Fragen</string>
     <string name="btnTenQ">10 Fragen</string>
@@ -36,12 +33,11 @@
     <string name="positive">Ja</string>
     <string name="negative">Nein</string>
     <string name="lang">Sprache</string>
-    <string name="btnBack">Zurück</string>
+    <!-- TODO: se på denne elin -->
     <string name="done">Du bist fertig</string>
-    <string name="frog">Frosch Maskottchen</string>
     <string name="stats">Statistiken</string>
     <string name="selectGame">Fragen auswählen</string>
-    <string name="sporsmal">Wählen Sie die Anzahl der Aufgaben</string>
+    <string name="questions">Wählen Sie die Anzahl der Aufgaben</string>
     <string name="langTitle">Sprache</string>
     <string name="listPref">Wählen Sie hier Aufgaben aus</string>
     <string name="german">Deutsche</string>
