@@ -47,4 +47,6 @@
     <string name="dummy">dummy</string>
     <string name="results">Fasit</string>
     <string name="game">"Spiel "</string>
+    <string name="txtEqualssign">=</string>
+    <string name="bg">Hintergrund</string>
 </resources>

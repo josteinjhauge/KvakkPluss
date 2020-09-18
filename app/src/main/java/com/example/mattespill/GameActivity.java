@@ -106,7 +106,7 @@ public class GameActivity extends AppCompatActivity {
         txtQuestionNum = findViewById(R.id.txtQuestionNum);
         txtQuestionNum.setText(String.format("%d / %d", questionCount, game));
         txtQuestion = findViewById(R.id.txtQuestion);
-        txtQuestion.setText(gameQuestions.get(0).getQuestion() + " = ");
+        txtQuestion.setText(gameQuestions.get(0).getQuestion());
         System.out.println("Arraylist: " + gameQuestions);
 
         setButtons();
@@ -300,7 +300,7 @@ public class GameActivity extends AppCompatActivity {
                         btnZero.setEnabled(false);
                         btnConfirm.setEnabled(false);
                         input.setText("");
-                        txtQuestion.setText(R.string.done); // TODO: Lage dialogboks istede
+                        txtQuestion.setText(R.string.done);
 
                         checkAnswer(inputVal);
                         getResult();

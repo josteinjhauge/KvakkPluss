@@ -5,21 +5,20 @@
     android:id="@+id/linearLayout8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_game">
-
+    android:background="@drawable/backgroud_game">
 
     <TextView
         android:id="@+id/txtWrong"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="56dp"
         android:background="@drawable/btn_red"
         android:elevation="4dp"
         android:gravity="center"
         android:text="@string/txtCount"
         android:textColor="@color/red"
-        android:textSize="22sp"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,26 +26,25 @@
         android:id="@+id/txtCorrect"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="12dp"
         android:background="@drawable/btn_green"
         android:elevation="4dp"
         android:gravity="center"
         android:text="@string/txtCount"
         android:textColor="@color/green"
-        android:textSize="22sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bubble"
-        android:layout_width="250dp"
-        android:layout_height="194dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="96dp"
+        android:layout_width="207dp"
+        android:layout_height="169dp"
+        android:layout_marginStart="76dp"
         android:background="@drawable/btn_blue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/guideline7">
 
         <TextView
             android:id="@+id/txtQuestionNum"
@@ -57,26 +55,40 @@
             android:layout_marginEnd="72dp"
             android:text="@string/txtQuestionNum"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtQuestion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="150dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="28dp"
             android:elevation="4dp"
-            android:gravity="end"
-            android:lineSpacingExtra="6dp"
             android:text="@string/txtQuestion"
-            android:textAlignment="textEnd"
+            android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="40sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtQuestionNum" />
+
+        <TextView
+            android:id="@+id/txtEqualssign"
+            android:layout_width="52dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="-20dp"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:text="@string/txtEqualssign"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtQuestion" />
 
         <TextView
             android:id="@+id/txtAnswer"
@@ -88,76 +100,58 @@
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="@+id/txtQuestion"
-            app:layout_constraintStart_toEndOf="@+id/txtQuestion" />
+            app:layout_constraintStart_toEndOf="@+id/txtEqualssign"
+            app:layout_constraintTop_toBottomOf="@+id/txtQuestion" />
 
-
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="20dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/btnOne"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="50dp"
         android:background="@drawable/btn_blue"
         android:elevation="2dp"
         android:text="@string/btnOne"
         android:textColor="@color/black"
+        android:textSize="30sp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
     <Button
-        android:id="@+id/btnSeven"
+        android:id="@+id/btnTwo"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="25dp"
         android:background="@drawable/btn_blue"
         android:elevation="2dp"
-        android:text="@string/btnSeven"
+        android:text="@string/btnTwo"
         android:textColor="@color/black"
+        android:textSize="30sp"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="@+id/btnFour"
-        app:layout_constraintTop_toBottomOf="@+id/btnFour" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnOne"
+        app:layout_constraintStart_toEndOf="@+id/btnOne" />
 
     <Button
-        android:id="@+id/btnSix"
+        android:id="@+id/btnThree"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="25dp"
         android:background="@drawable/btn_blue"
         android:elevation="2dp"
-        android:text="@string/btnSix"
+        android:text="@string/btnThree"
         android:textColor="@color/black"
+        android:textSize="30sp"
         android:visibility="visible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnFive"
-        app:layout_constraintStart_toEndOf="@+id/btnFive" />
-
-    <Button
-        android:id="@+id/btnFive"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/btn_blue"
-        android:elevation="2dp"
-        android:text="@string/btnFive"
-        android:textColor="@color/black"
-        android:visibility="visible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnFour"
-        app:layout_constraintStart_toEndOf="@+id/btnFour" />
-
-    <Button
-        android:id="@+id/btnNine"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/btn_blue"
-        android:elevation="2dp"
-        android:text="@string/btnNine"
-        android:textColor="@color/black"
-        android:visibility="visible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnEight"
-        app:layout_constraintStart_toEndOf="@+id/btnEight" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnTwo"
+        app:layout_constraintStart_toEndOf="@+id/btnTwo" />
 
     <Button
         android:id="@+id/btnFour"
@@ -168,9 +162,80 @@
         android:elevation="2dp"
         android:text="@string/btnFour"
         android:textColor="@color/black"
+        android:textSize="30sp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/btnOne"
         app:layout_constraintTop_toBottomOf="@+id/btnOne" />
+
+    <Button
+        android:id="@+id/btnFive"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/btn_blue"
+        android:elevation="2dp"
+        android:text="@string/btnFive"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:visibility="visible"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnFour"
+        app:layout_constraintStart_toEndOf="@+id/btnFour" />
+
+    <Button
+        android:id="@+id/btnSix"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/btn_blue"
+        android:elevation="2dp"
+        android:text="@string/btnSix"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:visibility="visible"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnFive"
+        app:layout_constraintStart_toEndOf="@+id/btnFive" />
+
+    <Button
+        android:id="@+id/btnSeven"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_blue"
+        android:elevation="2dp"
+        android:text="@string/btnSeven"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/btnFour"
+        app:layout_constraintTop_toBottomOf="@+id/btnFour" />
+
+    <Button
+        android:id="@+id/btnEight"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/btn_blue"
+        android:elevation="2dp"
+        android:text="@string/btnEight"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:visibility="visible"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnSeven"
+        app:layout_constraintStart_toEndOf="@+id/btnSeven" />
+
+    <Button
+        android:id="@+id/btnNine"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/btn_blue"
+        android:elevation="2dp"
+        android:text="@string/btnNine"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:visibility="visible"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnEight"
+        app:layout_constraintStart_toEndOf="@+id/btnEight" />
 
     <Button
         android:id="@+id/btnClear"
@@ -180,7 +245,7 @@
         android:background="@drawable/btn_clear"
         android:elevation="2dp"
         android:onClick="Clear"
-
+        android:textSize="30sp"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/btnSeven"
         app:layout_constraintTop_toBottomOf="@+id/btnSeven" />
@@ -189,11 +254,12 @@
         android:id="@+id/btnZero"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="25dp"
         android:background="@drawable/btn_blue"
         android:elevation="2dp"
         android:text="@string/btnZero"
         android:textColor="@color/black"
+        android:textSize="30sp"
         android:visibility="visible"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnClear"
         app:layout_constraintStart_toEndOf="@+id/btnClear" />
@@ -202,7 +268,7 @@
         android:id="@+id/btnNext"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/btn_commit"
         android:elevation="2dp"
@@ -211,50 +277,9 @@
         app:layout_constraintTop_toBottomOf="@+id/btnNine" />
 
     <Button
-        android:id="@+id/btnTwo"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/btn_blue"
-        android:elevation="2dp"
-        android:text="@string/btnTwo"
-        android:textColor="@color/black"
-        android:visibility="visible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnOne"
-        app:layout_constraintStart_toEndOf="@+id/btnOne" />
-
-    <Button
-        android:id="@+id/btnEight"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/btn_blue"
-        android:elevation="2dp"
-        android:text="@string/btnEight"
-        android:textColor="@color/black"
-        android:visibility="visible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnSeven"
-        app:layout_constraintStart_toEndOf="@+id/btnSeven" />
-
-    <Button
-        android:id="@+id/btnThree"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="8dp"
-        android:background="@drawable/btn_blue"
-        android:elevation="2dp"
-        android:text="@string/btnThree"
-        android:textColor="@color/black"
-        android:visibility="visible"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnTwo"
-        app:layout_constraintStart_toEndOf="@+id/btnTwo" />
-
-    <Button
         android:id="@+id/btnCancel"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:background="@drawable/btn_home"
         android:elevation="2dp"
         android:textColor="@color/black"
@@ -267,7 +292,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.50121653" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline9"
@@ -275,6 +300,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.47" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.175" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

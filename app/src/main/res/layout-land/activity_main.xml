@@ -26,8 +26,8 @@
         android:background="@drawable/btn_prefs"
         android:contentDescription="@string/btnPrefrences"
         android:elevation="4dp"
-        app:layout_constraintStart_toEndOf="@+id/btnStartGame"
-        app:layout_constraintTop_toBottomOf="@+id/btnStartGame" />
+        app:layout_constraintBottom_toTopOf="@+id/btnStartGame"
+        app:layout_constraintStart_toEndOf="@+id/btnStartGame" />
 
     <Button
         android:id="@+id/btnStats"
@@ -36,8 +36,8 @@
         android:background="@drawable/btn_stats"
         android:contentDescription="@string/stats"
         android:elevation="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnStartGame"
-        app:layout_constraintStart_toEndOf="@+id/btnStartGame" />
+        app:layout_constraintStart_toEndOf="@+id/btnStartGame"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartGame" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

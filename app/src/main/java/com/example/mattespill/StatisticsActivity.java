@@ -90,7 +90,6 @@ public class StatisticsActivity extends AppCompatActivity {
         resView.setLayoutManager(new LinearLayoutManager(this));
         resAdapter = new ResultsAdapter(this.getLayoutInflater(), resultList);
         resView.setAdapter(resAdapter);
-
     }
 
     public void setButtons(){

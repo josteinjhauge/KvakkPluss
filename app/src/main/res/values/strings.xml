@@ -33,8 +33,7 @@
     <string name="lang">Språk</string>
 
     <!--TODO: se på denne elin-->
-    <string name="done">Du er ferdig</string>
-    
+    <string name="done">FERDIG</string>
     <string name="stats">Statistikk</string>
     <string name="selectGame">Velg Spørsmål</string>
     <string name="questions">Oppgaver</string>
@@ -48,4 +47,6 @@
     <string name="dummy">dummy</string>
     <string name="results">Fasit</string>
     <string name="game">"Spill "</string>
+    <string name="txtEqualssign">=</string>
+    <string name="bg">Bakgrunn</string>
 </resources>
