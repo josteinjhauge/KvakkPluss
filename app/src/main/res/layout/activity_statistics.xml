@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/jungelbackgroud_main"
+    android:background="@drawable/backgroud_stat_pref"
     android:orientation="vertical"
     tools:context=".StatisticsActivity">
 
@@ -17,7 +17,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:text="@string/stats"
-        android:textColor="?attr/textColor"
+        android:textColor="@color/black"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,39 +35,33 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/stats"
-        app:layout_constraintVertical_bias="0.83" />
+        app:layout_constraintVertical_bias="0.33" />
 
     <Button
         android:id="@+id/btnBackStats"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="44dp"
         android:layout_marginTop="32dp"
-        android:background="?attr/bgButton"
-        android:text="@string/btnBack"
-        android:textColor="?attr/textColor"
-        android:textSize="22sp"
+        android:background="@drawable/btn_home"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline12" />
 
-    <ImageView
+    <Button
         android:id="@+id/btnDelete"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="68dp"
         android:layout_marginTop="52dp"
-        android:background="?attr/bgButton"
-        android:contentDescription="@string/delete"
-        android:src="@drawable/delete_icon"
+        android:background="@drawable/btn_delete"
         app:layout_constraintBottom_toBottomOf="@+id/btnBackStats"
         app:layout_constraintStart_toEndOf="@+id/btnBackStats"
         app:layout_constraintTop_toTopOf="@+id/guideline12"
-        app:layout_constraintVertical_bias="1.0"
-        app:tint="@color/red" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
@@ -81,6 +75,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.78" />
+        app:layout_constraintGuide_percent="0.73" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

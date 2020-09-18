@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp"
-        android:background="?attr/bgButton">
+        android:background="@drawable/bg_question">
 
         <TextView
             android:id="@+id/header"
@@ -20,7 +20,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="16dp"
             android:text="@string/dummy"
-            android:textColor="@android:color/black"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="68dp"
             android:text="@string/dummy"
+            android:textColor="@color/black"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBaseline_toBaselineOf="@+id/header"
             app:layout_constraintStart_toEndOf="@+id/header" />
 

@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/bgColor"
+    android:background="@drawable/backgroud_stat_pref_land"
     android:orientation="vertical"
     tools:context=".StatisticsActivity">
 
@@ -14,10 +14,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="288dp"
+        android:layout_marginStart="264dp"
         android:layout_marginTop="24dp"
         android:text="@string/stats"
-        android:textColor="?attr/textColor"
+        android:textColor="@color/black"
         android:textSize="26sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +25,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView"
         android:layout_width="349dp"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:dividerHeight="0.5dp"
@@ -39,32 +39,27 @@
 
     <Button
         android:id="@+id/btnBackStats"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_gravity="center"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="120dp"
-        android:background="?attr/bgButton"
-        android:text="@string/btnBack"
-        android:textColor="?attr/textColor"
-        android:textSize="22sp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/btn_home"
         android:visibility="visible"
         app:layout_constraintStart_toEndOf="@+id/listView"
         app:layout_constraintTop_toBottomOf="@+id/stats" />
 
-    <ImageView
+    <Button
         android:id="@+id/btnDelete"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/btn_delete"
         android:contentDescription="@string/delete"
-        android:src="@drawable/delete_icon"
-        app:layout_constraintStart_toEndOf="@+id/btnBackStats"
-        app:layout_constraintTop_toBottomOf="@+id/stats"
-        app:tint="@color/red" />
+        app:layout_constraintEnd_toEndOf="@+id/btnBackStats"
+        app:layout_constraintTop_toBottomOf="@+id/btnBackStats" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"

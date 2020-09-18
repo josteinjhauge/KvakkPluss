@@ -72,8 +72,8 @@
     </array>
 
     <array name="pref_lang_labels">
-        <item>@string/norsk</item>
-        <item>@string/tysk</item>
+        <item>@string/norwegian</item>
+        <item>@string/german</item>
     </array>
 
     <array name="pref_lang_values">

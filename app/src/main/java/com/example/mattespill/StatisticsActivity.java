@@ -102,7 +102,7 @@ public class StatisticsActivity extends AppCompatActivity {
             }
         });
 
-        ImageView btnDelete = findViewById(R.id.btnDelete);
+        Button btnDelete = findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

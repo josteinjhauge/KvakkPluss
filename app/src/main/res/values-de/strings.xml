@@ -44,24 +44,12 @@
     <string name="sporsmal">Wählen Sie die Anzahl der Aufgaben</string>
     <string name="langTitle">Sprache</string>
     <string name="listPref">Wählen Sie hier Aufgaben aus</string>
-    <string name="tysk">Deutsche</string>
-    <string name="norsk">Norwegisch</string>
+    <string name="german">Deutsche</string>
+    <string name="norwegian">Norwegisch</string>
     <string name="germanCode">de</string>
     <string name="norwegianCode">nb</string>
     <string name="delete">Löschen</string>
     <string name="dummy">dummy</string>
     <string name="results">Fasit</string>
     <string name="game">"Spiel "</string>
-
-    <!--Tekst lorem-->
-    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Interdum varius sit amet mattis vulputate enim.
-        Tincidunt praesent semper feugiat nibh sed pulvinar proin.
-        Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed.
-        Lacus viverra vitae congue eu. Molestie nunc non blandit massa enim nec dui nunc.
-    </string>
-
-
-
 </resources>

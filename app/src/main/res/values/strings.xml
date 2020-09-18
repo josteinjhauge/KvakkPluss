@@ -43,20 +43,10 @@
     <string name="sporsmal">Oppgaver</string>
     <string name="langTitle">Språk</string>
     <string name="listPref">Velg antall oppgaver</string>
-    <string name="tysk">Tysk</string>
-    <string name="norsk">Norsk</string>
+    <string name="german">Tysk</string>
+    <string name="norwegian">Norsk</string>
     <string name="germanCode">de</string>
     <string name="norwegianCode">nb</string>
-
-
-    <!--Tekst lorem-->
-    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Interdum varius sit amet mattis vulputate enim.
-        Tincidunt praesent semper feugiat nibh sed pulvinar proin.
-        Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed.
-        Lacus viverra vitae congue eu. Molestie nunc non blandit massa enim nec dui nunc.
-    </string>
     <string name="delete">Delete</string>
     <string name="dummy">dummy</string>
     <string name="results">Fasit</string>

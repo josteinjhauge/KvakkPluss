@@ -5,14 +5,15 @@
     android:id="@+id/linearLayout8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroud_game">
+    android:background="@drawable/background_game">
+
 
     <TextView
         android:id="@+id/txtWrong"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/btn_red"
         android:elevation="4dp"
         android:gravity="center"
@@ -24,9 +25,9 @@
 
     <TextView
         android:id="@+id/txtCorrect"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/btn_green"
         android:elevation="4dp"
@@ -37,13 +38,12 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bubble"
         android:layout_width="250dp"
         android:layout_height="194dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="96dp"
         android:background="@drawable/btn_blue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -85,8 +85,8 @@
             android:background="@drawable/bg_question"
             android:elevation="4dp"
             android:textAlignment="center"
-            android:textColor="?attr/textColor"
-            android:textColorHint="?attr/textColor"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@+id/txtQuestion"
             app:layout_constraintStart_toEndOf="@+id/txtQuestion" />
@@ -96,176 +96,171 @@
 
     <Button
         android:id="@+id/btnOne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:background="?attr/bgButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="68dp"
+        android:background="@drawable/bubble_button"
         android:elevation="2dp"
         android:text="@string/btnOne"
-        android:textColor="?attr/textColor"
+        android:textColor="@color/black"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
     <Button
         android:id="@+id/btnSeven"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="8dp"
-        android:background="?attr/bgButton"
+        android:background="@drawable/bubble_button"
         android:elevation="2dp"
         android:text="@string/btnSeven"
-        android:textColor="?attr/textColor"
+        android:textColor="@color/black"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/btnFour"
         app:layout_constraintTop_toBottomOf="@+id/btnFour" />
 
     <Button
         android:id="@+id/btnSix"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:background="?attr/bgButton"
+        android:background="@drawable/bubble_button"
         android:elevation="2dp"
         android:text="@string/btnSix"
-        android:textColor="?attr/textColor"
+        android:textColor="@color/black"
         android:visibility="visible"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnFive"
         app:layout_constraintStart_toEndOf="@+id/btnFive" />
 
     <Button
         android:id="@+id/btnFive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:background="?attr/bgButton"
+        android:background="@drawable/bubble_button"
         android:elevation="2dp"
         android:text="@string/btnFive"
-        android:textColor="?attr/textColor"
+        android:textColor="@color/black"
         android:visibility="visible"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnFour"
         app:layout_constraintStart_toEndOf="@+id/btnFour" />
 
     <Button
         android:id="@+id/btnNine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:background="?attr/bgButton"
+        android:background="@drawable/bubble_button"
         android:elevation="2dp"
         android:text="@string/btnNine"
-        android:textColor="?attr/textColor"
+        android:textColor="@color/black"
         android:visibility="visible"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnEight"
         app:layout_constraintStart_toEndOf="@+id/btnEight" />
 
     <Button
         android:id="@+id/btnFour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="8dp"
-        android:background="?attr/bgButton"
+        android:background="@drawable/bubble_button"
         android:elevation="2dp"
         android:text="@string/btnFour"
-        android:textColor="?attr/textColor"
+        android:textColor="@color/black"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/btnOne"
         app:layout_constraintTop_toBottomOf="@+id/btnOne" />
 
     <Button
         android:id="@+id/btnClear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginTop="8dp"
-        android:background="?attr/bgButton"
+        android:background="@drawable/btn_clear"
         android:elevation="2dp"
         android:onClick="Clear"
-        android:text="@string/btnClear"
-        android:textColor="?attr/textColor"
+
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/btnSeven"
         app:layout_constraintTop_toBottomOf="@+id/btnSeven" />
 
     <Button
         android:id="@+id/btnZero"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:background="?attr/bgButton"
+        android:background="@drawable/bubble_button"
         android:elevation="2dp"
         android:text="@string/btnZero"
-        android:textColor="?attr/textColor"
+        android:textColor="@color/black"
         android:visibility="visible"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnClear"
         app:layout_constraintStart_toEndOf="@+id/btnClear" />
 
     <Button
         android:id="@+id/btnNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="?attr/bgConfirmButton"
+        android:background="@drawable/btn_commit"
         android:elevation="2dp"
-        android:text="@string/btnNext"
-        android:textColor="?attr/btntxtColor"
         android:visibility="visible"
         app:layout_constraintStart_toEndOf="@+id/btnZero"
         app:layout_constraintTop_toBottomOf="@+id/btnNine" />
 
     <Button
         android:id="@+id/btnTwo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:background="?attr/bgButton"
+        android:background="@drawable/bubble_button"
         android:elevation="2dp"
         android:text="@string/btnTwo"
-        android:textColor="?attr/textColor"
+        android:textColor="@color/black"
         android:visibility="visible"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnOne"
         app:layout_constraintStart_toEndOf="@+id/btnOne" />
 
     <Button
         android:id="@+id/btnEight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:background="?attr/bgButton"
+        android:background="@drawable/bubble_button"
         android:elevation="2dp"
         android:text="@string/btnEight"
-        android:textColor="?attr/textColor"
+        android:textColor="@color/black"
         android:visibility="visible"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnSeven"
         app:layout_constraintStart_toEndOf="@+id/btnSeven" />
 
     <Button
         android:id="@+id/btnThree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="8dp"
-        android:background="?attr/bgButton"
+        android:background="@drawable/bubble_button"
         android:elevation="2dp"
         android:text="@string/btnThree"
-        android:textColor="?attr/textColor"
+        android:textColor="@color/black"
         android:visibility="visible"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnTwo"
         app:layout_constraintStart_toEndOf="@+id/btnTwo" />
 
     <Button
         android:id="@+id/btnCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="?attr/bgCancelButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_home"
         android:elevation="2dp"
-        android:text="@string/btnCancel"
-        android:textColor="?attr/btntxtColor"
+        android:textColor="@color/black"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnZero" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
@@ -279,7 +274,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.58" />
+        app:layout_constraintGuide_percent="0.47" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
