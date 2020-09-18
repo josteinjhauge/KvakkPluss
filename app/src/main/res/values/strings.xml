@@ -33,8 +33,8 @@
     <string name="lang">Språk</string>
 
     <!--TODO: se på denne elin-->
-    <string name="done">Du er ferdig</string>
-    
+    <string name="done">Ferdig</string>
+
     <string name="stats">Statistikk</string>
     <string name="selectGame">Velg Spørsmål</string>
     <string name="questions">Oppgaver</string>
