@@ -72,7 +72,6 @@
         android:layout_marginTop="40dp"
         android:background="?attr/bgQuestion"
         android:elevation="1dp"
-        android:hint="@string/hint"
         android:textAlignment="center"
         android:textColor="?attr/textColor"
         android:textColorHint="?attr/textColor"

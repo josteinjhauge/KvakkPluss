@@ -30,7 +30,6 @@
     <string name="app_name">MatteSpill</string>
     <string name="txtCount">0</string>
     <string name="txtQuestion">Spørsmål</string>
-    <string name="hint">skriv ditt svar</string>
     <string name="txtQuestionNum">Spørsmål nr</string>
     <string name="dialog">Er du sikker?</string>
     <string name="positive">Ja</string>
