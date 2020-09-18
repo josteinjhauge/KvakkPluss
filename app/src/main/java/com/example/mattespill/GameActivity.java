@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.DialogFragment;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +17,7 @@ import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +29,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class GameActivity extends AppCompatActivity implements MyDialog.DialogClickListener {
+public class GameActivity extends AppCompatActivity {
     TextView input;
     String[] questions;
     String[] answers;
@@ -37,13 +39,16 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
     TextView txtCorrect;
 
     int questionCount = 1;
-    int answerdCount = 1;
     int countCorrect = 0;
     int countWrong = 0;
 
     ArrayList<Integer> fetchedQuestions = new ArrayList<>();
     ArrayList<QandA> gameQuestions = new ArrayList<>();
     ArrayList<QandA> allQuestions = new ArrayList<>();
+
+    //TODO: til dialogboks hvis vi bare skal skrive ut de feile oppgavene
+    ArrayList<QandA> failedQuestions = new ArrayList<>();
+
     ArrayList<Results> resultList = new ArrayList<>();
 
     public Locale newLang;
@@ -60,15 +65,6 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Theme
-        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            setTheme(R.style.DarkTheme);
-        }
-        else {
-            setTheme(R.style.LightTheme);
-        }
-
         // Load data from shared prefrences
         loadData();
 
@@ -263,10 +259,9 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
                     // TODO: En bedre måte å gi tilbakemelding her eller??
                     Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
                 } else {
-                    if (answerdCount < game) {
+                    if (questionCount < game) {
                         checkAnswer(inputVal);
                         txtQuestion.setText(gameQuestions.get(questionCount).getQuestion());
-                        answerdCount++;
                         questionCount++;
                         txtQuestionNum.setText(String.format("%d / %d", questionCount, game));
                         input.setText("");
@@ -387,6 +382,7 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
             if (inputVal.equals(answer)){
                 updateCorrect();
             } else {
+                // TODO: lage arraylist her av gamequestions.get(questioncount-1)
                 updateWrong();
             }
         } catch (Exception e){
@@ -420,22 +416,42 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
     }
 
     public void doneDialog(){
-        DialogFragment dialog = new MyDialog();
-        dialog.show(getSupportFragmentManager(), "Avslutt");
-       /*DialogFragment dialog = new Dialog();
-       dialog.show(getSupportFragmentManager(),"Done");*/
-    }
+        final Intent main = new Intent(this, MainActivity.class);
+        final Intent stats = new Intent(this, StatisticsActivity.class);
+        String txtPositive = getResources().getString(R.string.btnCancel);
+        String txtNegative = getResources().getString(R.string.stats);
+        String txtTitle = getResources().getString(R.string.results);
 
-    @Override
-    public void onStatsClick() {
-        Intent i = new Intent(this, StatisticsActivity.class);
-        startActivity(i);
-        finish();
-    }
+        DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        // yes trykket
+                        startActivity(main);
+                        finish();
+                        Log.i("knapp", "ja trykket"); // TODO: bort før levering
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        // no trykket
+                        startActivity(stats);
+                        finish();
+                        Log.i("knapp", "nei trykket"); // TODO: bort før levering
+                        break;
+                }
+            }
+        };
 
-    @Override
-    public void onAvbrytClick() {
-        return;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        String ut = "";
+        for (int i = 0; i< gameQuestions.size(); i++){
+            ut += gameQuestions.get(i).question + " = " + gameQuestions.get(i).answer + "\n";
+        }
+        builder.setMessage(ut);
+        builder.setPositiveButton(txtPositive, dialog)
+                .setNegativeButton(txtNegative,dialog);
+        builder.setTitle(txtTitle);
+        builder.show();
     }
 
     public void tysk(){
@@ -505,11 +521,13 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
         txtQuestionNum = findViewById(R.id.txtQuestionNum);
         txtCorrect = findViewById(R.id.txtCorrect);
         txtWrong = findViewById(R.id.txtWrong);
+        input = findViewById(R.id.txtAnswer);
 
         String question = txtQuestion.getText().toString();
         String questionNum = txtQuestionNum.getText().toString();
         String correct = txtCorrect.getText().toString();
         String wrong = txtWrong.getText().toString();
+        String answer = input.getText().toString();
 
 
         // TODO: husk å lagre questioncount!!!
@@ -517,8 +535,8 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
         outState.putString("QuestionNum", questionNum);
         outState.putString("Correct", correct);
         outState.putString("Wrong", wrong);
+        outState.putString("Answer", answer);
         outState.putInt("QuestionCount", questionCount);
-        outState.putInt("AnswerdCount", answerdCount);
         outState.putInt("CountCorrect", countCorrect);
         outState.putInt("CountWrong", countWrong);
         outState.putParcelableArrayList("GameQuestions", gameQuestions);
@@ -532,15 +550,25 @@ public class GameActivity extends AppCompatActivity implements MyDialog.DialogCl
         txtQuestionNum = findViewById(R.id.txtQuestionNum);
         txtCorrect = findViewById(R.id.txtCorrect);
         txtWrong = findViewById(R.id.txtWrong);
+        input = findViewById(R.id.txtAnswer);
 
         txtQuestion.setText(savedInstanceState.getString("Question"));
         txtQuestionNum.setText(savedInstanceState.getString("QuestionNum"));
         txtCorrect.setText(savedInstanceState.getString("Correct"));
         txtWrong.setText(savedInstanceState.getString("Wrong"));
+        input.setText(savedInstanceState.getString("Answer"));
         questionCount = savedInstanceState.getInt("QuestionCount");
-        answerdCount = savedInstanceState.getInt("AnsweredCount");
         countCorrect = savedInstanceState.getInt("CountCorrect");
         countWrong = savedInstanceState.getInt("CountWrong");
         gameQuestions = savedInstanceState.getParcelableArrayList("GameQuestions");
+    }
+
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        if (questionCount == game){
+            doneDialog();
+        }
     }
 }

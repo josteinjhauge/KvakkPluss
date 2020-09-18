@@ -1,11 +1,13 @@
 package com.example.mattespill;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ActionBar;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -66,18 +68,6 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     public void buildRecyclerView(){
-        /* TODO: denne under bør funke hvis vi må bruke listView
-        ikke fjern CustomListAdpter
-         */
-/*
-        // denne må bruke arraylist av object samme inne i klassen bytte ut begge arrayer med arraylist av object
-        CustomListAdapter adapter = new CustomListAdapter(this, resultList);
-        listView.setAdapter(adapter);
-*/
-        /*RecyclerView resView = (RecyclerView) findViewById(R.id.listView);
-        resView.setLayoutManager(new LinearLayoutManager(this));
-        ResultsAdapter resAdapter = new ResultsAdapter(this.getLayoutInflater(), resultList);
-        resView.setAdapter(resAdapter);*/
         RecyclerView resView = (RecyclerView) findViewById(R.id.listView);
         resView.setLayoutManager(new LinearLayoutManager(this));
         resAdapter = new ResultsAdapter(this.getLayoutInflater(), resultList);
@@ -98,23 +88,38 @@ public class StatisticsActivity extends AppCompatActivity {
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultList.clear();
-                System.out.println("Resultview etter clear() " + resultList);
-                buildRecyclerView();
+                sureDelete();
             }
         });
     }
 
-    // TODO: fjerne denne
-    public void deleteResults(int position) {
-        // TODO: FIX DENNE
-        resultList.remove(position);
-        resAdapter.notifyItemRemoved(position);
-        for (Results result : resultList) {
-            System.out.println(result.getName() + " sin score: " + result.getScore());
-            System.out.println("---------------");
-        }
-        System.out.println(resultList.size());
+    public void sureDelete(){
+        String txtDialog = getResources().getString(R.string.dialog);
+        String txtPositive = getResources().getString(R.string.positive);
+        String txtNegative = getResources().getString(R.string.negative);
+
+        DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        // yes trykket
+                        resultList.clear();
+                        System.out.println("Resultview etter clear() " + resultList);
+                        buildRecyclerView();
+                        Log.i("knapp", "ja trykket"); // TODO: bort før levering
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        // no trykket
+                        Log.i("knapp", "nei trykket"); // TODO: bort før levering
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(txtDialog).setPositiveButton(txtPositive, dialog)
+                .setNegativeButton(txtNegative,dialog).show();
     }
 
     public void back(){
@@ -125,7 +130,6 @@ public class StatisticsActivity extends AppCompatActivity {
         finish();
         Log.i("knapp", "Back pressed"); // bort før levering
     }
-
 
     public void loadData(){
         // fra gameAct
@@ -192,21 +196,6 @@ public class StatisticsActivity extends AppCompatActivity {
         res.updateConfiguration(cf,dm);
     }
 
-
-  /*  // TODO: instance funker ikke enda
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList(LIST_STATE, resultList);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState){
-        super.onRestoreInstanceState(savedInstanceState);
-        ArrayList<Results> stateList = savedInstanceState.getParcelableArrayList(LIST_STATE);
-        resultList = stateList;
-    }
-*/
     @Override
     protected void onPause() {
         super.onPause();
