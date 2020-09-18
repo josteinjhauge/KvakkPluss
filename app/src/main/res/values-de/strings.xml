@@ -48,6 +48,10 @@
     <string name="norsk">Norwegisch</string>
     <string name="germanCode">de</string>
     <string name="norwegianCode">nb</string>
+    <string name="delete">Löschen</string>
+    <string name="dummy">dummy</string>
+    <string name="results">Fasit</string>
+    <string name="game">"Spiel "</string>
 
     <!--Tekst lorem-->
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -57,9 +61,7 @@
         Magna fermentum iaculis eu non diam phasellus vestibulum lorem sed.
         Lacus viverra vitae congue eu. Molestie nunc non blandit massa enim nec dui nunc.
     </string>
-    <string name="delete">Löschen</string>
-    <string name="dummy">dummy</string>
-    <string name="results">Fasit</string>
+
 
 
 </resources>

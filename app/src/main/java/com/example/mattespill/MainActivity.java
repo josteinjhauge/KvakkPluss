@@ -107,10 +107,8 @@ public class MainActivity extends AppCompatActivity {
         // TODO: endre Intent linje for å bytte mellom de to løsningene
         // Ny løsning med bruk av fragment
         Intent intent = new Intent(this, PreferencesActivity.class);
-        // gammel løsning
-        // Intent intent = new Intent(this, PrefrencesActivity.class);
+       // denne må IKKE kalle finish(), for da kan man ikke lukke fragment
         startActivity(intent);
-        finish();
         Log.i("knapp", "Prefrences pressed"); // bort før levering
     }
 

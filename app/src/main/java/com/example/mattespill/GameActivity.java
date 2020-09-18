@@ -314,7 +314,8 @@ public class GameActivity extends AppCompatActivity {
 
     public void getResult(){
         String score = String.format("%d / %d", (questionCount - countWrong), game);
-        String name = "Spill " + (resultList.size()+1);
+        String gameName = getResources().getString(R.string.game);
+        String name = gameName + (resultList.size()+1);
         result = new Results(name, score);
         resultList.add(result);
 
