@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         // gammel løsning
         // Intent intent = new Intent(this, PrefrencesActivity.class);
         startActivity(intent);
+        finish();
         Log.i("knapp", "Prefrences pressed"); // bort før levering
     }
 
