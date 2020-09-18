@@ -15,11 +15,14 @@ import android.widget.Button;
 
 import java.util.Locale;
 
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+
 public class MainActivity extends AppCompatActivity {
     public Locale newLang;
 
     // Fra shared prefs
-    boolean lang;
+    String lang;
+    String actland;
 
 
     // TODO: dette er en git-test
@@ -30,11 +33,27 @@ public class MainActivity extends AppCompatActivity {
         loadData();
 
         // sjekke språk mot det som kommer fra sharedprefs
-        if (lang){
-            tysk();
-        } else {
-            norsk();
-        }
+        setLang(lang);
+        actland = lang;
+        SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener =
+                new SharedPreferences.OnSharedPreferenceChangeListener() {
+                    @Override
+                    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                        try {
+                            if (key.equals("lang_pref"))
+                            {
+                                setLang(lang);
+                                getFragmentManager().beginTransaction().replace(android.R.id.content,
+                                        new PreferencesActivity.PrefsFragment()).commit();
+                            }
+                        } catch (Exception e){
+                            System.out.println("Feilmelding kommer her " + e);
+                        }
+                    }
+                };
+
+        SharedPreferences sharedPreferences = getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener);
 
         setContentView(R.layout.activity_main);
 
@@ -66,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("TAG", "loadData MainAct: ");
         SharedPreferences sharedPreferences = PreferenceManager
                 .getDefaultSharedPreferences(this);
-        lang = sharedPreferences.getBoolean("langSwitch", false);
+        lang = sharedPreferences.getString("lang_pref", "no");
         System.out.println("----:" + lang + ":----");
     }
 
@@ -111,7 +130,8 @@ public class MainActivity extends AppCompatActivity {
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration cf = res.getConfiguration();
-        cf.setLocale(newLang);
+        Locale locale = new Locale(landskode);
+        cf.locale = locale;
         res.updateConfiguration(cf,dm);
     }
 

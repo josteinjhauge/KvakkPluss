@@ -71,4 +71,13 @@
         <item>@string/twentyFive</item>
     </array>
 
+    <array name="pref_lang_labels">
+        <item>@string/norsk</item>
+        <item>@string/tysk</item>
+    </array>
+
+    <array name="pref_lang_values">
+        <item>@string/norwegianCode</item>
+        <item>@string/germanCode</item>
+    </array>
 </resources>
