@@ -29,10 +29,10 @@
 
     <!--Text-->
     <string name="app_name">Mathe-Spiele</string>
-    <string name="txtGameScreen">0</string>
+    <string name="txtCount">0</string>
     <string name="txtQuestion">Kommt</string>
     <string name="hint">Schreibe</string>
-    <string name="txtQuestionNum">Fragennummer</string>
+    <string name="txtQuestionNum">Fragen nr</string>
     <string name="dialog">Bist du sicher?</string>
     <string name="positive">Ja</string>
     <string name="negative">Nein</string>

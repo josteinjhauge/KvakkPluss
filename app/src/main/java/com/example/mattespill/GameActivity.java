@@ -106,7 +106,7 @@ public class GameActivity extends AppCompatActivity {
         txtQuestionNum = findViewById(R.id.txtQuestionNum);
         txtQuestionNum.setText(String.format("%d / %d", questionCount, game));
         txtQuestion = findViewById(R.id.txtQuestion);
-        txtQuestion.setText(gameQuestions.get(0).getQuestion());
+        txtQuestion.setText(gameQuestions.get(0).getQuestion() + " = ");
         System.out.println("Arraylist: " + gameQuestions);
 
         setButtons();

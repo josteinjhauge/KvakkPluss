@@ -5,6 +5,10 @@
     <attr name="textColorQuestions" format="color"/>
     <attr name="metaTextColor" format="color"/>
     <attr name="headerColor" format="color"/>
+    <attr name="btntxtColor" format="color"/>
+    <attr name="btnGreenTextColor" format="color"/>
+    <attr name="btnBlueTextColor" format="color"/>
+    <attr name="btnRedTextColor" format="color"/>
     <attr name="bgQuestion" format="reference"/>
     <attr name="bgButton" format="reference"/>
     <attr name="bgBubbleBlue" format="reference"/>
@@ -12,7 +16,9 @@
     <attr name="bgBubbleRed" format="reference"/>
     <attr name="bgConfirmButton" format="reference"/>
     <attr name="bgCancelButton" format="reference"/>
-    <attr name="btntxtColor" format="color"/>
+
     <attr name="bgCorrect" format="reference"/>
     <attr name="bgWrong" format="reference"/>
+
+    <!-- TODO: Slett ubrukte filer -->
 </resources>

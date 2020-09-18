@@ -28,10 +28,10 @@
 
     <!--Tekst Norsk-->
     <string name="app_name">MatteSpill</string>
-    <string name="txtGameScreen">0</string>
-    <string name="txtQuestion">Her kommer et spørsmål</string>
+    <string name="txtCount">0</string>
+    <string name="txtQuestion">Spørsmål</string>
     <string name="hint">skriv ditt svar</string>
-    <string name="txtQuestionNum">spørsmål nummer</string>
+    <string name="txtQuestionNum">Spørsmål nr</string>
     <string name="dialog">Er du sikker?</string>
     <string name="positive">Ja</string>
     <string name="negative">Nei</string>
@@ -48,6 +48,7 @@
     <string name="norsk">Norsk</string>
     <string name="germanCode">de</string>
     <string name="norwegianCode">nb</string>
+
 
     <!--Tekst lorem-->
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit,

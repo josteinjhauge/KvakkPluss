@@ -5,98 +5,110 @@
     android:id="@+id/linearLayout8"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/bgColor">
+    android:background="@drawable/backgroud_game">
 
     <TextView
         android:id="@+id/txtWrong"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/txtGameScreen"
-        android:textColor="?attr/textColor"
-        android:textSize="22sp"
-        android:background="?attr/bgBubbleRed"
-        app:layout_constraintStart_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/txtQuestionNum" />
-
-    <TextView
-        android:id="@+id/txtCorrect"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/btn_red"
+        android:elevation="4dp"
         android:gravity="center"
-        android:text="@string/txtGameScreen"
-        android:textColor="?attr/textColor"
+        android:text="@string/txtCount"
+        android:textColor="@color/red"
         android:textSize="22sp"
-        android:background="?attr/bgBubbleGreen"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/txtQuestionNum" />
-
-    <TextView
-        android:id="@+id/txtQuestionNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="72dp"
-        android:text="@string/txtQuestionNum"
-        android:textColor="?attr/textColor"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline5"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="40dp"
+        android:id="@+id/txtCorrect"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/btn_green"
         android:elevation="4dp"
         android:gravity="center"
-        android:lineSpacingExtra="6dp"
-        android:text="@string/txtQuestion"
-        android:textAlignment="center"
-        android:textColor="?attr/textColor"
+        android:text="@string/txtCount"
+        android:textColor="@color/green"
         android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCorrect" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txtAnswer"
-        android:layout_width="224dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:background="?attr/bgQuestion"
-        android:elevation="1dp"
-        android:hint="@string/hint"
-        android:textAlignment="center"
-        android:textColor="?attr/textColor"
-        android:textColorHint="?attr/textColor"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bubble"
+        android:layout_width="250dp"
+        android:layout_height="194dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/btn_blue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtQuestion" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtQuestionNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="72dp"
+            android:text="@string/txtQuestionNum"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="12dp"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/txtQuestion"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtQuestionNum" />
+
+        <TextView
+            android:id="@+id/txtAnswer"
+            android:layout_width="153dp"
+            android:layout_height="31dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="12dp"
+            android:background="?attr/bgQuestion"
+            android:elevation="4dp"
+            android:hint="@string/hint"
+            android:textAlignment="center"
+            android:textColor="?attr/textColor"
+            android:textColorHint="?attr/textColor"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtQuestion" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/btnOne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="32dp"
         android:background="?attr/bgButton"
         android:elevation="2dp"
         android:text="@string/btnOne"
         android:textColor="?attr/textColor"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAnswer" />
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
 
     <Button
         android:id="@+id/btnSeven"
@@ -264,6 +276,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.50121653" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.58" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
