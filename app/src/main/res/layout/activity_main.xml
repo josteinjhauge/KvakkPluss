@@ -5,60 +5,45 @@
     android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/jungelbackgroud_main">
-
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/txtHeader"
-        android:textColor="?attr/headerColor"
-        android:textSize="50sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:background="@drawable/backgroud_main">
 
     <Button
         android:id="@+id/btnStartGame"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="50dp"
         android:alpha="0.5"
         android:background="?attr/bgBubbleBlue"
         android:elevation="4dp"
         android:text="@string/btnStart"
         android:textColor="?attr/textColorQuestions"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <Button
         android:id="@+id/btnPrefrences"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="64dp"
         android:layout_marginTop="48dp"
         android:alpha="0.5"
         android:background="?attr/bgBubbleBlue"
         android:drawableStart="@drawable/settings_icon"
         android:textColor="?attr/textColorQuestions"
-        app:layout_constraintStart_toEndOf="@+id/btnStats"
+        app:layout_constraintStart_toEndOf="@+id/btnStartGame"
         app:layout_constraintTop_toBottomOf="@+id/btnStartGame" />
 
     <Button
         android:id="@+id/btnStats"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="50dp"
         android:layout_marginTop="48dp"
         android:alpha="0.5"
         android:background="?attr/bgBubbleBlue"
         android:drawableStart="@drawable/stats_icon"
         android:textColor="?attr/textColorQuestions"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnStartGame"
         app:layout_constraintTop_toBottomOf="@+id/btnStartGame" />
 
     <androidx.constraintlayout.widget.Guideline
