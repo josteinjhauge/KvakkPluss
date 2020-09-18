@@ -12,7 +12,7 @@
             android:entries="@array/pref_game_option_labels"
             android:entryValues="@array/pref_game_option_values"
             android:title="@string/listPref"
-            android:summary=""
+            android:summary="%s"
             android:icon="@drawable/ic_list" />
     </PreferenceCategory>
 

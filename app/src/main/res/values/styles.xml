@@ -1,6 +1,5 @@
 <resources>
     <!-- Base application theme. -->
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -25,6 +24,6 @@
         <item name="bgCorrect">@drawable/bg_correct_light</item>
         <item name="bgWrong">@drawable/bg_wrong_light</item>
     </style>
-
+    <!-- TODO: Fjerne gamle bobler -->
 
 </resources>
