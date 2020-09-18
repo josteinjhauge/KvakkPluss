@@ -1,9 +1,7 @@
 <resources>
     <!--Knapper Norsk-->
-    <string name="btnStart">Start Spill</string>
+    <string name="btnStart">Start spill</string>
     <string name="btnCancel">Avslutt</string>
-    <string name="txtHeader">FrogZone</string>
-    <string name="btnStats">Statistikk</string>
     <string name="btnOne">1</string>
     <string name="btnTwo">2</string>
     <string name="btnThree">3</string>
@@ -13,9 +11,7 @@
     <string name="btnSeven">7</string>
     <string name="btnEight">8</string>
     <string name="btnNine">9</string>
-    <string name="btnClear">C</string>
     <string name="btnZero">0</string>
-    <string name="btnNext">--></string>
 
     <string name="btnFiveQ">5 Spørsmål</string>
     <string name="btnTenQ">10 Spørsmål</string>
@@ -35,12 +31,13 @@
     <string name="positive">Ja</string>
     <string name="negative">Nei</string>
     <string name="lang">Språk</string>
-    <string name="btnBack">Tilbake</string>
+
+    <!--TODO: se på denne elin-->
     <string name="done">Du er ferdig</string>
-    <string name="frog">Frog mascot</string>
+    
     <string name="stats">Statistikk</string>
     <string name="selectGame">Velg Spørsmål</string>
-    <string name="sporsmal">Oppgaver</string>
+    <string name="questions">Oppgaver</string>
     <string name="langTitle">Språk</string>
     <string name="listPref">Velg antall oppgaver</string>
     <string name="german">Tysk</string>
@@ -51,6 +48,4 @@
     <string name="dummy">dummy</string>
     <string name="results">Fasit</string>
     <string name="game">"Spill "</string>
-
-
 </resources>

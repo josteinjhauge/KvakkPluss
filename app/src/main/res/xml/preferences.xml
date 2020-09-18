@@ -6,7 +6,7 @@
     tools:context=".PreferencesActivity">
 
     <PreferenceCategory
-        android:title="@string/sporsmal">
+        android:title="@string/questions">
         <ListPreference
             android:key="gameMode"
             android:entries="@array/pref_game_option_labels"

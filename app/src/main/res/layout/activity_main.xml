@@ -34,7 +34,7 @@
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:background="@drawable/btn_stats"
-        android:contentDescription="@string/btnStats"
+        android:contentDescription="@string/stats"
         android:elevation="4dp"
         app:layout_constraintEnd_toStartOf="@+id/btnStartGame"
         app:layout_constraintTop_toBottomOf="@+id/btnStartGame" />
