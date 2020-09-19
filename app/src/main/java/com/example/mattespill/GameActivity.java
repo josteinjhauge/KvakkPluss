@@ -440,8 +440,10 @@ public class GameActivity extends AppCompatActivity {
     public void doneDialog(){
         final Intent main = new Intent(this, MainActivity.class);
         final Intent stats = new Intent(this, StatisticsActivity.class);
+        final Intent restart = new Intent(this, GameActivity.class);
         String txtPositive = getResources().getString(R.string.btnCancel);
         String txtNegative = getResources().getString(R.string.stats);
+        String txtRestart = getResources().getString(R.string.restart);
         String txtTitle = getResources().getString(R.string.results);
 
         DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
@@ -460,6 +462,10 @@ public class GameActivity extends AppCompatActivity {
                         finish();
                         Log.i("knapp", "nei trykket"); // TODO: bort før levering
                         break;
+                    case DialogInterface.BUTTON_NEUTRAL:
+                        startActivity(restart);
+                        finish();
+                        Log.i("knapp", "restart trykket"); // TODO: bort før levering
                 }
             }
         };
@@ -471,7 +477,8 @@ public class GameActivity extends AppCompatActivity {
         }
         builder.setMessage(ut);
         builder.setPositiveButton(txtPositive, dialog)
-                .setNegativeButton(txtNegative,dialog);
+                .setNegativeButton(txtNegative,dialog)
+                .setNeutralButton(txtRestart, dialog);
         builder.setTitle(txtTitle);
         builder.show();
     }

@@ -47,4 +47,5 @@
     <string name="game">"Spill "</string>
     <string name="txtEqualssign">=</string>
     <string name="bg">Bakgrunn</string>
+    <string name="restart">Omstart</string>
 </resources>

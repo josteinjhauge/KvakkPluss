@@ -81,6 +81,7 @@ public class StatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
         buildRecyclerView();
         setButtons();
+
         // listView = findViewById(R.id.listView);
     }
 
@@ -101,12 +102,17 @@ public class StatisticsActivity extends AppCompatActivity {
         });
 
         Button btnDelete = findViewById(R.id.btnDelete);
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sureDelete();
-            }
-        });
+
+        if (resultList.size() == 0){
+            btnDelete.setEnabled(false);
+        } else {
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    sureDelete();
+                }
+            });
+        }
     }
 
     public void sureDelete(){
