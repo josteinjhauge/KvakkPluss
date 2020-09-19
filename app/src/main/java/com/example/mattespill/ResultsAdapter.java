@@ -3,11 +3,8 @@ package com.example.mattespill;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 
 public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.TestViewHolder> {
@@ -17,7 +14,6 @@ public class ResultsAdapter extends RecyclerView.Adapter<ResultsAdapter.TestView
     public static class TestViewHolder extends RecyclerView.ViewHolder {
         public TextView headerTextView;
         public TextView infoTextView;
-        public ImageView mDeleteImage;
         public TestViewHolder(View itemView) {
             super(itemView);
             headerTextView = itemView.findViewById(R.id.header);

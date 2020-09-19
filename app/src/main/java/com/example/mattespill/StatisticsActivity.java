@@ -2,11 +2,8 @@ package com.example.mattespill;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,19 +13,14 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Locale;
-
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 import static com.example.mattespill.GameActivity.RESULT;
 import static com.example.mattespill.GameActivity.SHARED_GAME_PREFS;
@@ -40,12 +32,6 @@ public class StatisticsActivity extends AppCompatActivity {
     ArrayList<Results> resultList = new ArrayList<>();
 
     public Locale newLang;
-
-    // shared preferences
-    public static final String SHARED_STATS_PREFS = "sharedStatsPrefs";
-    public static final String RESULTS = "results";
-    public static final String LIST_STATE = "list_state";
-    public static final String KEY_RECYCLER_STATE = "recycler_state";
 
     String actland;
     String lang;
@@ -60,19 +46,16 @@ public class StatisticsActivity extends AppCompatActivity {
         setLang(lang);
         actland = lang;
         SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener =
-                new SharedPreferences.OnSharedPreferenceChangeListener() {
-                    @Override
-                    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                        try {
-                            if (key.equals("lang_pref"))
-                            {
-                                setLang(lang);
-                                getFragmentManager().beginTransaction().replace(android.R.id.content,
-                                        new PreferencesActivity.PrefsFragment()).commit();
-                            }
-                        } catch (Exception e){
-                            System.out.println("Feilmelding kommer her " + e);
+                (sharedPreferences, key) -> {
+                    try {
+                        if (key.equals("lang_pref"))
+                        {
+                            setLang(lang);
+                            getFragmentManager().beginTransaction().replace(android.R.id.content,
+                                    new PreferencesActivity.PrefsFragment()).commit();
                         }
+                    } catch (Exception e){
+                        Log.d("onCreate", "onCreate: " + e);
                     }
                 };
         SharedPreferences sharedPreferences = getDefaultSharedPreferences(this);
@@ -81,37 +64,29 @@ public class StatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
         buildRecyclerView();
         setButtons();
-
-        // listView = findViewById(R.id.listView);
     }
 
     public void buildRecyclerView(){
-        RecyclerView resView = (RecyclerView) findViewById(R.id.listView);
-        resView.setLayoutManager(new LinearLayoutManager(this));
-        resAdapter = new ResultsAdapter(this.getLayoutInflater(), resultList);
-        resView.setAdapter(resAdapter);
+        try {
+            RecyclerView resView = (RecyclerView) findViewById(R.id.listView);
+            resView.setLayoutManager(new LinearLayoutManager(this));
+            resAdapter = new ResultsAdapter(this.getLayoutInflater(), resultList);
+            resView.setAdapter(resAdapter);
+        } catch (Exception e) {
+            Log.d("buildRecyclerView", "buildRecyclerView: " + e);
+        }
     }
 
     public void setButtons(){
         Button btnBack = findViewById(R.id.btnBackStats);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                back();
-            }
-        });
+        btnBack.setOnClickListener(v -> back());
 
         Button btnDelete = findViewById(R.id.btnDelete);
 
         if (resultList.size() == 0){
             btnDelete.setEnabled(false);
         } else {
-            btnDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    sureDelete();
-                }
-            });
+            btnDelete.setOnClickListener(v -> sureDelete());
         }
     }
 
@@ -120,22 +95,14 @@ public class StatisticsActivity extends AppCompatActivity {
         String txtPositive = getResources().getString(R.string.positive);
         String txtNegative = getResources().getString(R.string.negative);
 
-        DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which){
-                    case DialogInterface.BUTTON_POSITIVE:
-                        // yes trykket
-                        resultList.clear();
-                        System.out.println("Resultview etter clear() " + resultList);
-                        buildRecyclerView();
-                        Log.i("knapp", "ja trykket"); // TODO: bort før levering
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        // no trykket
-                        Log.i("knapp", "nei trykket"); // TODO: bort før levering
-                        break;
-                }
+        DialogInterface.OnClickListener dialog = (dialog1, which) -> {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    resultList.clear();
+                    buildRecyclerView();
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    break;
             }
         };
 
@@ -145,12 +112,10 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     public void back(){
-        // TODO: enten legge inn egen lagre knapp, eller bare gjøre det her
         saveData();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
-        Log.i("knapp", "Back pressed"); // bort før levering
     }
 
     public void loadData(){
@@ -159,53 +124,48 @@ public class StatisticsActivity extends AppCompatActivity {
             SharedPreferences gameprefs = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
             Gson gson = new Gson();
             String response = gameprefs.getString(RESULT, null);
-            System.out.println("response: " + response);
             Type type = new TypeToken<ArrayList<Results>>() {}.getType();
             resultList = gson.fromJson(response, type);
-            System.out.println("ResultList: " + resultList + " Response: " + response + "\n"
-                    + "Type: " + type);
             if (resultList == null){
                 resultList = new ArrayList<>();
             }
         } catch (Exception e) {
-            Log.d("ERROR", "loadArrayList: " + e);
+            Log.d("loadData", "loadArrayList: " + e);
             resultList = new ArrayList<>();
-        }
-
-        System.out.println("resultlist består av: ");
-        for (Results result : resultList) {
-            System.out.println(result.getName() + " sin score: " + result.getScore());
-            System.out.println("---------------");
         }
 
         // fra preferences
         SharedPreferences sharedprefs = PreferenceManager
                 .getDefaultSharedPreferences(this);
         lang = sharedprefs.getString("lang_pref", "no");
-        System.out.println("----:" + lang + ":----");
     }
 
     public void saveData(){
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(resultList);
-        editor.putString(RESULT, json);
-        editor.apply();
+        try {
+            SharedPreferences sharedPreferences = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            Gson gson = new Gson();
+            String json = gson.toJson(resultList);
+            editor.putString(RESULT, json);
+            editor.apply();
+        } catch (Exception e) {
+            Log.d("saveData", "saveData: " + e);
+        }
     }
 
     public void setLang(String landskode){
-        Log.d("TAG","settland med landskode: " + landskode + " kjører nå");
-
         newLang = Locale.forLanguageTag(landskode);
-        Log.d("TAG", "newLang er satt til: " + newLang);
 
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration cf = res.getConfiguration();
-        Locale locale = new Locale(landskode);
-        cf.locale = locale;
-        res.updateConfiguration(cf,dm);
+        try {
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration cf = res.getConfiguration();
+            Locale locale = new Locale(landskode);
+            cf.locale = locale;
+            res.updateConfiguration(cf,dm);
+        } catch (Exception e) {
+            Log.d("setLang", "setLang: " + e);
+        }
     }
 
     @Override

@@ -1,34 +1,25 @@
 package com.example.mattespill;
-// TODO: gå over alle strenger
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.fragment.app.DialogFragment;
-
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Locale;
-
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class GameActivity extends AppCompatActivity {
@@ -48,10 +39,6 @@ public class GameActivity extends AppCompatActivity {
     ArrayList<Integer> fetchedQuestions = new ArrayList<>();
     ArrayList<QandA> gameQuestions = new ArrayList<>();
     ArrayList<QandA> allQuestions = new ArrayList<>();
-
-    //TODO: til dialogboks hvis vi bare skal skrive ut de feile oppgavene
-    ArrayList<QandA> failedQuestions = new ArrayList<>();
-
     ArrayList<Results> resultList = new ArrayList<>();
 
     public Locale newLang;
@@ -62,7 +49,7 @@ public class GameActivity extends AppCompatActivity {
     public static final String RESULT = "result";
 
     // Fra shared prefs
-    int game = 5; // fra preferences, men her satt til default hvis spiller ikke er i preferences først
+    int game = 5;
     String lang;
     String actland;
 
@@ -76,7 +63,7 @@ public class GameActivity extends AppCompatActivity {
         try {
             setLang(lang);
         } catch (Exception e){
-            System.out.println(e);
+            Log.d("onCreate", "onCreate lang: " + e);
         }
         actland = lang;
         SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener =
@@ -91,7 +78,7 @@ public class GameActivity extends AppCompatActivity {
                                         new PreferencesActivity.PrefsFragment()).commit();
                             }
                         } catch (Exception e){
-                            System.out.println("Feilmelding kommer her " + e);
+                            Log.d("onCreate", "onSharedPreferenceChanged: " + e);
                         }
                     }
                 };
@@ -108,207 +95,167 @@ public class GameActivity extends AppCompatActivity {
         txtQuestionNum.setText(String.format("%d / %d", questionCount, game));
         txtQuestion = findViewById(R.id.txtQuestion);
         txtQuestion.setText(gameQuestions.get(0).getQuestion());
-        System.out.println("Arraylist: " + gameQuestions);
 
         setButtons();
     }
 
     public void setButtons(){
         Button btnExit = findViewById(R.id.btnCancel);
-        btnExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancelGame();
-            }
-        });
+        btnExit.setOnClickListener(v -> cancelGame());
 
         final Button btnOne = findViewById(R.id.btnOne);
-        btnOne.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String prevText = input.getText().toString();
-                String one = "1";
-                if (!prevText.equals("")){
-                    String newText = prevText + one;
-                    input.setText(newText);
-                } else {
-                    input.setText(one);
-                }
+        btnOne.setOnClickListener(v -> {
+            String prevText = input.getText().toString();
+            String one = "1";
+            if (!prevText.equals("")){
+                String newText = prevText + one;
+                input.setText(newText);
+            } else {
+                input.setText(one);
             }
         });
 
         final Button btnTwo = findViewById(R.id.btnTwo);
-        btnTwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String prevText = input.getText().toString();
-                String two = "2";
-                if (!prevText.equals("")){
-                    String newText = prevText + two;
-                    input.setText(newText);
-                } else{
-                    input.setText(two);
-                }
+        btnTwo.setOnClickListener(v -> {
+            String prevText = input.getText().toString();
+            String two = "2";
+            if (!prevText.equals("")){
+                String newText = prevText + two;
+                input.setText(newText);
+            } else{
+                input.setText(two);
             }
         });
 
         final Button btnThree = findViewById(R.id.btnThree);
-        btnThree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String prevText = input.getText().toString();
-                String three = "3";
-                if (!prevText.equals("")){
-                    String newText = prevText + three;
-                    input.setText(newText);
-                } else{
-                    input.setText(three);
-                }
+        btnThree.setOnClickListener(v -> {
+            String prevText = input.getText().toString();
+            String three = "3";
+            if (!prevText.equals("")){
+                String newText = prevText + three;
+                input.setText(newText);
+            } else{
+                input.setText(three);
             }
         });
 
         final Button btnFour = findViewById(R.id.btnFour);
-        btnFour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String prevText = input.getText().toString();
-                String four = "4";
-                if (!prevText.equals("")){
-                    String newText = prevText + four;
-                    input.setText(newText);
-                } else{
-                    input.setText(four);
-                }
+        btnFour.setOnClickListener(v -> {
+            String prevText = input.getText().toString();
+            String four = "4";
+            if (!prevText.equals("")){
+                String newText = prevText + four;
+                input.setText(newText);
+            } else{
+                input.setText(four);
             }
         });
 
         final Button btnFive = findViewById(R.id.btnFive);
-        btnFive.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String prevText = input.getText().toString();
-                String five = "5";
-                if (!prevText.equals("")){
-                    String newText = prevText + five;
-                    input.setText(newText);
-                } else{
-                    input.setText(five);
-                }
+        btnFive.setOnClickListener(v -> {
+            String prevText = input.getText().toString();
+            String five = "5";
+            if (!prevText.equals("")){
+                String newText = prevText + five;
+                input.setText(newText);
+            } else{
+                input.setText(five);
             }
         });
 
         final Button btnSix = findViewById(R.id.btnSix);
-        btnSix.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String prevText = input.getText().toString();
-                String six = "6";
-                if (!prevText.equals("")){
-                    String newText = prevText + six;
-                    input.setText(newText);
-                } else{
-                    input.setText(six);
-                }
+        btnSix.setOnClickListener(v -> {
+            String prevText = input.getText().toString();
+            String six = "6";
+            if (!prevText.equals("")){
+                String newText = prevText + six;
+                input.setText(newText);
+            } else{
+                input.setText(six);
             }
         });
 
         final Button btnSeven = findViewById(R.id.btnSeven);
-        btnSeven.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String prevText = input.getText().toString();
-                String seven = "7";
-                if (!prevText.equals("")){
-                    String newText = prevText + seven;
-                    input.setText(newText);
-                } else{
-                    input.setText(seven);
-                }
+        btnSeven.setOnClickListener(v -> {
+            String prevText = input.getText().toString();
+            String seven = "7";
+            if (!prevText.equals("")){
+                String newText = prevText + seven;
+                input.setText(newText);
+            } else{
+                input.setText(seven);
             }
         });
 
         final Button btnEight = findViewById(R.id.btnEight);
-        btnEight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String prevText = input.getText().toString();
-                String eight = "8";
-                if (!prevText.equals("")){
-                    String newText = prevText + eight;
-                    input.setText(newText);
-                } else{
-                    input.setText(eight);
-                }
+        btnEight.setOnClickListener(v -> {
+            String prevText = input.getText().toString();
+            String eight = "8";
+            if (!prevText.equals("")){
+                String newText = prevText + eight;
+                input.setText(newText);
+            } else{
+                input.setText(eight);
             }
         });
 
         final Button btnNine = findViewById(R.id.btnNine);
-        btnNine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String prevText = input.getText().toString();
-                String nine = "9";
-                if (!prevText.equals("")){
-                    String newText = prevText + nine;
-                    input.setText(newText);
-                } else{
-                    input.setText(nine);
-                }
+        btnNine.setOnClickListener(v -> {
+            String prevText = input.getText().toString();
+            String nine = "9";
+            if (!prevText.equals("")){
+                String newText = prevText + nine;
+                input.setText(newText);
+            } else{
+                input.setText(nine);
             }
         });
 
         final Button btnZero = findViewById(R.id.btnZero);
-        btnZero.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String prevText = input.getText().toString();
-                String zero = "0";
-                if (!prevText.equals("")){
-                    String newText = prevText + zero;
-                    input.setText(newText);
-                } else{
-                    input.setText(zero);
-                }
+        btnZero.setOnClickListener(v -> {
+            String prevText = input.getText().toString();
+            String zero = "0";
+            if (!prevText.equals("")){
+                String newText = prevText + zero;
+                input.setText(newText);
+            } else{
+                input.setText(zero);
             }
         });
 
         final Button btnConfirm = findViewById(R.id.btnNext);
-        btnConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String inputVal = input.getText().toString();
+        btnConfirm.setOnClickListener(v -> {
+            String inputVal = input.getText().toString();
 
-                if (inputVal.equals("")) {
-                    // TODO: En bedre måte å gi tilbakemelding her eller??
-                    Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
+            if (inputVal.equals("")) {
+                Toast.makeText(GameActivity.this, "Tast ditt svar", Toast.LENGTH_SHORT).show();
+            } else {
+                if (questionCount < game) {
+                    checkAnswer(inputVal);
+                    txtQuestion.setText(gameQuestions.get(questionCount).getQuestion());
+                    questionCount++;
+                    txtQuestionNum.setText(String.format("%d / %d", questionCount, game));
+                    input.setText("");
                 } else {
-                    if (questionCount < game) {
-                        checkAnswer(inputVal);
-                        txtQuestion.setText(gameQuestions.get(questionCount).getQuestion());
-                        questionCount++;
-                        txtQuestionNum.setText(String.format("%d / %d", questionCount, game));
-                        input.setText("");
-                    } else {
-                        btnOne.setEnabled(false);
-                        btnTwo.setEnabled(false);
-                        btnThree.setEnabled(false);
-                        btnFour.setEnabled(false);
-                        btnFive.setEnabled(false);
-                        btnSix.setEnabled(false);
-                        btnSeven.setEnabled(false);
-                        btnEight.setEnabled(false);
-                        btnNine.setEnabled(false);
-                        btnZero.setEnabled(false);
-                        btnConfirm.setEnabled(false);
-                        input.setText("");
-                        txtQuestion.setText(R.string.done);
+                    btnOne.setEnabled(false);
+                    btnTwo.setEnabled(false);
+                    btnThree.setEnabled(false);
+                    btnFour.setEnabled(false);
+                    btnFive.setEnabled(false);
+                    btnSix.setEnabled(false);
+                    btnSeven.setEnabled(false);
+                    btnEight.setEnabled(false);
+                    btnNine.setEnabled(false);
+                    btnZero.setEnabled(false);
+                    btnConfirm.setEnabled(false);
+                    input.setText("");
+                    txtQuestion.setText(R.string.done);
 
-                        checkAnswer(inputVal);
-                        getResult();
-                        saveResult();
-                        doneDialog();
-                        gameOver = true;
-                    }
+                    checkAnswer(inputVal);
+                    getResult();
+                    saveResult();
+                    doneDialog();
+                    gameOver = true;
                 }
             }
         });
@@ -320,9 +267,6 @@ public class GameActivity extends AppCompatActivity {
         String name = gameName + (resultList.size()+1);
         result = new Results(name, score);
         resultList.add(result);
-
-        System.out.println("game: " + game + " correct: " + countCorrect +
-                "\nresult: " + result.getScore() + " name: " + result.getName());
     }
 
     public void saveResult(){
@@ -341,21 +285,14 @@ public class GameActivity extends AppCompatActivity {
 
         final Intent intent = new Intent(this, MainActivity.class);
 
-        DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which){
-                    case DialogInterface.BUTTON_POSITIVE:
-                        // yes trykket
-                        startActivity(intent);
-                        finish();
-                        Log.i("knapp", "ja trykket"); // TODO: bort før levering
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        // no trykket
-                        Log.i("knapp", "nei trykket"); // TODO: bort før levering
-                        break;
-                }
+        DialogInterface.OnClickListener dialog = (dialog1, which) -> {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    startActivity(intent);
+                    finish();
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    break;
             }
         };
 
@@ -372,12 +309,6 @@ public class GameActivity extends AppCompatActivity {
             QandA qanda = new QandA(questions[i], answers[i]);
             allQuestions.add(qanda);
         }
-
-        for (QandA quandas : allQuestions) {
-            System.out.println(quandas.question + " = " + quandas.answer);
-            System.out.println("--------------");
-        }
-
     }
 
     public void getGameQuestions(int game){
@@ -385,7 +316,7 @@ public class GameActivity extends AppCompatActivity {
         int count = 0;
         boolean check;
         do {
-            int randomIndex = (int) (Math.random()*25); // sjekk om stemmer senere
+            int randomIndex = (int) (Math.random()*25);
             check = fetchedQuestions.contains(randomIndex);
             if (!check){
                 QandA randomTask = allQuestions.get(randomIndex);
@@ -398,13 +329,10 @@ public class GameActivity extends AppCompatActivity {
 
     public void checkAnswer(String inputVal){
         String answer = gameQuestions.get(questionCount-1).getAnswer();
-        System.out.println(inputVal + " skal være lik " + answer);
-        System.out.println("questioncount er: " + questionCount);
         try {
             if (inputVal.equals(answer)){
                 updateCorrect();
             } else {
-                // TODO: lage arraylist her av gamequestions.get(questioncount-1)
                 updateWrong();
             }
         } catch (Exception e){
@@ -428,13 +356,12 @@ public class GameActivity extends AppCompatActivity {
             countWrong++;
             txtWrong.setText(String.valueOf(countWrong));
         } catch (Exception e){
-            Log.d("updateCorrect", "updateCorrect feilet " + e);
+            Log.d("updateWrong", "updateWrong feilet " + e);
         }
     }
 
     public void Clear(View v){
         input.setText("");
-        Log.d("Clear", "Clear button clicked");
     }
 
     public void doneDialog(){
@@ -446,27 +373,22 @@ public class GameActivity extends AppCompatActivity {
         String txtRestart = getResources().getString(R.string.restart);
         String txtTitle = getResources().getString(R.string.results);
 
-        DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which){
-                    case DialogInterface.BUTTON_POSITIVE:
-                        // yes trykket
-                        startActivity(main);
-                        finish();
-                        Log.i("knapp", "ja trykket"); // TODO: bort før levering
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        // no trykket
-                        startActivity(stats);
-                        finish();
-                        Log.i("knapp", "nei trykket"); // TODO: bort før levering
-                        break;
-                    case DialogInterface.BUTTON_NEUTRAL:
-                        startActivity(restart);
-                        finish();
-                        Log.i("knapp", "restart trykket"); // TODO: bort før levering
-                }
+        DialogInterface.OnClickListener dialog = (dialog1, which) -> {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    // avslutt trykket
+                    startActivity(main);
+                    finish();
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    // stats trykket
+                    startActivity(stats);
+                    finish();
+                    break;
+                case DialogInterface.BUTTON_NEUTRAL:
+                    // omstart trykket
+                    startActivity(restart);
+                    finish();
             }
         };
 
@@ -484,29 +406,31 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void setLang(String landskode){
-        Log.d("TAG","settland med landskode: " + landskode + " kjører nå");
-
         newLang = Locale.forLanguageTag(landskode);
-        Log.d("TAG", "newLang er satt til: " + newLang);
 
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration cf = res.getConfiguration();
-        Locale locale = new Locale(landskode);
-        cf.locale = locale;
-        res.updateConfiguration(cf,dm);
+        try {
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration cf = res.getConfiguration();
+            Locale locale = new Locale(landskode);
+            cf.locale = locale;
+            res.updateConfiguration(cf,dm);
+        } catch (Exception e) {
+            Log.d("setLang", "setLang: " + e);
+        }
     }
 
     public void loadData(){
-        Log.d("TAG", "loadData: ");
-        SharedPreferences sharedPreferences = PreferenceManager
-                .getDefaultSharedPreferences(this);
-        game = Integer.parseInt(sharedPreferences.getString("gameMode", "5"));
-        lang = sharedPreferences.getString("lang_pref", "no");
-        System.out.println("----:" + game + ":----");
-        System.out.println("----:" + lang + ":----");
+        try {
+            SharedPreferences sharedPreferences = PreferenceManager
+                    .getDefaultSharedPreferences(this);
+            game = Integer.parseInt(sharedPreferences.getString("gameMode", "5"));
+            lang = sharedPreferences.getString("lang_pref", "no");
 
-        loadArrayList();
+            loadArrayList();
+        } catch (Exception e) {
+            Log.d("loadData", "loadData: " + e);
+        }
     }
 
     public void loadArrayList(){
@@ -514,27 +438,16 @@ public class GameActivity extends AppCompatActivity {
             SharedPreferences gameprefs = getSharedPreferences(SHARED_GAME_PREFS, MODE_PRIVATE);
             Gson gson = new Gson();
             String response = gameprefs.getString(RESULT, null);
-            System.out.println("response: " + response);
             Type type = new TypeToken<ArrayList<Results>>() {}.getType();
             resultList = gson.fromJson(response, type);
-            System.out.println("ResultList: " + resultList + " Response: " + response + "\n"
-                    + "Type: " + type);
             if (resultList == null){
                 resultList = new ArrayList<>();
             }
         } catch (Exception e) {
-            Log.d("CATCH", "loadArrayList: " + e);
+            Log.d("loadArrayList", "loadArrayList: " + e);
             resultList = new ArrayList<>();
         }
-
-        System.out.println("resultlist består av: ");
-        for (Results result : resultList) {
-            System.out.println(result.getName() + " sin score: " + result.getScore());
-            System.out.println("---------------");
-        }
     }
-
-    // TODO: mulig mer må saves til instance, men ikke funnet helt ut av det enda
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -551,8 +464,6 @@ public class GameActivity extends AppCompatActivity {
         String wrong = txtWrong.getText().toString();
         String answer = input.getText().toString();
 
-
-        // TODO: husk å lagre questioncount!!!
         outState.putString("Question", question);
         outState.putString("QuestionNum", questionNum);
         outState.putString("Correct", correct);
@@ -563,7 +474,6 @@ public class GameActivity extends AppCompatActivity {
         outState.putInt("CountWrong", countWrong);
         outState.putParcelableArrayList("GameQuestions", gameQuestions);
         outState.putBoolean("GameOver", gameOver);
-
     }
 
     @Override

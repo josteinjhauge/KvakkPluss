@@ -12,14 +12,9 @@ public class Results implements Parcelable {
         this.score = score;
     }
 
-    private Results(Parcel in){
+    private Results(Parcel in) {
         name = in.readString();
         score = in.readString();
-    }
-
-    // denne er bare for å teste
-    public void changeTest(String text){
-        name = text;
     }
 
     public String getName() {
