@@ -8,6 +8,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import java.util.Locale;
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
@@ -48,6 +49,12 @@ public class PreferencesActivity extends PreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences);
+        }
+
+        @Override
+        public void onViewCreated(View view, Bundle savedInstanceState) {
+            super.onViewCreated(view, savedInstanceState);
+            view.setBackgroundColor(getResources().getColor(R.color.backgroundGreen));
         }
     }
 
