@@ -67,19 +67,16 @@ public class GameActivity extends AppCompatActivity {
         }
         actland = lang;
         SharedPreferences.OnSharedPreferenceChangeListener onSharedPreferenceChangeListener =
-                new SharedPreferences.OnSharedPreferenceChangeListener() {
-                    @Override
-                    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                        try {
-                            if (key.equals("lang_pref"))
-                            {
-                                setLang(lang);
-                                getFragmentManager().beginTransaction().replace(android.R.id.content,
-                                        new PreferencesActivity.PrefsFragment()).commit();
-                            }
-                        } catch (Exception e){
-                            Log.d("onCreate", "onSharedPreferenceChanged: " + e);
+                (sharedPreferences, key) -> {
+                    try {
+                        if (key.equals("lang_pref"))
+                        {
+                            setLang(lang);
+                            getFragmentManager().beginTransaction().replace(android.R.id.content,
+                                    new PreferencesActivity.PrefsFragment()).commit();
                         }
+                    } catch (Exception e){
+                        Log.d("onCreate", "onSharedPreferenceChanged: " + e);
                     }
                 };
         SharedPreferences sharedPreferences = getDefaultSharedPreferences(this);
